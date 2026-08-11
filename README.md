@@ -2,9 +2,11 @@
 
 > **Built by DevOps, for DevOps.**
 
-**KubeSpade** is a Kubernetes management client for **iPad**. Connect to your clusters, browse workloads, and operate day-to-day without a laptop.
+**KubeSpade** is a **full-featured Kubernetes client** for **macOS, Windows, Linux**, and **iPad**.
 
-Credentials stay on your device. The app talks directly to your Kubernetes API and cloud providers — there is no KubeSpade backend that receives your cluster secrets.
+Browse pods and workloads, check logs and metrics, edit YAML, scale deployments, exec into containers, and manage your clusters day to day — the same kind of work you’d do with `kubectl`, in a clear UI on the device you already use.
+
+Works with EKS, AKS, GKE, and any cluster you reach with a kubeconfig. Credentials stay on your device; traffic goes straight to your cluster and cloud APIs — not through our servers.
 
 > This repository is **public support & legal only**. Application source code is not hosted here.
 
@@ -17,23 +19,26 @@ Credentials stay on your device. The app talks directly to your Kubernetes API a
 | Privacy Policy | [privacy.html](./privacy.html) | https://kubespade.github.io/kubespade/privacy.html |
 | Terms of Use | [terms.html](./terms.html) | https://kubespade.github.io/kubespade/terms.html |
 
-Use the Pages URLs in **App Store Connect** (Privacy Policy URL / Support URL) once GitHub Pages is turned on for this repo.
+These pages are written for the **iPad App Store** listing (Privacy Policy URL / Support URL in App Store Connect). The same on-device privacy model applies to the desktop apps.
 
 ---
 
 ## Support
 
 - **Bugs & feature requests:** [Open an Issue](https://github.com/kubespade/kubespade/issues)
-- Please include: iPadOS version, app version, cluster type (EKS / AKS / GKE / kubeconfig), and steps to reproduce
+- Please include: platform (iPad / macOS / Windows / Linux), OS version, app version, cluster type (EKS / AKS / GKE / kubeconfig), and steps to reproduce
 - Do **not** paste kubeconfigs, tokens, or other secrets into Issues
 
 ---
 
-## App
+## Apps
 
-Available on the **App Store** for iPad (link will be added when the listing is live).
+| Platform | Where |
+|----------|--------|
+| **iPad** | App Store (link will be added when the listing is live) |
+| **Desktop** | macOS, Windows, Linux (download / release notes will be linked here) |
 
-Optional Pro unlocks (subscriptions or lifetime) are sold via Apple In-App Purchase.
+On iPad, optional Pro unlocks (subscriptions or lifetime) are sold via Apple In-App Purchase.
 
 ---
 
@@ -42,11 +47,11 @@ Optional Pro unlocks (subscriptions or lifetime) are sold via Apple In-App Purch
 | Is | Isn’t |
 |----|--------|
 | Privacy & Terms for App Store review | Application source code |
-| Public bug tracker (Issues) | Place to publish builds / `.ipa` |
+| Public bug tracker (Issues) | Place to publish builds / `.ipa` / installers |
 | Support landing page | Cloud backend for the app |
 
 ---
 
 ## Contact
 
-Support contact is listed on the App Store product page.
+Support contact for the iPad app is listed on the App Store product page.
