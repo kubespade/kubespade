@@ -1,0 +1,53 @@
+name: Feature request
+description: Suggest an improvement or new capability
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Tell us what you’d like KubeSpade to do better.
+
+        Keep credentials and private cluster details out of this form.
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform (mainly for)
+      options:
+        - All platforms
+        - iPad
+        - Desktop (macOS / Windows / Linux)
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / use case
+      description: What are you trying to do today that’s hard or missing?
+      placeholder: I need to compare resource usage across namespaces quickly…
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What would a good solution look like?
+      placeholder: A filter or chart that…
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you’ve considered (optional)
+      placeholder: I currently use kubectl / Lens / …
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Extra context (optional)
+      description: Mockups, links, or examples (no secrets)

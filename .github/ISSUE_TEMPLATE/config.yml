@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Privacy Policy
+    url: https://kubespade.github.io/kubespade/privacy.html
+    about: How KubeSpade handles data on your device
+  - name: Terms of Use
+    url: https://kubespade.github.io/kubespade/terms.html
+    about: License, purchases, and acceptable use
