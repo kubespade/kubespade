@@ -50,7 +50,7 @@ On iPad, optional Pro unlocks (subscriptions or lifetime) are sold via Apple In-
 |----|--------|
 | Privacy & Terms for App Store review | Application source code |
 | Public bug tracker (Issues) | Place to publish builds / `.ipa` / installers |
-| Support landing page | Cloud backend for the app |
+| Marketing landing ([index.html](./index.html)) | Cloud backend for the app |
 
 ---
 

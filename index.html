@@ -3,9 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="KubeSpade — Kubernetes client for macOS, Windows, Linux, and iPad." />
-  <title>KubeSpade</title>
-  <link rel="stylesheet" href="legal.css" />
+  <meta name="description" content="KubeSpade — full-featured Kubernetes client for macOS, Windows, Linux, and iPad. Browse pods, logs, metrics, and YAML. Works with EKS, GKE, AKS, and kubeconfig." />
+  <meta property="og:title" content="KubeSpade — Kubernetes client for DevOps" />
+  <meta property="og:description" content="Browse pods, logs, metrics, and YAML. Exec, port-forward, Helm — on macOS, Windows, Linux, and iPad." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kubespade.com/" />
+  <meta property="og:image" content="https://kubespade.com/assets/screenshots/01-mac-overview.png" />
+  <title>KubeSpade — Kubernetes client for DevOps</title>
+  <link rel="stylesheet" href="landing.css" />
 </head>
 <body>
   <div class="wrap">
@@ -15,41 +20,210 @@
         KubeSpade
       </a>
       <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#screenshots">Screenshots</a>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
-        <a href="https://github.com/kubespade/kubespade/issues">Support</a>
+        <a class="nav-cta" href="https://github.com/kubespade/kubespade/issues">Support</a>
       </div>
     </nav>
 
-    <article class="card">
-      <p class="eyebrow">Kubernetes client</p>
-      <h1>Built by DevOps, for DevOps.</h1>
-      <p class="lead">
-        Browse pods, logs, metrics, and YAML. Exec, port-forward, Helm, and day-to-day cluster work —
-        on <strong>macOS</strong>, <strong>Windows</strong>, <strong>Linux</strong>, and <strong>iPad</strong>.
-      </p>
-      <p>
-        Works with EKS, GKE, AKS, and any cluster you reach with a kubeconfig.
-        Credentials stay on your device; traffic goes to your cluster — not through our servers.
-      </p>
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Kubernetes client</p>
+        <h1>Built by DevOps,<br />for DevOps.</h1>
+        <p class="lead">
+          Browse pods, logs, metrics, and YAML. Exec, port-forward, Helm, and day-to-day cluster work —
+          on macOS, Windows, Linux, and iPad.
+        </p>
+        <div class="hero-actions">
+          <span class="btn btn-primary btn-soon" aria-disabled="true">iPad — App Store soon</span>
+          <a class="btn btn-ghost" href="https://github.com/kubespade/kubespade/issues">Request early access</a>
+        </div>
+        <p class="hero-note">Credentials stay on your device. Traffic goes to your cluster — not through our servers.</p>
+      </div>
+      <div class="hero-shot">
+        <img
+          src="assets/screenshots/01-mac-overview.png"
+          alt="KubeSpade Overview — cluster metrics, CPU and memory gauges, and warnings"
+          width="1978"
+          height="1284"
+          fetchpriority="high"
+        />
+      </div>
+    </header>
 
-      <h2>Apps</h2>
-      <ul>
-        <li><strong>iPad</strong> — App Store (link coming soon)</li>
-        <li><strong>Desktop</strong> — macOS, Windows, Linux (downloads coming soon)</li>
-      </ul>
+    <section class="platforms" aria-label="Supported platforms">
+      <span class="platforms-label">Runs on</span>
+      <div class="platform-tags">
+        <span class="tag tag-accent">macOS</span>
+        <span class="tag">Windows</span>
+        <span class="tag">Linux</span>
+        <span class="tag tag-accent">iPad</span>
+      </div>
+      <span class="platforms-label">Works with</span>
+      <div class="platform-tags">
+        <span class="tag">Amazon EKS</span>
+        <span class="tag">Google GKE</span>
+        <span class="tag">Azure AKS</span>
+        <span class="tag">kubeconfig</span>
+      </div>
+    </section>
 
-      <h2>Legal</h2>
-      <ul>
-        <li><a href="privacy.html">Privacy Policy</a></li>
-        <li><a href="terms.html">Terms of Use</a></li>
-      </ul>
+    <section id="features" aria-labelledby="features-title">
+      <div class="section-head">
+        <h2 id="features-title">Everything you need day to day</h2>
+        <p>The same work you'd do with kubectl — in a clear UI on the device you already use.</p>
+      </div>
+      <div class="features">
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">◎</div>
+          <h3>Cluster overview</h3>
+          <p>Nodes, namespaces, resource usage, and warnings at a glance — with live CPU, memory, and pod charts.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">⬡</div>
+          <h3>Workloads &amp; resources</h3>
+          <p>Pods, Deployments, Services, Ingress, RBAC, CRDs, Helm releases — browse and operate without switching tools.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">▤</div>
+          <h3>Logs &amp; exec</h3>
+          <p>Stream pod logs, follow containers, exec into shells, and port-forward — right from the resource view.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">✎</div>
+          <h3>YAML &amp; apply</h3>
+          <p>View and edit manifests, scale deployments, restart pods, and apply changes with a built-in editor.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">☁</div>
+          <h3>Multi-cloud connect</h3>
+          <p>Connect via EKS, GKE, AKS credentials or import a kubeconfig — multiple clusters, grouped your way.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">🔒</div>
+          <h3>On-device only</h3>
+          <p>No KubeSpade backend receives your kubeconfig or tokens. The app talks directly to your cluster APIs.</p>
+        </article>
+      </div>
+    </section>
 
-      <p class="muted">
-        Bugs &amp; feature requests:
+    <section id="screenshots" aria-labelledby="screenshots-title">
+      <div class="section-head">
+        <h2 id="screenshots-title">See it in action</h2>
+        <p>Dark theme, sidebar navigation, and the workflows you already know — without the terminal.</p>
+      </div>
+      <div class="shots">
+        <article class="shot-row">
+          <div class="shot-copy">
+            <span class="shot-tag">Overview</span>
+            <h3>Cluster health at a glance</h3>
+            <p>CPU, memory, and pod utilization with time-range charts. Nodes ready, namespace count, and warnings — all on one screen.</p>
+          </div>
+          <div class="shot-media">
+            <img
+              src="assets/screenshots/01-mac-overview.png"
+              alt="KubeSpade cluster overview with metrics and warnings"
+              width="1978"
+              height="1284"
+              loading="lazy"
+            />
+          </div>
+        </article>
+
+        <article class="shot-row reverse">
+          <div class="shot-copy">
+            <span class="shot-tag">Workloads</span>
+            <h3>Pods, Deployments, and more</h3>
+            <p>Filter by namespace, sort columns, and jump to logs or exec from any row. Full resource tree in the sidebar.</p>
+          </div>
+          <div class="shot-media">
+            <img
+              src="assets/screenshots/02-mac-pods.png"
+              alt="KubeSpade pods table with status, CPU, memory, and node columns"
+              width="1977"
+              height="1284"
+              loading="lazy"
+            />
+          </div>
+        </article>
+
+        <article class="shot-row">
+          <div class="shot-copy">
+            <span class="shot-tag">Logs</span>
+            <h3>Stream logs per container</h3>
+            <p>Multi-container pods, previous-instance logs, tail lines, and follow mode — without leaving the app.</p>
+          </div>
+          <div class="shot-media">
+            <img
+              src="assets/screenshots/03-mac-logs.png"
+              alt="KubeSpade log viewer with container tabs and streaming output"
+              width="1979"
+              height="1284"
+              loading="lazy"
+            />
+          </div>
+        </article>
+
+        <article class="shot-row reverse">
+          <div class="shot-copy">
+            <span class="shot-tag">Clusters</span>
+            <h3>Connect any cluster</h3>
+            <p>EKS, GKE, AKS, or kubeconfig — add clusters, group them by environment, and switch in one click.</p>
+          </div>
+          <div class="shot-media">
+            <img
+              src="assets/screenshots/04-mac-clusters-2.png"
+              alt="KubeSpade Add Cluster dialog with EKS, GKE, AKS, and kubeconfig options"
+              width="1976"
+              height="1283"
+              loading="lazy"
+            />
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="trust" aria-label="Privacy and compatibility">
+      <article class="trust-card">
+        <h3>Your credentials never leave your device</h3>
+        <p>KubeSpade stores kubeconfig and cloud credentials locally. We don't operate a backend that receives your cluster secrets or API traffic.</p>
+        <ul>
+          <li>Direct connection to Kubernetes API</li>
+          <li>Keychain / secure storage on each platform</li>
+          <li><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Use</a></li>
+        </ul>
+      </article>
+      <article class="trust-card">
+        <h3>Works with the clusters you already run</h3>
+        <p>Whether you manage EKS in production or spin up minikube locally — same UI, same workflows.</p>
+        <ul>
+          <li>AWS EKS, GCP GKE, Azure AKS</li>
+          <li>Any cluster reachable via kubeconfig</li>
+          <li>Exec plugins (e.g. aws-vault) supported on desktop</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="cta" aria-labelledby="cta-title">
+      <h2 id="cta-title">Get KubeSpade</h2>
+      <p>iPad app is heading to the App Store. Desktop builds for macOS, Windows, and Linux are coming soon.</p>
+      <div class="cta-actions">
+        <span class="btn btn-primary btn-soon" aria-disabled="true">App Store — coming soon</span>
+        <span class="btn btn-ghost btn-soon" aria-disabled="true">Desktop downloads — coming soon</span>
+        <a class="btn btn-ghost" href="https://github.com/kubespade/kubespade/issues">Report a bug</a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <span>© 2026 KubeSpade</span>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
         <a href="https://github.com/kubespade/kubespade/issues">GitHub Issues</a>
-      </p>
-    </article>
+      </div>
+    </footer>
   </div>
 </body>
 </html>

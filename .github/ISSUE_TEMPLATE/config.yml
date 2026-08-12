@@ -1,8 +1,11 @@
 blank_issues_enabled: false
 contact_links:
+  - name: Website
+    url: https://kubespade.com
+    about: Product info and download links
   - name: Privacy Policy
-    url: https://kubespade.github.io/kubespade/privacy.html
+    url: https://kubespade.com/privacy.html
     about: How KubeSpade handles data on your device
   - name: Terms of Use
-    url: https://kubespade.github.io/kubespade/terms.html
+    url: https://kubespade.com/terms.html
     about: License, purchases, and acceptable use
