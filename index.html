@@ -79,7 +79,7 @@
           "price": "0",
           "priceCurrency": "USD",
           "availability": "https://schema.org/PreOrder",
-          "description": "iPad App Store and desktop downloads coming soon. Optional Pro unlocks via In-App Purchase on iPad."
+          "description": "iPad App Store and desktop downloads coming soon."
         },
         "author": { "@id": "https://kubespade.com/#organization" }
       }
@@ -97,8 +97,9 @@
       <div class="nav-links">
         <a href="#features">Features</a>
         <a href="#screenshots">Screenshots</a>
+        <a href="download.html">Download</a>
+        <a href="faq.html">FAQ</a>
         <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
         <a class="nav-cta" href="https://github.com/kubespade/kubespade/issues">Support</a>
       </div>
     </nav>
@@ -113,8 +114,8 @@
           on <strong>macOS</strong>, <strong>Windows</strong>, <strong>Linux</strong>, and <strong>iPad</strong>.
         </p>
         <div class="hero-actions">
-          <span class="btn btn-primary btn-soon" aria-disabled="true">iPad — App Store soon</span>
-          <a class="btn btn-ghost" href="https://github.com/kubespade/kubespade/issues">Request early access</a>
+          <a class="btn btn-primary" href="download.html">Get KubeSpade</a>
+          <a class="btn btn-ghost" href="#how">How it works</a>
         </div>
         <p class="hero-note">Credentials stay on your device. Traffic goes to your cluster — not through our servers.</p>
       </div>
@@ -153,6 +154,36 @@
         <span class="tag">Azure AKS</span>
         <span class="tag">kubeconfig</span>
       </div>
+    </section>
+
+    <section id="how" class="how" aria-labelledby="how-title">
+      <div class="section-head">
+        <h2 id="how-title">How it works</h2>
+        <p>Three steps from zero to browsing a live cluster.</p>
+      </div>
+      <ol class="how-steps">
+        <li>
+          <span class="how-num" aria-hidden="true">1</span>
+          <div>
+            <h3>Add a cluster</h3>
+            <p>Import a kubeconfig, or connect with Amazon EKS, Google GKE, or Azure AKS credentials.</p>
+          </div>
+        </li>
+        <li>
+          <span class="how-num" aria-hidden="true">2</span>
+          <div>
+            <h3>Connect</h3>
+            <p>Open the cluster from the sidebar. KubeSpade talks directly to your Kubernetes API.</p>
+          </div>
+        </li>
+        <li>
+          <span class="how-num" aria-hidden="true">3</span>
+          <div>
+            <h3>Operate</h3>
+            <p>Browse resources, stream logs, edit YAML, exec, port-forward, and manage Helm releases.</p>
+          </div>
+        </li>
+      </ol>
     </section>
 
     <section id="features" aria-labelledby="features-title">
@@ -338,19 +369,31 @@
       </article>
     </section>
 
+    <section class="faq-teaser" aria-labelledby="faq-teaser-title">
+      <div class="section-head">
+        <h2 id="faq-teaser-title">Questions?</h2>
+        <p>Does it send kubeconfigs to a server? How do I connect to EKS? Which platforms are supported?</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="faq.html">Read the FAQ</a>
+        <a class="btn btn-ghost" href="https://github.com/kubespade/kubespade/issues">Ask on GitHub</a>
+      </div>
+    </section>
+
     <section class="cta" aria-labelledby="cta-title">
       <h2 id="cta-title">Get KubeSpade</h2>
-      <p>iPad app is heading to the App Store. Desktop builds for macOS, Windows, and Linux are coming soon.</p>
+      <p>iPad App Store and desktop downloads for macOS, Windows, and Linux are coming soon. Leave a note if you want early access.</p>
       <div class="cta-actions">
-        <span class="btn btn-primary btn-soon" aria-disabled="true">App Store — coming soon</span>
-        <span class="btn btn-ghost btn-soon" aria-disabled="true">Desktop downloads — coming soon</span>
-        <a class="btn btn-ghost" href="https://github.com/kubespade/kubespade/issues">Report a bug</a>
+        <a class="btn btn-primary" href="download.html">Download page</a>
+        <a class="btn btn-ghost" href="https://github.com/kubespade/kubespade/issues">Request early access</a>
       </div>
     </section>
 
     <footer class="site-footer">
       <span>© 2026 KubeSpade</span>
       <div class="footer-links">
+        <a href="download.html">Download</a>
+        <a href="faq.html">FAQ</a>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="https://github.com/kubespade/kubespade/issues">GitHub Issues</a>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FAQ — KubeSpade Kubernetes Client</title>
+  <meta name="description" content="Frequently asked questions about KubeSpade: privacy, kubeconfig, EKS/GKE/AKS, platforms, and support." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://kubespade.com/faq.html" />
+  <meta property="og:title" content="FAQ — KubeSpade" />
+  <meta property="og:description" content="Privacy, clusters, platforms, and how KubeSpade connects to Kubernetes." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kubespade.com/faq.html" />
+  <link rel="stylesheet" href="landing.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does KubeSpade send my kubeconfig or tokens to your servers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Credentials stay on your device. The app talks directly to your Kubernetes API and cloud providers. There is no KubeSpade backend that receives your cluster secrets or API traffic."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What platforms does KubeSpade support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "KubeSpade is built for macOS, Windows, Linux, and iPad. The iPad app will ship on the App Store; desktop downloads are coming soon."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which clusters can I connect to?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Amazon EKS, Google GKE, Azure AKS, minikube, kind, and any cluster reachable with a standard kubeconfig."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is KubeSpade a kubectl replacement?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It is a visual Kubernetes GUI client for day-to-day work: browse resources, logs, YAML, exec, port-forward, and Helm. You can still use kubectl alongside it when you need the CLI."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I get support or report a bug?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open an issue on the public GitHub repository. Do not paste kubeconfigs, tokens, or other secrets."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="topnav" aria-label="Site">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true"></span>
+        KubeSpade
+      </a>
+      <div class="nav-links">
+        <a href="/#features">Features</a>
+        <a href="download.html">Download</a>
+        <a class="nav-cta" href="faq.html">FAQ</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="https://github.com/kubespade/kubespade/issues">Support</a>
+      </div>
+    </nav>
+
+    <header class="page-hero">
+      <p class="eyebrow">Support</p>
+      <h1>Frequently asked questions</h1>
+      <p class="lead">Short answers about privacy, platforms, and clusters.</p>
+    </header>
+
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>Does KubeSpade send my kubeconfig or tokens to your servers?</summary>
+        <p>No. Credentials stay on your device. The app talks directly to your Kubernetes API and cloud providers. There is no KubeSpade backend that receives your cluster secrets or API traffic. See the <a href="privacy.html">Privacy Policy</a>.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>What platforms does KubeSpade support?</summary>
+        <p><strong>macOS</strong>, <strong>Windows</strong>, <strong>Linux</strong>, and <strong>iPad</strong>. iPad ships via the App Store; desktop downloads are listed on the <a href="download.html">Download</a> page when ready.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Which clusters can I connect to?</summary>
+        <p>Amazon EKS, Google GKE, Azure AKS, minikube, kind, and any cluster you can reach with a standard kubeconfig. On desktop, exec plugins such as aws-vault are supported where configured.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Is KubeSpade a kubectl replacement?</summary>
+        <p>It is a visual Kubernetes GUI for day-to-day cluster work — the same kind of tasks you’d do with kubectl, without living in the terminal. Keep kubectl for scripting and automation; use KubeSpade for browsing, debugging, and ops.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do you store my cluster metrics or logs in the cloud?</summary>
+        <p>No cloud backend for your cluster data. Metrics and logs you view are fetched from your cluster (or local history on device) — not uploaded to KubeSpade servers.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>How do I get support or report a bug?</summary>
+        <p>Open an issue on <a href="https://github.com/kubespade/kubespade/issues">GitHub</a>. Include platform, OS version, app version, and cluster type (EKS / GKE / AKS / kubeconfig). Do <strong>not</strong> paste kubeconfigs, tokens, or secrets.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>When will downloads be available?</summary>
+        <p>iPad App Store and desktop builds are coming soon. Watch the <a href="download.html">Download</a> page, or open a GitHub issue to request early access.</p>
+      </details>
+    </div>
+
+    <section class="cta" aria-labelledby="faq-cta-title">
+      <h2 id="faq-cta-title">Still stuck?</h2>
+      <p>File a bug or feature request on GitHub. We read every issue.</p>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="https://github.com/kubespade/kubespade/issues">Open an issue</a>
+        <a class="btn btn-ghost" href="download.html">Download page</a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <span>© 2026 KubeSpade</span>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="download.html">Download</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="https://github.com/kubespade/kubespade/issues">GitHub Issues</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

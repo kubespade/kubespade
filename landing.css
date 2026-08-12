@@ -538,6 +538,170 @@ img {
   font-size: 0.98rem;
 }
 
+/* ── How it works ── */
+
+.how {
+  margin-bottom: 72px;
+}
+
+.how-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.how-steps > li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 20px 18px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+}
+
+.how-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--blue-dim);
+  color: var(--blue);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.how-steps h3 {
+  margin: 2px 0 6px;
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.how-steps p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.faq-teaser {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+/* ── Inner pages ── */
+
+.page-hero {
+  padding: 28px 0 36px;
+  max-width: 640px;
+}
+
+.page-hero h1 {
+  margin: 0 0 12px;
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.page-hero .lead {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 1.05rem;
+}
+
+/* ── FAQ ── */
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 56px;
+  max-width: 760px;
+}
+
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  padding: 0 18px;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 16px 0;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+  content: "+";
+  float: right;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.faq-item[open] summary::after { content: "–"; }
+
+.faq-item p {
+  margin: 0 0 16px;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+
+.faq-item p + p { margin-top: -8px; }
+
+/* ── Download rows ── */
+
+.dl-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 56px;
+}
+
+.dl-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 24px;
+  padding: 22px 22px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+}
+
+.dl-copy {
+  flex: 1 1 280px;
+  min-width: 0;
+}
+
+.dl-copy h2 {
+  margin: 0 0 6px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.dl-copy p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.94rem;
+}
+
+.dl-action {
+  flex-shrink: 0;
+}
+
 /* ── Trust band ── */
 
 .trust {
@@ -646,6 +810,10 @@ img {
 
   .features {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .how-steps {
+    grid-template-columns: 1fr;
   }
 
   .trust {

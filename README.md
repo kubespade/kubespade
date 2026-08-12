@@ -37,10 +37,10 @@ These pages are written for the **iPad App Store** listing (Privacy Policy URL /
 
 | Platform | Where |
 |----------|--------|
-| **iPad** | App Store (link will be added when the listing is live) |
-| **Desktop** | macOS, Windows, Linux (download / release notes will be linked here) |
+| **iPad** | App Store (link will be added when the listing is live) — see [download.html](./download.html) |
+| **Desktop** | macOS, Windows, Linux (download / release notes will be linked on [download.html](./download.html)) |
 
-On iPad, optional Pro unlocks (subscriptions or lifetime) are sold via Apple In-App Purchase.
+Marketing site: [index.html](./index.html) · [FAQ](./faq.html) · [Download](./download.html)
 
 ---
 
