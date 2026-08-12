@@ -22,28 +22,13 @@
     img.removeAttribute('src')
   }
 
-  function visibleShotImg(btn) {
-    const images = [...btn.querySelectorAll('img.shot-img, img')]
-    return images.find((el) => {
-      const style = window.getComputedStyle(el)
-      return style.display !== 'none' && style.visibility !== 'hidden'
-    }) || images[0] || null
-  }
-
-  function syncLightboxSources() {
-    document.querySelectorAll('.shots-section [data-lightbox]').forEach((btn) => {
-      const visible = visibleShotImg(btn)
-      if (visible?.src) btn.setAttribute('data-lightbox', visible.getAttribute('src') || visible.src)
-    })
-  }
-
   document.querySelectorAll('[data-lightbox]').forEach((btn) => {
     btn.addEventListener('click', () => {
-      const visible = visibleShotImg(btn)
-      const src = visible?.getAttribute('src') || btn.getAttribute('data-lightbox')
+      const src = btn.getAttribute('data-lightbox')
       if (!src) return
       const text = btn.getAttribute('data-caption') || ''
-      openLightbox(src, text, visible?.alt || text)
+      const nested = btn.querySelector('img')
+      openLightbox(src, text, nested?.alt || text)
     })
   })
 
@@ -56,9 +41,44 @@
     })
   }
 
-  // Platform radios are CSS-driven; keep lightbox paths in sync when they change.
-  document.querySelectorAll('input[name="shot-platform"]').forEach((input) => {
-    input.addEventListener('change', syncLightboxSources)
+  const tabs = document.querySelectorAll('[data-shot-platform]')
+  const shots = document.querySelectorAll('[data-shot]')
+  if (!tabs.length || !shots.length) return
+
+  const shotsRoot = document.querySelector('.shots')
+
+  function applyPlatform(platform) {
+    tabs.forEach((tab) => {
+      const on = tab.getAttribute('data-shot-platform') === platform
+      tab.setAttribute('aria-selected', on ? 'true' : 'false')
+      tab.classList.toggle('is-active', on)
+    })
+    if (shotsRoot) shotsRoot.setAttribute('data-platform', platform)
+    shots.forEach((el) => {
+      const src = el.getAttribute(`data-${platform}`)
+      if (!src) return
+      const btn = el.closest('[data-lightbox]') || el.querySelector('[data-lightbox]')
+      const image = el.tagName === 'IMG' ? el : el.querySelector('img')
+      if (image) {
+        image.src = src
+        const altKey = `data-alt-${platform}`
+        const alt = el.getAttribute(altKey)
+        if (alt) image.alt = alt
+      }
+      if (btn && btn.hasAttribute('data-lightbox')) {
+        btn.setAttribute('data-lightbox', src)
+      }
+    })
+  }
+
+  if (shotsRoot && !shotsRoot.hasAttribute('data-platform')) {
+    shotsRoot.setAttribute('data-platform', 'mac')
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const platform = tab.getAttribute('data-shot-platform')
+      if (platform) applyPlatform(platform)
+    })
   })
-  syncLightboxSources()
 })()
