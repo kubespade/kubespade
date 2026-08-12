@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KubeSpade for iPad — Kubernetes Client on iPadOS</title>
+  <meta name="description" content="KubeSpade on iPad: a full Kubernetes GUI for tablets. Browse pods, stream logs, exec, port-forward, and Helm. Pro unlocks unlimited clusters and power features. Coming to the App Store." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://kubespade.com/ipad.html" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <meta property="og:title" content="KubeSpade for iPad — Kubernetes GUI" />
+  <meta property="og:description" content="Full Kubernetes client on iPad. Pods, logs, YAML, exec, port-forward, Helm — with Pro for unlimited clusters and power tools." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kubespade.com/ipad.html" />
+  <meta property="og:image" content="https://kubespade.com/assets/screenshots/01-ipad-overview.png" />
+  <meta property="og:image:alt" content="KubeSpade Kubernetes client on iPad — cluster overview" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="KubeSpade for iPad" />
+  <meta name="twitter:description" content="Kubernetes GUI on iPadOS — browse, logs, exec, Helm. Pro unlocks the full toolkit." />
+  <meta name="twitter:image" content="https://kubespade.com/assets/screenshots/01-ipad-overview.png" />
+
+  <link rel="stylesheet" href="landing.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "KubeSpade for iPad",
+    "operatingSystem": "iPadOS",
+    "applicationCategory": "DeveloperApplication",
+    "url": "https://kubespade.com/ipad.html",
+    "description": "Kubernetes GUI client for iPad. Browse workloads, stream logs, edit YAML, exec, port-forward, and manage Helm. Connect via EKS, GKE, AKS, or kubeconfig.",
+    "screenshot": [
+      "https://kubespade.com/assets/screenshots/01-ipad-overview.png",
+      "https://kubespade.com/assets/screenshots/01-ipad-overview-light.png",
+      "https://kubespade.com/assets/screenshots/02-ipad-pods.png",
+      "https://kubespade.com/assets/screenshots/02-ipad-pods-light.png",
+      "https://kubespade.com/assets/screenshots/02-ipad-pods-info.png",
+      "https://kubespade.com/assets/screenshots/03-ipad-logs.png",
+      "https://kubespade.com/assets/screenshots/04-ipad-clusters.png"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/PreOrder",
+      "description": "App Store listing coming soon. Optional Pro in-app purchase."
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="topnav" aria-label="Site">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true"></span>
+        KubeSpade
+      </a>
+      <div class="nav-links">
+        <a href="/#features">Features</a>
+        <a href="/#screenshots">Screenshots</a>
+        <a href="download.html">Download</a>
+        <a href="faq.html">FAQ</a>
+        <a class="nav-cta" href="https://github.com/kubespade/kubespade/issues">Support</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">iPad · iPadOS</p>
+        <h1>Kubernetes<br />in your hands.</h1>
+        <p class="lead">
+          A full <strong>Kubernetes GUI</strong> built for iPad — browse pods, stream logs,
+          edit YAML, and run day-to-day cluster work from the couch, the train, or the NOC.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="download.html">App Store — coming soon</a>
+          <a class="btn btn-ghost" href="#pro">What’s in Pro</a>
+        </div>
+        <p class="hero-note">Credentials stay on your iPad. Traffic goes to your cluster — not through our servers.</p>
+      </div>
+      <div class="hero-shot">
+        <button
+          type="button"
+          class="shot-zoom shot-zoom-ipad"
+          data-lightbox="assets/screenshots/01-ipad-overview.png"
+          data-caption="iPad — cluster overview with metrics and warnings"
+          aria-label="Enlarge screenshot: iPad cluster overview"
+        >
+          <img
+            src="assets/screenshots/01-ipad-overview.png"
+            alt="KubeSpade on iPad showing cluster CPU, memory, and pod metrics"
+            width="1224"
+            height="935"
+            fetchpriority="high"
+          />
+          <span class="shot-zoom-hint">Click to enlarge</span>
+        </button>
+      </div>
+    </header>
+
+    <section class="platforms" aria-label="Works with">
+      <span class="platforms-label">Works with</span>
+      <div class="platform-tags">
+        <span class="tag">Amazon EKS</span>
+        <span class="tag">Google GKE</span>
+        <span class="tag">Azure AKS</span>
+        <span class="tag">kubeconfig</span>
+      </div>
+    </section>
+
+    <section id="pro" aria-labelledby="pro-title">
+      <div class="section-head">
+        <h2 id="pro-title">Free to explore. Pro when you operate.</h2>
+        <p>Start with browsing and snapshot logs. Unlock the full toolkit with KubeSpade Pro on the App Store.</p>
+      </div>
+      <div class="features">
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">∞</div>
+          <h3>Unlimited clusters</h3>
+          <p>Free includes up to two cluster profiles. Pro removes the cap so you can keep every env — dev, staging, prod — in one sidebar.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">▸</div>
+          <h3>Exec into containers</h3>
+          <p>Open a shell in a running pod from the tablet. Debug live without hunting for a laptop.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">⇄</div>
+          <h3>Port-forward</h3>
+          <p>Forward local ports to cluster services from iPad — inspect admin UIs and APIs on the go.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">⎈</div>
+          <h3>Helm</h3>
+          <p>List releases, inspect values, and manage charts without switching apps.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">◎</div>
+          <h3>Live log follow</h3>
+          <p>Stream logs in follow mode. Free keeps snapshot logs; Pro keeps the tail moving.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">⬡</div>
+          <h3>Node ops</h3>
+          <p>Cordon, drain, and manage taints when you need to babysit a node from the tablet.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="gallery" aria-labelledby="gallery-title">
+      <div class="section-head">
+        <h2 id="gallery-title">On the iPad</h2>
+        <p>Sidebar navigation and the same workflows as on the desktop — dark or light, matching the system.</p>
+      </div>
+      <div class="shots">
+        <article class="shot-row">
+          <div class="shot-copy">
+            <span class="shot-tag">Overview</span>
+            <h3>Cluster health at a glance</h3>
+            <p>Gauges, charts, and warnings sized for landscape iPad.</p>
+          </div>
+          <div class="shot-media">
+            <button type="button" class="shot-zoom shot-zoom-ipad" data-lightbox="assets/screenshots/01-ipad-overview.png" data-caption="iPad — cluster overview" aria-label="Enlarge: overview">
+              <img src="assets/screenshots/01-ipad-overview.png" alt="KubeSpade iPad cluster overview" width="1224" height="935" loading="lazy" />
+              <span class="shot-zoom-hint">Click to enlarge</span>
+            </button>
+          </div>
+        </article>
+        <article class="shot-row reverse">
+          <div class="shot-copy">
+            <span class="shot-tag">Pods</span>
+            <h3>Workloads under your thumb</h3>
+            <p>Filter, sort, and open any pod for metrics and actions.</p>
+          </div>
+          <div class="shot-media">
+            <button type="button" class="shot-zoom shot-zoom-ipad" data-lightbox="assets/screenshots/02-ipad-pods.png" data-caption="iPad — pods table" aria-label="Enlarge: pods">
+              <img src="assets/screenshots/02-ipad-pods.png" alt="KubeSpade iPad pods table" width="1224" height="935" loading="lazy" />
+              <span class="shot-zoom-hint">Click to enlarge</span>
+            </button>
+          </div>
+        </article>
+        <article class="shot-row">
+          <div class="shot-copy">
+            <span class="shot-tag">Details</span>
+            <h3>Inspect without leaving the tablet</h3>
+            <p>CPU and memory charts, labels, and quick actions in one sheet.</p>
+          </div>
+          <div class="shot-media">
+            <button type="button" class="shot-zoom shot-zoom-ipad" data-lightbox="assets/screenshots/02-ipad-pods-info.png" data-caption="iPad — pod details" aria-label="Enlarge: pod details">
+              <img src="assets/screenshots/02-ipad-pods-info.png" alt="KubeSpade iPad pod detail view" width="1224" height="935" loading="lazy" />
+              <span class="shot-zoom-hint">Click to enlarge</span>
+            </button>
+          </div>
+        </article>
+        <article class="shot-row reverse">
+          <div class="shot-copy">
+            <span class="shot-tag">Logs</span>
+            <h3>Read logs on the go</h3>
+            <p>Multi-container tabs and previous-instance logs in a readable viewer.</p>
+          </div>
+          <div class="shot-media">
+            <button type="button" class="shot-zoom shot-zoom-ipad" data-lightbox="assets/screenshots/03-ipad-logs.png" data-caption="iPad — log viewer" aria-label="Enlarge: logs">
+              <img src="assets/screenshots/03-ipad-logs.png" alt="KubeSpade iPad log viewer" width="1224" height="935" loading="lazy" />
+              <span class="shot-zoom-hint">Click to enlarge</span>
+            </button>
+          </div>
+        </article>
+        <article class="shot-row">
+          <div class="shot-copy">
+            <span class="shot-tag">Clusters</span>
+            <h3>Connect EKS, GKE, AKS, or kubeconfig</h3>
+            <p>Paste or upload a kubeconfig, or connect with cloud credentials — stored on device.</p>
+          </div>
+          <div class="shot-media">
+            <button type="button" class="shot-zoom shot-zoom-ipad" data-lightbox="assets/screenshots/04-ipad-clusters.png" data-caption="iPad — add cluster" aria-label="Enlarge: clusters">
+              <img src="assets/screenshots/04-ipad-clusters.png" alt="KubeSpade iPad Add Cluster dialog" width="1224" height="935" loading="lazy" />
+              <span class="shot-zoom-hint">Click to enlarge</span>
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <div class="section-head section-head-follow">
+        <h2 id="light-title">Light theme too</h2>
+        <p>Follows iPadOS appearance — no separate toggle to hunt for.</p>
+      </div>
+      <div class="shots">
+        <article class="shot-row">
+          <div class="shot-copy">
+            <span class="shot-tag">Light · Overview</span>
+            <h3>Same dashboard, brighter canvas</h3>
+            <p>Cluster metrics and warnings in system light mode.</p>
+          </div>
+          <div class="shot-media">
+            <button type="button" class="shot-zoom shot-zoom-ipad" data-lightbox="assets/screenshots/01-ipad-overview-light.png" data-caption="iPad — cluster overview (light)" aria-label="Enlarge: overview light">
+              <img src="assets/screenshots/01-ipad-overview-light.png" alt="KubeSpade iPad cluster overview in light theme" width="1224" height="935" loading="lazy" />
+              <span class="shot-zoom-hint">Click to enlarge</span>
+            </button>
+          </div>
+        </article>
+        <article class="shot-row reverse">
+          <div class="shot-copy">
+            <span class="shot-tag">Light · Pods</span>
+            <h3>Workloads in light mode</h3>
+            <p>The pods table with the same filters and columns — easier on bright desks.</p>
+          </div>
+          <div class="shot-media">
+            <button type="button" class="shot-zoom shot-zoom-ipad" data-lightbox="assets/screenshots/02-ipad-pods-light.png" data-caption="iPad — pods table (light)" aria-label="Enlarge: pods light">
+              <img src="assets/screenshots/02-ipad-pods-light.png" alt="KubeSpade iPad pods table in light theme" width="1224" height="935" loading="lazy" />
+              <span class="shot-zoom-hint">Click to enlarge</span>
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="trust" aria-label="Privacy">
+      <article class="trust-card">
+        <h3>On-device only</h3>
+        <p>KubeSpade on iPad stores credentials in the device Keychain. There is no KubeSpade backend that receives your kubeconfig or API traffic.</p>
+        <ul>
+          <li>Direct connection to your Kubernetes API</li>
+          <li><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Use</a></li>
+        </ul>
+      </article>
+      <article class="trust-card">
+        <h3>Same app on the workstation</h3>
+        <p>KubeSpade also runs on macOS, Windows, and Linux — same workflows, wherever you are.</p>
+        <ul>
+          <li><a href="/#screenshots">See it on macOS &amp; Windows</a></li>
+          <li><a href="download.html">Downloads</a></li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="cta" aria-labelledby="cta-title">
+      <h2 id="cta-title">Get KubeSpade on iPad</h2>
+      <p>App Store listing is coming soon. Request early access if you want a ping when it’s live.</p>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="download.html">Download page</a>
+        <a class="btn btn-ghost" href="https://github.com/kubespade/kubespade/issues">Request early access</a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <span>© 2026 KubeSpade</span>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="download.html">Download</a>
+        <a href="faq.html">FAQ</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="https://github.com/kubespade/kubespade/issues">GitHub Issues</a>
+      </div>
+    </footer>
+  </div>
+
+  <dialog id="lightbox" class="lightbox" aria-label="Screenshot preview">
+    <form method="dialog" class="lightbox-bar">
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+      <button type="submit" class="lightbox-close" aria-label="Close">Close · Esc</button>
+    </form>
+    <img id="lightbox-img" alt="" />
+  </dialog>
+
+  <script src="landing.js" defer></script>
+</body>
+</html>
