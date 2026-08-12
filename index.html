@@ -3,14 +3,89 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="KubeSpade — full-featured Kubernetes client for macOS, Windows, Linux, and iPad. Browse pods, logs, metrics, and YAML. Works with EKS, GKE, AKS, and kubeconfig." />
-  <meta property="og:title" content="KubeSpade — Kubernetes client for DevOps" />
-  <meta property="og:description" content="Browse pods, logs, metrics, and YAML. Exec, port-forward, Helm — on macOS, Windows, Linux, and iPad." />
+  <title>KubeSpade — Kubernetes Client for macOS, Windows, Linux &amp; iPad</title>
+  <meta name="description" content="KubeSpade is a Kubernetes GUI client for macOS, Windows, Linux, and iPad. Browse pods, logs, metrics, and YAML; exec, port-forward, and Helm. Works with EKS, GKE, AKS, and kubeconfig — a visual kubectl alternative. Credentials stay on your device." />
+  <meta name="keywords" content="Kubernetes client, Kubernetes GUI, kubectl alternative, k8s desktop client, EKS client, GKE client, AKS client, Kubernetes for iPad, kubeconfig GUI" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://kubespade.com/" />
+
+  <meta property="og:title" content="KubeSpade — Kubernetes Client for DevOps" />
+  <meta property="og:description" content="Visual Kubernetes client for macOS, Windows, Linux, and iPad. Pods, logs, YAML, Helm — works with EKS, GKE, AKS, and kubeconfig." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kubespade.com/" />
+  <meta property="og:site_name" content="KubeSpade" />
+  <meta property="og:locale" content="en_US" />
   <meta property="og:image" content="https://kubespade.com/assets/screenshots/01-mac-overview.png" />
-  <title>KubeSpade — Kubernetes client for DevOps</title>
+  <meta property="og:image:width" content="1978" />
+  <meta property="og:image:height" content="1284" />
+  <meta property="og:image:alt" content="KubeSpade Kubernetes client — cluster overview with metrics" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="KubeSpade — Kubernetes Client for DevOps" />
+  <meta name="twitter:description" content="Kubernetes GUI for macOS, Windows, Linux, and iPad. Pods, logs, YAML, Helm — EKS, GKE, AKS, kubeconfig." />
+  <meta name="twitter:image" content="https://kubespade.com/assets/screenshots/01-mac-overview.png" />
+
   <link rel="stylesheet" href="landing.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://kubespade.com/#website",
+        "url": "https://kubespade.com/",
+        "name": "KubeSpade",
+        "description": "Kubernetes GUI client for macOS, Windows, Linux, and iPad",
+        "publisher": { "@id": "https://kubespade.com/#organization" },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://kubespade.com/#organization",
+        "name": "KubeSpade",
+        "url": "https://kubespade.com/",
+        "logo": "https://kubespade.com/assets/screenshots/01-mac-overview.png",
+        "sameAs": [
+          "https://github.com/kubespade/kubespade"
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://kubespade.com/#app",
+        "name": "KubeSpade",
+        "url": "https://kubespade.com/",
+        "applicationCategory": "DeveloperApplication",
+        "applicationSubCategory": "Kubernetes client",
+        "operatingSystem": "macOS, Windows, Linux, iPadOS",
+        "description": "Full-featured Kubernetes GUI client. Browse pods, logs, metrics, and YAML; exec, port-forward, and manage Helm. Connect via Amazon EKS, Google GKE, Azure AKS, or kubeconfig. Credentials stay on your device.",
+        "keywords": "Kubernetes client, Kubernetes GUI, kubectl alternative, k8s desktop, EKS, GKE, AKS",
+        "featureList": [
+          "Cluster overview with CPU, memory, and pod metrics",
+          "Browse workloads: pods, deployments, services, RBAC, CRDs",
+          "Stream pod logs and exec into containers",
+          "Edit and apply YAML",
+          "Port-forward and Helm",
+          "Connect Amazon EKS, Google GKE, Azure AKS, or kubeconfig"
+        ],
+        "screenshot": [
+          "https://kubespade.com/assets/screenshots/01-mac-overview.png",
+          "https://kubespade.com/assets/screenshots/02-mac-pods.png",
+          "https://kubespade.com/assets/screenshots/03-mac-logs.png",
+          "https://kubespade.com/assets/screenshots/04-mac-clusters-2.png"
+        ],
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/PreOrder",
+          "description": "iPad App Store and desktop downloads coming soon. Optional Pro unlocks via In-App Purchase on iPad."
+        },
+        "author": { "@id": "https://kubespade.com/#organization" }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <div class="wrap">
@@ -30,11 +105,12 @@
 
     <header class="hero">
       <div class="hero-copy">
-        <p class="eyebrow">Kubernetes client</p>
+        <p class="eyebrow">Kubernetes GUI client</p>
         <h1>Built by DevOps,<br />for DevOps.</h1>
         <p class="lead">
-          Browse pods, logs, metrics, and YAML. Exec, port-forward, Helm, and day-to-day cluster work —
-          on macOS, Windows, Linux, and iPad.
+          A full-featured <strong>Kubernetes client</strong> for day-to-day cluster work —
+          pods, logs, metrics, YAML, exec, port-forward, and Helm —
+          on <strong>macOS</strong>, <strong>Windows</strong>, <strong>Linux</strong>, and <strong>iPad</strong>.
         </p>
         <div class="hero-actions">
           <span class="btn btn-primary btn-soon" aria-disabled="true">iPad — App Store soon</span>
@@ -43,13 +119,22 @@
         <p class="hero-note">Credentials stay on your device. Traffic goes to your cluster — not through our servers.</p>
       </div>
       <div class="hero-shot">
-        <img
-          src="assets/screenshots/01-mac-overview.png"
-          alt="KubeSpade Overview — cluster metrics, CPU and memory gauges, and warnings"
-          width="1978"
-          height="1284"
-          fetchpriority="high"
-        />
+        <button
+          type="button"
+          class="shot-zoom"
+          data-lightbox="assets/screenshots/01-mac-overview.png"
+          data-caption="Cluster overview — metrics, gauges, and warnings"
+          aria-label="Enlarge screenshot: cluster overview"
+        >
+          <img
+            src="assets/screenshots/01-mac-overview.png"
+            alt="KubeSpade Kubernetes client overview showing cluster CPU, memory, and pod metrics"
+            width="1978"
+            height="1284"
+            fetchpriority="high"
+          />
+          <span class="shot-zoom-hint">Click to enlarge</span>
+        </button>
       </div>
     </header>
 
@@ -72,8 +157,8 @@
 
     <section id="features" aria-labelledby="features-title">
       <div class="section-head">
-        <h2 id="features-title">Everything you need day to day</h2>
-        <p>The same work you'd do with kubectl — in a clear UI on the device you already use.</p>
+        <h2 id="features-title">A visual kubectl for real cluster work</h2>
+        <p>Same workflows you’d run in the terminal — in a clear Kubernetes GUI on the device you already use.</p>
       </div>
       <div class="features">
         <article class="feature">
@@ -111,8 +196,8 @@
 
     <section id="screenshots" aria-labelledby="screenshots-title">
       <div class="section-head">
-        <h2 id="screenshots-title">See it in action</h2>
-        <p>Dark theme, sidebar navigation, and the workflows you already know — without the terminal.</p>
+        <h2 id="screenshots-title">See the Kubernetes client in action</h2>
+        <p>Click any screenshot to enlarge. Dark theme, sidebar navigation, and the workflows you already know.</p>
       </div>
       <div class="shots">
         <article class="shot-row">
@@ -122,13 +207,22 @@
             <p>CPU, memory, and pod utilization with time-range charts. Nodes ready, namespace count, and warnings — all on one screen.</p>
           </div>
           <div class="shot-media">
-            <img
-              src="assets/screenshots/01-mac-overview.png"
-              alt="KubeSpade cluster overview with metrics and warnings"
-              width="1978"
-              height="1284"
-              loading="lazy"
-            />
+            <button
+              type="button"
+              class="shot-zoom"
+              data-lightbox="assets/screenshots/01-mac-overview.png"
+              data-caption="Cluster overview — metrics, gauges, and warnings"
+              aria-label="Enlarge screenshot: cluster overview"
+            >
+              <img
+                src="assets/screenshots/01-mac-overview.png"
+                alt="KubeSpade cluster overview with Kubernetes metrics and warnings"
+                width="1978"
+                height="1284"
+                loading="lazy"
+              />
+              <span class="shot-zoom-hint">Click to enlarge</span>
+            </button>
           </div>
         </article>
 
@@ -139,13 +233,22 @@
             <p>Filter by namespace, sort columns, and jump to logs or exec from any row. Full resource tree in the sidebar.</p>
           </div>
           <div class="shot-media">
-            <img
-              src="assets/screenshots/02-mac-pods.png"
-              alt="KubeSpade pods table with status, CPU, memory, and node columns"
-              width="1977"
-              height="1284"
-              loading="lazy"
-            />
+            <button
+              type="button"
+              class="shot-zoom"
+              data-lightbox="assets/screenshots/02-mac-pods.png"
+              data-caption="Pods table — status, CPU, memory, and nodes"
+              aria-label="Enlarge screenshot: pods table"
+            >
+              <img
+                src="assets/screenshots/02-mac-pods.png"
+                alt="KubeSpade Kubernetes pods table with status, CPU, memory, and node columns"
+                width="1977"
+                height="1284"
+                loading="lazy"
+              />
+              <span class="shot-zoom-hint">Click to enlarge</span>
+            </button>
           </div>
         </article>
 
@@ -156,13 +259,22 @@
             <p>Multi-container pods, previous-instance logs, tail lines, and follow mode — without leaving the app.</p>
           </div>
           <div class="shot-media">
-            <img
-              src="assets/screenshots/03-mac-logs.png"
-              alt="KubeSpade log viewer with container tabs and streaming output"
-              width="1979"
-              height="1284"
-              loading="lazy"
-            />
+            <button
+              type="button"
+              class="shot-zoom"
+              data-lightbox="assets/screenshots/03-mac-logs.png"
+              data-caption="Log viewer — multi-container streaming logs"
+              aria-label="Enlarge screenshot: log viewer"
+            >
+              <img
+                src="assets/screenshots/03-mac-logs.png"
+                alt="KubeSpade Kubernetes log viewer with container tabs and streaming output"
+                width="1979"
+                height="1284"
+                loading="lazy"
+              />
+              <span class="shot-zoom-hint">Click to enlarge</span>
+            </button>
           </div>
         </article>
 
@@ -173,16 +285,36 @@
             <p>EKS, GKE, AKS, or kubeconfig — add clusters, group them by environment, and switch in one click.</p>
           </div>
           <div class="shot-media">
-            <img
-              src="assets/screenshots/04-mac-clusters-2.png"
-              alt="KubeSpade Add Cluster dialog with EKS, GKE, AKS, and kubeconfig options"
-              width="1976"
-              height="1283"
-              loading="lazy"
-            />
+            <button
+              type="button"
+              class="shot-zoom"
+              data-lightbox="assets/screenshots/04-mac-clusters-2.png"
+              data-caption="Add Cluster — EKS, GKE, AKS, or kubeconfig"
+              aria-label="Enlarge screenshot: add cluster dialog"
+            >
+              <img
+                src="assets/screenshots/04-mac-clusters-2.png"
+                alt="KubeSpade Add Cluster dialog for Amazon EKS, Google GKE, Azure AKS, and kubeconfig"
+                width="1976"
+                height="1283"
+                loading="lazy"
+              />
+              <span class="shot-zoom-hint">Click to enlarge</span>
+            </button>
           </div>
         </article>
       </div>
+    </section>
+
+    <section class="seo-blurb" aria-labelledby="about-title">
+      <h2 id="about-title">What is KubeSpade?</h2>
+      <p>
+        <strong>KubeSpade</strong> is a <strong>Kubernetes GUI</strong> and desktop/iPad
+        <strong>kubectl alternative</strong> for engineers who manage clusters every day.
+        Use it as a <strong>Kubernetes client</strong> for Amazon EKS, Google GKE, Azure AKS,
+        minikube, or any cluster you reach with a kubeconfig — without sending credentials
+        through a third-party cloud console.
+      </p>
     </section>
 
     <section class="trust" aria-label="Privacy and compatibility">
@@ -222,8 +354,19 @@
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="https://github.com/kubespade/kubespade/issues">GitHub Issues</a>
+        <a href="sitemap.xml">Sitemap</a>
       </div>
     </footer>
   </div>
+
+  <dialog id="lightbox" class="lightbox" aria-label="Screenshot preview">
+    <form method="dialog" class="lightbox-bar">
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+      <button type="submit" class="lightbox-close" aria-label="Close">Close · Esc</button>
+    </form>
+    <img id="lightbox-img" alt="" />
+  </dialog>
+
+  <script src="landing.js" defer></script>
 </body>
 </html>
