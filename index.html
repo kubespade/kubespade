@@ -232,17 +232,23 @@
       </div>
     </section>
 
-    <section id="screenshots" aria-labelledby="screenshots-title">
+    <section id="screenshots" class="shots-section" aria-labelledby="screenshots-title">
       <div class="section-head">
         <h2 id="screenshots-title">See it in action</h2>
-        <p>macOS, Windows, and iPad — click any shot to enlarge.</p>
+        <p>Pick a platform, then click any shot to enlarge.</p>
       </div>
+
+      <input class="shot-plat-input" type="radio" name="shot-platform" id="shot-plat-mac" value="mac" checked />
+      <input class="shot-plat-input" type="radio" name="shot-platform" id="shot-plat-win" value="win" />
+      <input class="shot-plat-input" type="radio" name="shot-platform" id="shot-plat-ipad" value="ipad" />
+
       <div class="shot-platform-tabs" role="tablist" aria-label="Screenshot platform">
-        <button type="button" class="shot-platform-tab is-active" role="tab" aria-selected="true" data-shot-platform="mac">macOS</button>
-        <button type="button" class="shot-platform-tab" role="tab" aria-selected="false" data-shot-platform="win">Windows</button>
-        <button type="button" class="shot-platform-tab" role="tab" aria-selected="false" data-shot-platform="ipad">iPad</button>
+        <label class="shot-platform-tab" for="shot-plat-mac" role="tab">macOS</label>
+        <label class="shot-platform-tab" for="shot-plat-win" role="tab">Windows</label>
+        <label class="shot-platform-tab" for="shot-plat-ipad" role="tab">iPad</label>
       </div>
-      <div class="shots" data-platform="mac">
+
+      <div class="shots">
         <article class="shot-row">
           <div class="shot-copy">
             <span class="shot-tag">Overview</span>
@@ -257,18 +263,9 @@
               data-caption="Cluster overview — metrics, gauges, and warnings"
               aria-label="Enlarge screenshot: cluster overview"
             >
-              <img
-                class="shot-swap"
-                data-shot
-                data-mac="assets/screenshots/01-mac-overview.png"
-                data-win="assets/screenshots/01-win-overview.png"
-                data-ipad="assets/screenshots/01-ipad-overview.png"
-                src="assets/screenshots/01-mac-overview.png"
-                alt="KubeSpade cluster overview with Kubernetes metrics and warnings"
-                width="1978"
-                height="1284"
-                loading="lazy"
-              />
+              <img class="shot-img shot-img-mac" src="assets/screenshots/01-mac-overview.png" alt="KubeSpade cluster overview on macOS" width="1978" height="1284" fetchpriority="low" />
+              <img class="shot-img shot-img-win" src="assets/screenshots/01-win-overview.png" alt="KubeSpade cluster overview on Windows" width="1657" height="1012" loading="lazy" />
+              <img class="shot-img shot-img-ipad" src="assets/screenshots/01-ipad-overview.png" alt="KubeSpade cluster overview on iPad" width="1224" height="935" loading="lazy" />
               <span class="shot-zoom-hint">Click to enlarge</span>
             </button>
           </div>
@@ -288,18 +285,9 @@
               data-caption="Pods table — status, CPU, memory, and nodes"
               aria-label="Enlarge screenshot: pods table"
             >
-              <img
-                class="shot-swap"
-                data-shot
-                data-mac="assets/screenshots/02-mac-pods.png"
-                data-win="assets/screenshots/02-win-pods.png"
-                data-ipad="assets/screenshots/02-ipad-pods.png"
-                src="assets/screenshots/02-mac-pods.png"
-                alt="KubeSpade Kubernetes pods table with status, CPU, memory, and node columns"
-                width="1977"
-                height="1284"
-                loading="lazy"
-              />
+              <img class="shot-img shot-img-mac" src="assets/screenshots/02-mac-pods.png" alt="KubeSpade pods table on macOS" width="1977" height="1284" loading="lazy" />
+              <img class="shot-img shot-img-win" src="assets/screenshots/02-win-pods.png" alt="KubeSpade pods table on Windows" width="1657" height="1012" loading="lazy" />
+              <img class="shot-img shot-img-ipad" src="assets/screenshots/02-ipad-pods.png" alt="KubeSpade pods table on iPad" width="1224" height="935" loading="lazy" />
               <span class="shot-zoom-hint">Click to enlarge</span>
             </button>
           </div>
@@ -319,18 +307,9 @@
               data-caption="Pod details — metrics, labels, and actions"
               aria-label="Enlarge screenshot: pod details"
             >
-              <img
-                class="shot-swap"
-                data-shot
-                data-mac="assets/screenshots/02-mac-pods-info.png"
-                data-win="assets/screenshots/02-win-pods-info.png"
-                data-ipad="assets/screenshots/02-ipad-pods-info.png"
-                src="assets/screenshots/02-mac-pods-info.png"
-                alt="KubeSpade pod detail view with CPU, memory charts, and resource properties"
-                width="1978"
-                height="1285"
-                loading="lazy"
-              />
+              <img class="shot-img shot-img-mac" src="assets/screenshots/02-mac-pods-info.png" alt="KubeSpade pod details on macOS" width="1978" height="1285" loading="lazy" />
+              <img class="shot-img shot-img-win" src="assets/screenshots/02-win-pods-info.png" alt="KubeSpade pod details on Windows" width="1657" height="1012" loading="lazy" />
+              <img class="shot-img shot-img-ipad" src="assets/screenshots/02-ipad-pods-info.png" alt="KubeSpade pod details on iPad" width="1224" height="935" loading="lazy" />
               <span class="shot-zoom-hint">Click to enlarge</span>
             </button>
           </div>
@@ -350,18 +329,9 @@
               data-caption="Log viewer — multi-container streaming logs"
               aria-label="Enlarge screenshot: log viewer"
             >
-              <img
-                class="shot-swap"
-                data-shot
-                data-mac="assets/screenshots/03-mac-logs.png"
-                data-win="assets/screenshots/03-win-logs.png"
-                data-ipad="assets/screenshots/03-ipad-logs.png"
-                src="assets/screenshots/03-mac-logs.png"
-                alt="KubeSpade Kubernetes log viewer with container tabs and streaming output"
-                width="1979"
-                height="1284"
-                loading="lazy"
-              />
+              <img class="shot-img shot-img-mac" src="assets/screenshots/03-mac-logs.png" alt="KubeSpade log viewer on macOS" width="1979" height="1284" loading="lazy" />
+              <img class="shot-img shot-img-win" src="assets/screenshots/03-win-logs.png" alt="KubeSpade log viewer on Windows" width="1657" height="1012" loading="lazy" />
+              <img class="shot-img shot-img-ipad" src="assets/screenshots/03-ipad-logs.png" alt="KubeSpade log viewer on iPad" width="1224" height="935" loading="lazy" />
               <span class="shot-zoom-hint">Click to enlarge</span>
             </button>
           </div>
@@ -381,18 +351,9 @@
               data-caption="Add Cluster — EKS, GKE, AKS, or kubeconfig"
               aria-label="Enlarge screenshot: add cluster dialog"
             >
-              <img
-                class="shot-swap"
-                data-shot
-                data-mac="assets/screenshots/04-mac-clusters-2.png"
-                data-win="assets/screenshots/04-win-clusters.png"
-                data-ipad="assets/screenshots/04-ipad-clusters.png"
-                src="assets/screenshots/04-mac-clusters-2.png"
-                alt="KubeSpade Add Cluster dialog for Amazon EKS, Google GKE, Azure AKS, and kubeconfig"
-                width="1976"
-                height="1283"
-                loading="lazy"
-              />
+              <img class="shot-img shot-img-mac" src="assets/screenshots/04-mac-clusters-2.png" alt="KubeSpade Add Cluster dialog on macOS" width="1976" height="1283" loading="lazy" />
+              <img class="shot-img shot-img-win" src="assets/screenshots/04-win-clusters.png" alt="KubeSpade Add Cluster dialog on Windows" width="1657" height="1012" loading="lazy" />
+              <img class="shot-img shot-img-ipad" src="assets/screenshots/04-ipad-clusters.png" alt="KubeSpade Add Cluster dialog on iPad" width="1224" height="935" loading="lazy" />
               <span class="shot-zoom-hint">Click to enlarge</span>
             </button>
           </div>

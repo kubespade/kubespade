@@ -258,8 +258,8 @@ img {
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.32);
 }
 /* PNG alpha defines the shape for mac + iPad — don't CSS-clip */
-.shots[data-platform="mac"] .shot-zoom,
-.shots[data-platform="ipad"] .shot-zoom,
+.shots-section:has(#shot-plat-mac:checked) .shot-zoom,
+.shots-section:has(#shot-plat-ipad:checked) .shot-zoom,
 .hero-shot .shot-zoom.shot-zoom-mac,
 .hero-shot .shot-zoom.shot-zoom-ipad,
 .shot-zoom.shot-zoom-mac,
@@ -270,8 +270,8 @@ img {
   background: transparent;
   box-shadow: none;
 }
-.shots[data-platform="mac"] .shot-zoom img,
-.shots[data-platform="ipad"] .shot-zoom img,
+.shots-section:has(#shot-plat-mac:checked) .shot-zoom img,
+.shots-section:has(#shot-plat-ipad:checked) .shot-zoom img,
 .hero-shot .shot-zoom.shot-zoom-mac img,
 .hero-shot .shot-zoom.shot-zoom-ipad img,
 .shot-zoom.shot-zoom-mac img,
@@ -279,10 +279,10 @@ img {
   border-radius: 0;
   filter: drop-shadow(0 16px 40px rgba(0, 0, 0, 0.42));
 }
-.shots[data-platform="mac"] .shot-zoom:hover,
-.shots[data-platform="mac"] .shot-zoom:focus-visible,
-.shots[data-platform="ipad"] .shot-zoom:hover,
-.shots[data-platform="ipad"] .shot-zoom:focus-visible,
+.shots-section:has(#shot-plat-mac:checked) .shot-zoom:hover,
+.shots-section:has(#shot-plat-mac:checked) .shot-zoom:focus-visible,
+.shots-section:has(#shot-plat-ipad:checked) .shot-zoom:hover,
+.shots-section:has(#shot-plat-ipad:checked) .shot-zoom:focus-visible,
 .shot-zoom.shot-zoom-mac:hover,
 .shot-zoom.shot-zoom-mac:focus-visible,
 .shot-zoom.shot-zoom-ipad:hover,
@@ -290,17 +290,17 @@ img {
   border-color: transparent;
   box-shadow: none;
 }
-.shots[data-platform="mac"] .shot-zoom:hover img,
-.shots[data-platform="mac"] .shot-zoom:focus-visible img,
-.shots[data-platform="ipad"] .shot-zoom:hover img,
-.shots[data-platform="ipad"] .shot-zoom:focus-visible img,
+.shots-section:has(#shot-plat-mac:checked) .shot-zoom:hover img,
+.shots-section:has(#shot-plat-mac:checked) .shot-zoom:focus-visible img,
+.shots-section:has(#shot-plat-ipad:checked) .shot-zoom:hover img,
+.shots-section:has(#shot-plat-ipad:checked) .shot-zoom:focus-visible img,
 .shot-zoom.shot-zoom-mac:hover img,
 .shot-zoom.shot-zoom-mac:focus-visible img,
 .shot-zoom.shot-zoom-ipad:hover img,
 .shot-zoom.shot-zoom-ipad:focus-visible img {
   filter: drop-shadow(0 22px 48px rgba(0, 0, 0, 0.55));
 }
-.shots[data-platform="win"] .shot-zoom {
+.shots-section:has(#shot-plat-win:checked) .shot-zoom {
   --shot-radius: 6px;
 }
 .shot-zoom:hover,
@@ -513,41 +513,90 @@ img {
   line-height: 1.55;
 }
 
-/* ── Screenshot platform tabs ── */
+/* ── Screenshot platform tabs (CSS-only; works without JS) ── */
+
+.shot-plat-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 .shot-platform-tabs {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 8px;
-  margin: -12px auto 40px;
+  gap: 0;
+  margin: -8px auto 40px;
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset;
+}
+
+.shots-section .shot-platform-tabs {
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .shot-platform-tab {
-  padding: 8px 16px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text-soft);
+  flex: 1 1 auto;
+  min-width: 5.5rem;
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
   font: inherit;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 650;
+  text-align: center;
   cursor: pointer;
-  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  user-select: none;
+  transition: color 0.15s, background 0.15s, border-color 0.15s, box-shadow 0.15s;
 }
 
-.shot-platform-tab:hover,
-.shot-platform-tab:focus-visible {
-  border-color: rgba(110, 200, 255, 0.35);
+.shot-platform-tab:hover {
   color: var(--text);
-  outline: none;
 }
 
-.shot-platform-tab.is-active,
-.shot-platform-tab[aria-selected="true"] {
-  color: var(--gold);
-  border-color: rgba(232, 184, 74, 0.35);
-  background: var(--gold-dim);
+.shots-section:has(#shot-plat-mac:checked) label[for="shot-plat-mac"],
+.shots-section:has(#shot-plat-win:checked) label[for="shot-plat-win"],
+.shots-section:has(#shot-plat-ipad:checked) label[for="shot-plat-ipad"] {
+  color: #0a0e14;
+  background: var(--blue);
+  border-color: transparent;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+@media (prefers-color-scheme: light) {
+  .shots-section:has(#shot-plat-mac:checked) label[for="shot-plat-mac"],
+  .shots-section:has(#shot-plat-win:checked) label[for="shot-plat-win"],
+  .shots-section:has(#shot-plat-ipad:checked) label[for="shot-plat-ipad"] {
+    color: #fff;
+  }
+}
+
+.shot-img {
+  display: none;
+  width: 100%;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.shots-section:has(#shot-plat-mac:checked) .shot-img-mac,
+.shots-section:has(#shot-plat-win:checked) .shot-img-win,
+.shots-section:has(#shot-plat-ipad:checked) .shot-img-ipad {
+  display: block;
 }
 
 .shots-foot {
