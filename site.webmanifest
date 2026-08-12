@@ -1,0 +1,26 @@
+{
+  "name": "KubeSpade",
+  "short_name": "KubeSpade",
+  "description": "Kubernetes client for macOS, Windows, Linux, and iPad",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0a0e14",
+  "theme_color": "#0a0e14",
+  "icons": [
+    {
+      "src": "/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
