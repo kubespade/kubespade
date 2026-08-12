@@ -14,10 +14,12 @@ Works with EKS, AKS, GKE, and any cluster you reach with a kubeconfig. Credentia
 
 ## Legal
 
-| Document | File | GitHub Pages (after Pages is enabled) |
-|----------|------|----------------------------------------|
-| Privacy Policy | [privacy.html](./privacy.html) | https://kubespade.github.io/kubespade/privacy.html |
-| Terms of Use | [terms.html](./terms.html) | https://kubespade.github.io/kubespade/terms.html |
+| Document | File | URL |
+|----------|------|-----|
+| Privacy Policy | [privacy.html](./privacy.html) | https://kubespade.com/privacy.html |
+| Terms of Use | [terms.html](./terms.html) | https://kubespade.com/terms.html |
+
+Setup: [docs/CUSTOM_DOMAIN.md](./docs/CUSTOM_DOMAIN.md) (GitHub Pages + Cloudflare DNS).
 
 These pages are written for the **iPad App Store** listing (Privacy Policy URL / Support URL in App Store Connect). The same on-device privacy model applies to the desktop apps.
 
