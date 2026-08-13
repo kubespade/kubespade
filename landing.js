@@ -46,7 +46,7 @@
   if (!tabs.length || !shots.length) return
 
   const shotsRoot = document.querySelector('.shots')
-  const platforms = ['mac', 'win', 'ipad']
+  const platforms = ['mac', 'win', 'linux', 'ipad']
   let applyToken = 0
 
   function preloadPlatformImages() {

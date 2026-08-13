@@ -22,6 +22,9 @@ MAC_PATH_ROWS = [166, 315, 440]
 # Windows cluster card — account id + :user/… on ARN subtitle (prod card)
 WIN_ARN_BOX = (455, 289, 640, 298)
 
+# Ubuntu cluster card — account id on prod ARN subtitle (keep GNOME window alpha)
+UBUNTU_ARN_BOX = (328, 270, 478, 283)
+
 CORNER_RADIUS_MAC = 15  # matches real macOS window curve in the shots
 # iPad screenshots include device chrome; screen/hardware curve ≈ 58px at 1224×935
 CORNER_RADIUS_IPAD = 58
@@ -50,8 +53,15 @@ IPAD_SHOTS = [
     "03-ipad-logs.png",
     "04-ipad-clusters.png",
 ]
+UBUNTU_SHOTS = [
+    "01-ubuntu-overview.png",
+    "02-ubuntu-pods.png",
+    "02-ubuntu-pods-info.png",
+    "03-ubuntu-logs.png",
+    "04-ubuntu-clusters.png",
+]
 
-ALL_SHOTS = MAC_SHOTS + WIN_SHOTS + IPAD_SHOTS
+ALL_SHOTS = MAC_SHOTS + WIN_SHOTS + IPAD_SHOTS + UBUNTU_SHOTS
 
 
 def sample_fill_color(im: Image.Image, x: int, y: int) -> tuple[int, int, int]:
@@ -96,6 +106,19 @@ def redact_win_clusters(path: Path) -> None:
     im.save(path, optimize=True)
 
 
+def redact_ubuntu_clusters(path: Path) -> None:
+    """Redact ARN account id without flattening GNOME window alpha."""
+    im = Image.open(path).convert("RGBA")
+    alpha = im.getchannel("A")
+    rgb = im.convert("RGB")
+    x0, y0, x1, y1 = UBUNTU_ARN_BOX
+    fill = sample_fill_color(rgb, x1 + 12, (y0 + y1) // 2)
+    redact_box(rgb, UBUNTU_ARN_BOX, fill)
+    out = rgb.convert("RGBA")
+    out.putalpha(alpha)
+    out.save(path, optimize=True)
+
+
 def round_corners(path: Path, radius: int, *, supersample: int = 2) -> None:
     """Apply rounded alpha mask. Supersample for smoother AA on large iPad radii."""
     im = Image.open(path).convert("RGBA")
@@ -126,6 +149,7 @@ def main() -> None:
     redact_mac_clusters(ROOT / "04-mac-clusters.png")
     redact_mac_clusters(ROOT / "04-mac-clusters-2.png")
     redact_win_clusters(ROOT / "04-win-clusters.png")
+    redact_ubuntu_clusters(ROOT / "04-ubuntu-clusters.png")
 
     for name in MAC_SHOTS:
         round_corners(ROOT / name, CORNER_RADIUS_MAC, supersample=3)
@@ -136,6 +160,7 @@ def main() -> None:
     print("done mac:", ", ".join(MAC_SHOTS))
     print("done win (redact only):", ", ".join(WIN_SHOTS))
     print("done ipad:", ", ".join(IPAD_SHOTS))
+    print("done ubuntu (redact only, keep window alpha):", ", ".join(UBUNTU_SHOTS))
 
 
 if __name__ == "__main__":

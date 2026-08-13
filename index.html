@@ -29,7 +29,7 @@
   <meta name="twitter:description" content="Kubernetes GUI for macOS, Windows, Linux, and iPadOS. Pods, logs, YAML, Helm — EKS, GKE, AKS, kubeconfig." />
   <meta name="twitter:image" content="https://kubespade.com/assets/screenshots/01-mac-overview.png" />
 
-  <link rel="stylesheet" href="landing.css?v=20260813c" />
+  <link rel="stylesheet" href="landing.css?v=20260813d" />
 
   <script type="application/ld+json">
   {
@@ -79,6 +79,7 @@
           "https://kubespade.com/assets/screenshots/03-mac-logs.png",
           "https://kubespade.com/assets/screenshots/04-mac-clusters-2.png",
           "https://kubespade.com/assets/screenshots/01-win-overview.png",
+          "https://kubespade.com/assets/screenshots/01-ubuntu-overview.png",
           "https://kubespade.com/assets/screenshots/01-ipad-overview.png"
         ],
         "offers": {
@@ -235,11 +236,12 @@
     <section id="screenshots" aria-labelledby="screenshots-title">
       <div class="section-head">
         <h2 id="screenshots-title">See it in action</h2>
-        <p>macOS, Windows, and iPadOS — click any shot to enlarge.</p>
+        <p>macOS, Windows, Linux, and iPadOS — click any shot to enlarge.</p>
       </div>
       <div class="shot-platform-tabs" role="tablist" aria-label="Screenshot platform">
         <button type="button" class="shot-platform-tab is-active" role="tab" aria-selected="true" data-shot-platform="mac">macOS</button>
         <button type="button" class="shot-platform-tab" role="tab" aria-selected="false" data-shot-platform="win">Windows</button>
+        <button type="button" class="shot-platform-tab" role="tab" aria-selected="false" data-shot-platform="linux">Linux</button>
         <button type="button" class="shot-platform-tab" role="tab" aria-selected="false" data-shot-platform="ipad">iPadOS</button>
       </div>
       <div class="shots" data-platform="mac">
@@ -262,6 +264,7 @@
                 data-shot
                 data-mac="assets/screenshots/01-mac-overview.png"
                 data-win="assets/screenshots/01-win-overview.png"
+                data-linux="assets/screenshots/01-ubuntu-overview.png"
                 data-ipad="assets/screenshots/01-ipad-overview.png"
                 src="assets/screenshots/01-mac-overview.png"
                 alt="KubeSpade cluster overview with Kubernetes metrics and warnings"
@@ -293,6 +296,7 @@
                 data-shot
                 data-mac="assets/screenshots/02-mac-pods.png"
                 data-win="assets/screenshots/02-win-pods.png"
+                data-linux="assets/screenshots/02-ubuntu-pods.png"
                 data-ipad="assets/screenshots/02-ipad-pods.png"
                 src="assets/screenshots/02-mac-pods.png"
                 alt="KubeSpade Kubernetes pods table with status, CPU, memory, and node columns"
@@ -324,6 +328,7 @@
                 data-shot
                 data-mac="assets/screenshots/02-mac-pods-info.png"
                 data-win="assets/screenshots/02-win-pods-info.png"
+                data-linux="assets/screenshots/02-ubuntu-pods-info.png"
                 data-ipad="assets/screenshots/02-ipad-pods-info.png"
                 src="assets/screenshots/02-mac-pods-info.png"
                 alt="KubeSpade pod detail view with CPU, memory charts, and resource properties"
@@ -355,6 +360,7 @@
                 data-shot
                 data-mac="assets/screenshots/03-mac-logs.png"
                 data-win="assets/screenshots/03-win-logs.png"
+                data-linux="assets/screenshots/03-ubuntu-logs.png"
                 data-ipad="assets/screenshots/03-ipad-logs.png"
                 src="assets/screenshots/03-mac-logs.png"
                 alt="KubeSpade Kubernetes log viewer with container tabs and streaming output"
@@ -386,6 +392,7 @@
                 data-shot
                 data-mac="assets/screenshots/04-mac-clusters-2.png"
                 data-win="assets/screenshots/04-win-clusters.png"
+                data-linux="assets/screenshots/04-ubuntu-clusters.png"
                 data-ipad="assets/screenshots/04-ipad-clusters.png"
                 src="assets/screenshots/04-mac-clusters-2.png"
                 alt="KubeSpade Add Cluster dialog for Amazon EKS, Google GKE, Azure AKS, and kubeconfig"
@@ -478,6 +485,6 @@
     <img id="lightbox-img" alt="" />
   </dialog>
 
-  <script src="landing.js?v=20260813c" defer></script>
+  <script src="landing.js?v=20260813d" defer></script>
 </body>
 </html>

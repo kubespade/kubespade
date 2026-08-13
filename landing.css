@@ -263,6 +263,7 @@ img {
 }
 /* PNG alpha defines the shape for mac + iPad — don't CSS-clip */
 .shots[data-platform="mac"] .shot-zoom,
+.shots[data-platform="linux"] .shot-zoom,
 .shots[data-platform="ipad"] .shot-zoom,
 .hero-shot .shot-zoom.shot-zoom-mac,
 .hero-shot .shot-zoom.shot-zoom-ipad,
@@ -275,6 +276,7 @@ img {
   box-shadow: none;
 }
 .shots[data-platform="mac"] .shot-zoom img,
+.shots[data-platform="linux"] .shot-zoom img,
 .shots[data-platform="ipad"] .shot-zoom img,
 .hero-shot .shot-zoom.shot-zoom-mac img,
 .hero-shot .shot-zoom.shot-zoom-ipad img,
@@ -285,6 +287,8 @@ img {
 }
 .shots[data-platform="mac"] .shot-zoom:hover,
 .shots[data-platform="mac"] .shot-zoom:focus-visible,
+.shots[data-platform="linux"] .shot-zoom:hover,
+.shots[data-platform="linux"] .shot-zoom:focus-visible,
 .shots[data-platform="ipad"] .shot-zoom:hover,
 .shots[data-platform="ipad"] .shot-zoom:focus-visible,
 .shot-zoom.shot-zoom-mac:hover,
@@ -296,6 +300,8 @@ img {
 }
 .shots[data-platform="mac"] .shot-zoom:hover img,
 .shots[data-platform="mac"] .shot-zoom:focus-visible img,
+.shots[data-platform="linux"] .shot-zoom:hover img,
+.shots[data-platform="linux"] .shot-zoom:focus-visible img,
 .shots[data-platform="ipad"] .shot-zoom:hover img,
 .shots[data-platform="ipad"] .shot-zoom:focus-visible img,
 .shot-zoom.shot-zoom-mac:hover img,
