@@ -1,7 +1,7 @@
 {
   "name": "KubeSpade",
   "short_name": "KubeSpade",
-  "description": "Kubernetes client for macOS, Windows, Linux, and iPad",
+  "description": "Kubernetes client for macOS, Windows, Linux, and iPadOS",
   "start_url": "/",
   "display": "browser",
   "background_color": "#0a0e14",
