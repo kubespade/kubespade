@@ -4,17 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Download KubeSpade — Kubernetes Client for Desktop &amp; iPadOS</title>
-  <meta name="description" content="Download KubeSpade for macOS, Windows, Linux, and iPadOS. App Store and desktop builds coming soon. Request early access." />
+  <meta name="description" content="Download KubeSpade 1.0.0 for macOS, Windows, and Linux. iPadOS App Store coming soon. Official builds from GitHub Releases." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://kubespade.com/download.html" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2" />
   <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <meta property="og:title" content="Download KubeSpade" />
-  <meta property="og:description" content="Kubernetes client for macOS, Windows, Linux, and iPadOS — downloads coming soon." />
+  <meta property="og:description" content="Download KubeSpade for macOS, Windows, and Linux. iPadOS App Store coming soon." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kubespade.com/download.html" />
-  <link rel="stylesheet" href="landing.css?v=20260813d" />
+  <link rel="stylesheet" href="landing.css?v=20260813e" />
 </head>
 <body>
   <div class="wrap">
@@ -33,11 +33,11 @@
     </nav>
 
     <header class="page-hero">
-      <p class="eyebrow">Get the app</p>
+      <p class="eyebrow">Version 1.0.0</p>
       <h1>Download KubeSpade</h1>
       <p class="lead">
-        A Kubernetes GUI client for day-to-day cluster work.
-        Public builds are almost here — pick your platform below.
+        Desktop builds for macOS, Windows, and Linux.
+        Pick your platform and architecture below.
       </p>
     </header>
 
@@ -55,39 +55,50 @@
       <article class="dl-row">
         <div class="dl-copy">
           <h2>macOS</h2>
-          <p>Native desktop client for Apple Silicon and Intel. Connect via kubeconfig, EKS, GKE, or AKS.</p>
+          <p>Native desktop client. Connect via kubeconfig, EKS, GKE, or AKS. If Gatekeeper blocks the app, right-click → Open.</p>
         </div>
         <div class="dl-action">
-          <span class="btn btn-ghost btn-soon" aria-disabled="true">.dmg — coming soon</span>
+          <a class="btn btn-primary" href="https://github.com/kubespade/kubespade/releases/download/1.0.0/KubeSpade-1.0.0-arm64.dmg">Apple Silicon .dmg</a>
+          <a class="btn btn-ghost" href="https://github.com/kubespade/kubespade/releases/download/1.0.0/KubeSpade-1.0.0.dmg">Intel .dmg</a>
         </div>
       </article>
 
       <article class="dl-row">
         <div class="dl-copy">
           <h2>Windows</h2>
-          <p>Desktop Kubernetes GUI for Windows 10/11. Same workflows as macOS and Linux.</p>
+          <p>Desktop Kubernetes GUI for Windows 10/11. Installer or portable build. SmartScreen may warn on first run.</p>
         </div>
         <div class="dl-action">
-          <span class="btn btn-ghost btn-soon" aria-disabled="true">.exe — coming soon</span>
+          <a class="btn btn-primary" href="https://github.com/kubespade/kubespade/releases/download/1.0.0/KubeSpade-Setup-1.0.0.exe">x64 Setup</a>
+          <a class="btn btn-ghost" href="https://github.com/kubespade/kubespade/releases/download/1.0.0/KubeSpade-Portable-1.0.0.exe">x64 Portable</a>
+          <a class="btn btn-ghost" href="https://github.com/kubespade/kubespade/releases/download/1.0.0/KubeSpade.1.0.0.exe">ARM64</a>
         </div>
       </article>
 
       <article class="dl-row">
         <div class="dl-copy">
           <h2>Linux</h2>
-          <p>Desktop builds for modern Linux distributions. Installer format will be announced with the first release.</p>
+          <p><code>.deb</code> for Debian/Ubuntu. Install with <code>sudo apt install ./kubespade_1.0.0_*.deb</code>.</p>
         </div>
         <div class="dl-action">
-          <span class="btn btn-ghost btn-soon" aria-disabled="true">Linux — coming soon</span>
+          <a class="btn btn-primary" href="https://github.com/kubespade/kubespade/releases/download/1.0.0/kubespade_1.0.0_amd64.deb">x64 .deb</a>
+          <a class="btn btn-ghost" href="https://github.com/kubespade/kubespade/releases/download/1.0.0/kubespade_1.0.0_arm64.deb">arm64 .deb</a>
         </div>
       </article>
     </section>
 
-    <section class="cta" aria-labelledby="early-title">
-      <h2 id="early-title">Want early access?</h2>
-      <p>Tell us your platform and use case on GitHub Issues. We’ll notify you when builds are ready.</p>
+    <p class="dl-note">
+      Full release notes and checksums:
+      <a href="https://github.com/kubespade/kubespade/releases/tag/1.0.0">GitHub Releases · 1.0.0</a>
+      ·
+      <a href="https://github.com/kubespade/kubespade/releases/download/1.0.0/SHA256SUMS.txt">SHA256SUMS.txt</a>
+    </p>
+
+    <section class="cta" aria-labelledby="support-title">
+      <h2 id="support-title">Need help?</h2>
+      <p>Report bugs or ask questions on GitHub Issues. Do not paste kubeconfigs or tokens.</p>
       <div class="cta-actions">
-        <a class="btn btn-primary" href="https://github.com/kubespade/kubespade/issues/new?title=Early%20access%20request">Request early access</a>
+        <a class="btn btn-primary" href="https://github.com/kubespade/kubespade/issues">Open an issue</a>
         <a class="btn btn-ghost" href="faq.html">Read the FAQ</a>
       </div>
     </section>
@@ -96,8 +107,8 @@
       <h2 id="dl-about">About downloads</h2>
       <p>
         KubeSpade is a <strong>Kubernetes client</strong> for engineers who prefer a GUI over living in kubectl.
-        When links go live, this page will be the official source for App Store and desktop installers.
-        Always verify downloads from <strong>kubespade.com</strong> or the Apple App Store.
+        Always download desktop builds from <strong>kubespade.com</strong> or the official
+        <a href="https://github.com/kubespade/kubespade/releases">GitHub Releases</a> page — and the iPad app from the Apple App Store when it ships.
       </p>
     </section>
 

@@ -838,7 +838,29 @@ a.tag:hover {
 }
 
 .dl-action {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
   flex-shrink: 0;
+  max-width: 100%;
+}
+
+.dl-note {
+  margin: -36px 0 56px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.dl-note a {
+  color: var(--text-soft);
+}
+
+.dl-copy code {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+  font-size: 0.86em;
+  color: var(--text);
 }
 
 /* ── Trust band ── */
