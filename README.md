@@ -1,6 +1,6 @@
 # KubeSpade
 
-> **Built by DevOps, for DevOps.**
+> **Built by DevOps, for people who live in Kubernetes.**
 
 **KubeSpade** is a **full-featured Kubernetes client** for **macOS, Windows, Linux**, and **iPad**.
 
