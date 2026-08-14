@@ -38,7 +38,7 @@ These pages are written for the **iPad App Store** listing (Privacy Policy URL /
 | Platform | Where |
 |----------|--------|
 | **iPad** | App Store (link will be added when the listing is live) — see [download.html](./download.html) |
-| **Desktop** | [Download 1.0.0](https://kubespade.com/download.html) — macOS, Windows, Linux |
+| **Desktop** | [Download 1.1.0](https://kubespade.com/download.html) — macOS, Windows, Linux |
 
 Marketing site: [index.html](./index.html) · [FAQ](./faq.html) · [Download](./download.html)
 
