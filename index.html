@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KubeSpade — Kubernetes Client for macOS, Windows, Linux &amp; iPadOS</title>
-  <meta name="description" content="KubeSpade is a Kubernetes GUI client for macOS, Windows, Linux, and iPadOS. Browse pods, logs, metrics, and YAML; exec, port-forward, Helm, and in-app AI on Desktop. Works with EKS, GKE, AKS, and kubeconfig. Credentials stay on your device." />
-  <meta name="keywords" content="Kubernetes client, Kubernetes GUI, kubectl alternative, k8s desktop client, EKS client, GKE client, AKS client, Kubernetes for iPadOS, kubeconfig GUI, Kubernetes AI, Claude Code, Gemini CLI" />
+  <meta name="description" content="KubeSpade is a Kubernetes GUI for macOS, Windows, Linux, and iPadOS. Pods, logs, YAML, exec, Helm — plus Desktop AI (Claude, Gemini, Codex, Copilot, Cursor) for connected clusters. Credentials stay on your device." />
+  <meta name="keywords" content="Kubernetes client, Kubernetes GUI, kubectl alternative, k8s desktop client, EKS client, GKE client, AKS client, Kubernetes for iPadOS, kubeconfig GUI, Kubernetes AI, Claude Code, Gemini CLI, Cursor Agent" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://kubespade.com/" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2" />
@@ -14,7 +14,7 @@
   <link rel="manifest" href="/site.webmanifest" />
 
   <meta property="og:title" content="KubeSpade — Kubernetes Client for DevOps" />
-  <meta property="og:description" content="Visual Kubernetes client for macOS, Windows, Linux, and iPadOS. Pods, logs, YAML, Helm, and Desktop AI — works with EKS, GKE, AKS, and kubeconfig." />
+  <meta property="og:description" content="Visual Kubernetes client for macOS, Windows, Linux, and iPadOS. Pods, logs, YAML, Helm — plus Desktop AI for connected clusters. Works with EKS, GKE, AKS, and kubeconfig." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kubespade.com/" />
   <meta property="og:site_name" content="KubeSpade" />
@@ -117,13 +117,14 @@
 
     <header class="hero">
       <div class="hero-copy">
-        <p class="eyebrow">Kubernetes GUI client</p>
+        <p class="eyebrow">Kubernetes GUI · Desktop AI</p>
         <h1>Built by DevOps,<br />for people who live in Kubernetes.</h1>
         <p class="lead">
-          A full-featured <strong>Kubernetes client</strong> for day-to-day cluster work —
-          pods, logs, metrics, YAML, exec, port-forward, Helm, and
-          <a href="ai.html">in-app AI</a> on Desktop —
+          A full-featured <strong>Kubernetes client</strong> for day-to-day work —
+          pods, logs, metrics, YAML, exec, port-forward, and Helm —
           on <strong>macOS</strong>, <strong>Windows</strong>, <strong>Linux</strong>, and <strong>iPadOS</strong>.
+          On Desktop, use <a href="ai.html">in-app AI</a> (Claude, Gemini, Codex, Copilot, or Cursor)
+          to inspect connected clusters in plain language.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="download.html">Get KubeSpade</a>
@@ -192,7 +193,7 @@
           <span class="how-num" aria-hidden="true">3</span>
           <div>
             <h3>Operate</h3>
-            <p>Browse resources, stream logs, edit YAML, exec, port-forward, manage Helm — and ask the in-app AI about connected clusters.</p>
+            <p>Browse resources, stream logs, edit YAML, exec, port-forward, manage Helm — and on Desktop, use in-app AI on the clusters you connected.</p>
           </div>
         </li>
       </ol>
@@ -233,8 +234,8 @@
           <div class="feature-icon" aria-hidden="true">✦</div>
           <h3>In-app AI <span class="feature-badge">Desktop</span></h3>
           <p>
-            Claude, Gemini, Codex, Copilot, or Cursor inside the app — MCP tools for connected clusters,
-            Approve for writes.
+            Bring Claude, Gemini, Codex, Copilot, or Cursor into a built-in terminal —
+            with tools for your connected clusters and Approve for writes.
             <a href="ai.html">Learn more</a>
           </p>
         </article>
@@ -249,13 +250,14 @@
     <section id="ai" class="ai-spotlight" aria-labelledby="ai-spotlight-title">
       <div class="ai-spotlight-copy">
         <p class="eyebrow">Desktop AI</p>
-        <h2 id="ai-spotlight-title">Ask your clusters without leaving KubeSpade</h2>
+        <h2 id="ai-spotlight-title">Your AI CLI, inside KubeSpade</h2>
         <p>
-          Launch the AI CLI you already installed. It only sees clusters connected in the app —
-          via MCP tools, not a live kubeconfig in the shell. Reads are free; writes wait for Approve.
+          Open Claude, Gemini, Codex, Copilot, or Cursor in a built-in terminal.
+          They get tools for clusters you’ve already connected — via MCP, not a live kubeconfig in the shell.
+          Reads run freely; apply and delete wait for Approve.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="ai.html">AI on Desktop</a>
+          <a class="btn btn-primary" href="ai.html">How Desktop AI works</a>
           <a class="btn btn-ghost" href="download.html">Download</a>
         </div>
       </div>
@@ -264,7 +266,7 @@
           type="button"
           class="shot-zoom shot-zoom-mac"
           data-lightbox="assets/screenshots/05-mac-ai-chat.png"
-          data-caption="In-app AI — ask about warnings on a connected cluster"
+          data-caption="Desktop AI — Claude summarizing warnings on a connected cluster"
           aria-label="Enlarge screenshot: Desktop AI"
         >
           <img
