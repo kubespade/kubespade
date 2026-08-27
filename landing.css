@@ -557,9 +557,9 @@ img {
   text-transform: uppercase;
 }
 
-/* ── AI spotlight (home) ── */
+/* ── Feature spotlights (AI / iPad on home) ── */
 
-.ai-spotlight {
+.spotlight {
   display: grid;
   grid-template-columns: 1fr 1.15fr;
   gap: 36px 48px;
@@ -573,7 +573,13 @@ img {
     color-mix(in srgb, var(--surface) 88%, transparent);
 }
 
-.ai-spotlight-copy h2 {
+.spotlight-ipad {
+  background:
+    radial-gradient(700px 280px at 8% 20%, rgba(110, 200, 255, 0.12), transparent 55%),
+    color-mix(in srgb, var(--surface) 88%, transparent);
+}
+
+.spotlight-copy h2 {
   margin: 0 0 14px;
   font-size: clamp(1.45rem, 3vw, 1.85rem);
   font-weight: 700;
@@ -581,19 +587,24 @@ img {
   line-height: 1.15;
 }
 
-.ai-spotlight-copy > p:not(.eyebrow) {
+.spotlight-copy > p:not(.eyebrow) {
   margin: 0 0 22px;
   color: var(--text-soft);
   font-size: 1.02rem;
   max-width: 42ch;
 }
 
-.ai-spotlight-copy .hero-actions {
+.spotlight-copy .hero-actions {
   margin-bottom: 0;
 }
 
-.ai-spotlight-media .shot-zoom {
+.spotlight-media .shot-zoom {
   width: 100%;
+}
+
+.spotlight-media .shot-zoom-ipad {
+  max-width: 420px;
+  margin-inline: auto;
 }
 
 /* ── Screenshot platform tabs ── */
@@ -1012,14 +1023,18 @@ a.tag:hover {
 
 @media (max-width: 960px) {
   .hero,
-  .ai-spotlight,
+  .spotlight,
   .shot-row,
   .shot-row.reverse {
     grid-template-columns: 1fr;
   }
 
-  .ai-spotlight {
+  .spotlight {
     padding: 28px 20px;
+  }
+
+  .spotlight-media .shot-zoom-ipad {
+    max-width: 320px;
   }
 
   .shot-row.reverse .shot-copy,
