@@ -27,7 +27,7 @@ AI mac shots: backed up to `_originals/`, scaled to width **1978** (match other 
 
 | File | Tag | Headline | Body |
 |------|-----|----------|------|
-| `05-mac-ai-picker.png` | AI clients | Pick Claude, Gemini, Codex, or Copilot | First open asks which CLI to use. The choice sticks; change it anytime in Settings. |
+| `05-mac-ai-picker.png` | AI clients | Pick Claude, Gemini, Codex, Copilot, or Cursor | First open asks which CLI to use. The choice sticks; change it anytime in Settings. |
 | `05-mac-ai-chat.png` | AI terminal | Ask your clusters in plain language | In-app AI sees only clusters connected in KubeSpade — via MCP tools, not a live kubeconfig in the shell. |
 | `05-mac-ai-approve.png` | Guardrails | Writes need your OK | Reads are free. Apply and delete wait for Approve in the app before they run. |
 | `05-mac-ai-tabs.png` | Workbench | AI next to pod exec | Same bottom dock as SSH and logs — switch tabs without juggling windows. |

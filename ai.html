@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>In-app AI for Kubernetes — KubeSpade Desktop</title>
-  <meta name="description" content="KubeSpade Desktop embeds Claude Code, Gemini CLI, Codex, or GitHub Copilot. Ask your connected clusters in plain language via MCP — reads are free, writes need Approve. No live kubeconfig in the AI shell." />
+  <meta name="description" content="KubeSpade Desktop embeds Claude Code, Gemini CLI, Codex, GitHub Copilot, or Cursor Agent. Ask your connected clusters in plain language via MCP — reads are free, writes need Approve. No live kubeconfig in the AI shell." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://kubespade.com/ai.html" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2" />
@@ -13,7 +13,7 @@
   <link rel="manifest" href="/site.webmanifest" />
 
   <meta property="og:title" content="In-app AI for Kubernetes — KubeSpade" />
-  <meta property="og:description" content="Claude, Gemini, Codex, or Copilot inside KubeSpade. Cluster tools via MCP; writes wait for your Approve." />
+  <meta property="og:description" content="Claude, Gemini, Codex, Copilot, or Cursor inside KubeSpade. Cluster tools via MCP; writes wait for your Approve." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kubespade.com/ai.html" />
   <meta property="og:image" content="https://kubespade.com/assets/screenshots/05-mac-ai-chat.png" />
@@ -34,7 +34,7 @@
     "@type": "WebPage",
     "name": "In-app AI for Kubernetes — KubeSpade Desktop",
     "url": "https://kubespade.com/ai.html",
-    "description": "KubeSpade Desktop embeds Claude Code, Gemini CLI, Codex, or GitHub Copilot with MCP cluster tools and write approval.",
+    "description": "KubeSpade Desktop embeds Claude Code, Gemini CLI, Codex, GitHub Copilot, or Cursor Agent with MCP cluster tools and write approval.",
     "isPartOf": { "@type": "WebSite", "url": "https://kubespade.com/" },
     "primaryImageOfPage": {
       "@type": "ImageObject",
@@ -66,8 +66,9 @@
         <h1>Ask your clusters<br />in plain language.</h1>
         <p class="lead">
           KubeSpade embeds the AI CLI you already use —
-          <strong>Claude Code</strong>, <strong>Gemini CLI</strong>, <strong>Codex</strong>, or
-          <strong>GitHub Copilot</strong> — with tools scoped to clusters connected in the app.
+          <strong>Claude Code</strong>, <strong>Gemini CLI</strong>, <strong>Codex</strong>,
+          <strong>GitHub Copilot</strong>, or <strong>Cursor Agent</strong> — with tools scoped to
+          clusters connected in the app.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="download.html">Get Desktop</a>
@@ -102,6 +103,7 @@
         <span class="tag">Gemini CLI</span>
         <span class="tag">Codex CLI</span>
         <span class="tag">GitHub Copilot</span>
+        <span class="tag">Cursor Agent</span>
       </div>
     </section>
 
@@ -114,7 +116,7 @@
         <article class="feature">
           <div class="feature-icon" aria-hidden="true">✦</div>
           <h3>Pick once</h3>
-          <p>First open shows Claude, Gemini, Codex, or Copilot if they’re on your PATH. The choice sticks; change it in Settings anytime.</p>
+          <p>First open shows Claude, Gemini, Codex, Copilot, or Cursor if they’re on your PATH. The choice sticks; change it in Settings anytime.</p>
         </article>
         <article class="feature">
           <div class="feature-icon" aria-hidden="true">◎</div>
@@ -153,12 +155,12 @@
         <article class="shot-row">
           <div class="shot-copy">
             <span class="shot-tag">AI clients</span>
-            <h3>Pick Claude, Gemini, Codex, or Copilot</h3>
+            <h3>Pick Claude, Gemini, Codex, Copilot, or Cursor</h3>
             <p>First open asks which CLI to use. The choice sticks; change it anytime in Settings.</p>
           </div>
           <div class="shot-media">
-            <button type="button" class="shot-zoom shot-zoom-mac" data-lightbox="assets/screenshots/05-mac-ai-picker.png" data-caption="Choose your AI assistant" aria-label="Enlarge: AI picker">
-              <img src="assets/screenshots/05-mac-ai-picker.png" alt="KubeSpade Choose your AI assistant dialog with Claude, Gemini, and Copilot" width="1978" height="1360" loading="lazy" />
+            <button type="button" class="shot-zoom shot-zoom-mac" data-lightbox="assets/screenshots/05-mac-ai-picker.png?v=20260827b" data-caption="Choose your AI assistant" aria-label="Enlarge: AI picker">
+              <img src="assets/screenshots/05-mac-ai-picker.png?v=20260827b" alt="KubeSpade Choose your AI assistant dialog with Claude, Gemini, Codex, Copilot, and Cursor" width="1978" height="1372" loading="lazy" />
               <span class="shot-zoom-hint">Click to enlarge</span>
             </button>
           </div>
@@ -209,8 +211,8 @@
             <p>Preferred client lives in Settings → AI assistant; the sidebar icon matches your choice.</p>
           </div>
           <div class="shot-media">
-            <button type="button" class="shot-zoom shot-zoom-mac" data-lightbox="assets/screenshots/05-mac-ai-settings.png" data-caption="Change AI assistant from Settings" aria-label="Enlarge: AI settings">
-              <img src="assets/screenshots/05-mac-ai-settings.png" alt="Change AI assistant dialog showing Claude In use and Switch for others" width="1978" height="1363" loading="lazy" />
+            <button type="button" class="shot-zoom shot-zoom-mac" data-lightbox="assets/screenshots/05-mac-ai-settings.png?v=20260827b" data-caption="Change AI assistant from Settings" aria-label="Enlarge: AI settings">
+              <img src="assets/screenshots/05-mac-ai-settings.png?v=20260827b" alt="Change AI assistant dialog showing preferred clients including Cursor" width="1978" height="1372" loading="lazy" />
               <span class="shot-zoom-hint">Click to enlarge</span>
             </button>
           </div>
@@ -230,7 +232,7 @@
       </article>
       <article class="trust-card">
         <h3>What you install</h3>
-        <p>Bring your own CLI — we detect <code>claude</code>, <code>gemini</code>, <code>codex</code>, or <code>copilot</code> on PATH. Auth stays with that vendor’s login.</p>
+        <p>Bring your own CLI — we detect <code>claude</code>, <code>gemini</code>, <code>codex</code>, <code>copilot</code>, or <code>agent</code> (Cursor) on PATH. Auth stays with that vendor’s login.</p>
         <ul>
           <li><a href="download.html">Download Desktop</a></li>
           <li><a href="faq.html">FAQ</a></li>
