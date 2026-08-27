@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>In-app AI for Kubernetes — KubeSpade Desktop</title>
+  <meta name="description" content="KubeSpade Desktop embeds Claude Code, Gemini CLI, Codex, or GitHub Copilot. Ask your connected clusters in plain language via MCP — reads are free, writes need Approve. No live kubeconfig in the AI shell." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://kubespade.com/ai.html" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2" />
+  <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <meta property="og:title" content="In-app AI for Kubernetes — KubeSpade" />
+  <meta property="og:description" content="Claude, Gemini, Codex, or Copilot inside KubeSpade. Cluster tools via MCP; writes wait for your Approve." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kubespade.com/ai.html" />
+  <meta property="og:image" content="https://kubespade.com/assets/screenshots/05-mac-ai-chat.png" />
+  <meta property="og:image:width" content="1978" />
+  <meta property="og:image:height" content="1360" />
+  <meta property="og:image:alt" content="KubeSpade Desktop AI terminal summarizing cluster warnings" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="In-app AI for Kubernetes — KubeSpade" />
+  <meta name="twitter:description" content="Your installed AI CLI, inside the app — with Approve for writes." />
+  <meta name="twitter:image" content="https://kubespade.com/assets/screenshots/05-mac-ai-chat.png" />
+
+  <link rel="stylesheet" href="landing.css?v=20260827a" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "In-app AI for Kubernetes — KubeSpade Desktop",
+    "url": "https://kubespade.com/ai.html",
+    "description": "KubeSpade Desktop embeds Claude Code, Gemini CLI, Codex, or GitHub Copilot with MCP cluster tools and write approval.",
+    "isPartOf": { "@type": "WebSite", "url": "https://kubespade.com/" },
+    "primaryImageOfPage": {
+      "@type": "ImageObject",
+      "url": "https://kubespade.com/assets/screenshots/05-mac-ai-chat.png"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="topnav" aria-label="Site">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true"></span>
+        KubeSpade
+      </a>
+      <div class="nav-links">
+        <a href="/#features">Features</a>
+        <a href="/#screenshots">Screenshots</a>
+        <a href="ai.html" aria-current="page">AI</a>
+        <a href="download.html">Download</a>
+        <a href="faq.html">FAQ</a>
+        <a class="nav-cta" href="https://github.com/kubespade/kubespade/issues">Support</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Desktop · macOS, Windows, Linux</p>
+        <h1>Ask your clusters<br />in plain language.</h1>
+        <p class="lead">
+          KubeSpade embeds the AI CLI you already use —
+          <strong>Claude Code</strong>, <strong>Gemini CLI</strong>, <strong>Codex</strong>, or
+          <strong>GitHub Copilot</strong> — with tools scoped to clusters connected in the app.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="download.html">Get Desktop</a>
+          <a class="btn btn-ghost" href="#how-ai">How it works</a>
+        </div>
+        <p class="hero-note">Reads are free. Apply and delete wait for Approve in the UI. Shell kubectl has no credentials on purpose.</p>
+      </div>
+      <div class="hero-shot">
+        <button
+          type="button"
+          class="shot-zoom shot-zoom-mac"
+          data-lightbox="assets/screenshots/05-mac-ai-chat.png"
+          data-caption="AI terminal — ask about warnings on a connected cluster"
+          aria-label="Enlarge screenshot: AI chat"
+        >
+          <img
+            src="assets/screenshots/05-mac-ai-chat.png"
+            alt="KubeSpade Desktop with Claude Code summarizing warnings from a connected cluster"
+            width="1978"
+            height="1360"
+            fetchpriority="high"
+          />
+          <span class="shot-zoom-hint">Click to enlarge</span>
+        </button>
+      </div>
+    </header>
+
+    <section class="platforms" aria-label="AI clients">
+      <span class="platforms-label">Works with</span>
+      <div class="platform-tags">
+        <span class="tag tag-accent">Claude Code</span>
+        <span class="tag">Gemini CLI</span>
+        <span class="tag">Codex CLI</span>
+        <span class="tag">GitHub Copilot</span>
+      </div>
+    </section>
+
+    <section id="how-ai" aria-labelledby="how-ai-title">
+      <div class="section-head">
+        <h2 id="how-ai-title">Your CLI. Our cluster tools.</h2>
+        <p>No hosted model from KubeSpade — we launch the agent installed on your machine and hand it MCP tools for the clusters you already connected.</p>
+      </div>
+      <div class="features">
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">✦</div>
+          <h3>Pick once</h3>
+          <p>First open shows Claude, Gemini, Codex, or Copilot if they’re on your PATH. The choice sticks; change it in Settings anytime.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">◎</div>
+          <h3>Connected clusters only</h3>
+          <p>The AI sees profiles open in KubeSpade. There is no live kubeconfig in the AI shell — cluster access is MCP-only.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">✓</div>
+          <h3>Writes need Approve</h3>
+          <p>List, get, describe, and logs run freely. Apply and delete open an Approve dialog in the app before anything mutates.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">▤</div>
+          <h3>Same workbench</h3>
+          <p>AI shares the bottom dock with pod exec and logs — tabs, not a second floating window.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">🔒</div>
+          <h3>Still on-device</h3>
+          <p>Credentials stay local. The agent talks to your clusters through KubeSpade — not through a KubeSpade cloud backend.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">⇢</div>
+          <h3>Desktop today</h3>
+          <p>In-app AI ships on macOS, Windows, and Linux. Install your preferred CLI, then open the sparkle in the sidebar.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="gallery" aria-labelledby="gallery-title">
+      <div class="section-head">
+        <h2 id="gallery-title">See the AI workbench</h2>
+        <p>From first pick to Approve — click any shot to enlarge.</p>
+      </div>
+      <div class="shots">
+        <article class="shot-row">
+          <div class="shot-copy">
+            <span class="shot-tag">AI clients</span>
+            <h3>Pick Claude, Gemini, Codex, or Copilot</h3>
+            <p>First open asks which CLI to use. The choice sticks; change it anytime in Settings.</p>
+          </div>
+          <div class="shot-media">
+            <button type="button" class="shot-zoom shot-zoom-mac" data-lightbox="assets/screenshots/05-mac-ai-picker.png" data-caption="Choose your AI assistant" aria-label="Enlarge: AI picker">
+              <img src="assets/screenshots/05-mac-ai-picker.png" alt="KubeSpade Choose your AI assistant dialog with Claude, Gemini, and Copilot" width="1978" height="1360" loading="lazy" />
+              <span class="shot-zoom-hint">Click to enlarge</span>
+            </button>
+          </div>
+        </article>
+        <article class="shot-row reverse">
+          <div class="shot-copy">
+            <span class="shot-tag">AI terminal</span>
+            <h3>Ask your clusters in plain language</h3>
+            <p>In-app AI sees only clusters connected in KubeSpade — via MCP tools, not a live kubeconfig in the shell.</p>
+          </div>
+          <div class="shot-media">
+            <button type="button" class="shot-zoom shot-zoom-mac" data-lightbox="assets/screenshots/05-mac-ai-chat.png" data-caption="AI summarizing cluster warnings" aria-label="Enlarge: AI chat">
+              <img src="assets/screenshots/05-mac-ai-chat.png" alt="Claude Code in KubeSpade answering about cluster warnings" width="1978" height="1360" loading="lazy" />
+              <span class="shot-zoom-hint">Click to enlarge</span>
+            </button>
+          </div>
+        </article>
+        <article class="shot-row">
+          <div class="shot-copy">
+            <span class="shot-tag">Guardrails</span>
+            <h3>Writes need your OK</h3>
+            <p>Reads are free. Apply and delete wait for Approve in the app before they run.</p>
+          </div>
+          <div class="shot-media">
+            <button type="button" class="shot-zoom shot-zoom-mac" data-lightbox="assets/screenshots/05-mac-ai-approve.png" data-caption="Allow AI write? Approve dialog" aria-label="Enlarge: Approve dialog">
+              <img src="assets/screenshots/05-mac-ai-approve.png" alt="KubeSpade Allow AI write dialog to approve creating an nginx pod" width="1978" height="1360" loading="lazy" />
+              <span class="shot-zoom-hint">Click to enlarge</span>
+            </button>
+          </div>
+        </article>
+        <article class="shot-row reverse">
+          <div class="shot-copy">
+            <span class="shot-tag">Workbench</span>
+            <h3>AI next to pod exec</h3>
+            <p>Same bottom dock as SSH and logs — switch tabs without juggling windows.</p>
+          </div>
+          <div class="shot-media">
+            <button type="button" class="shot-zoom shot-zoom-mac" data-lightbox="assets/screenshots/05-mac-ai-tabs.png" data-caption="AI and pod exec tabs in one workbench" aria-label="Enlarge: workbench tabs">
+              <img src="assets/screenshots/05-mac-ai-tabs.png" alt="KubeSpade workbench with Claude Code, pod exec, and logs tabs" width="1978" height="1360" loading="lazy" />
+              <span class="shot-zoom-hint">Click to enlarge</span>
+            </button>
+          </div>
+        </article>
+        <article class="shot-row">
+          <div class="shot-copy">
+            <span class="shot-tag">Preferences</span>
+            <h3>Change the default assistant</h3>
+            <p>Preferred client lives in Settings → AI assistant; the sidebar icon matches your choice.</p>
+          </div>
+          <div class="shot-media">
+            <button type="button" class="shot-zoom shot-zoom-mac" data-lightbox="assets/screenshots/05-mac-ai-settings.png" data-caption="Change AI assistant from Settings" aria-label="Enlarge: AI settings">
+              <img src="assets/screenshots/05-mac-ai-settings.png" alt="Change AI assistant dialog showing Claude In use and Switch for others" width="1978" height="1363" loading="lazy" />
+              <span class="shot-zoom-hint">Click to enlarge</span>
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="trust" aria-label="Safety">
+      <article class="trust-card">
+        <h3>What the AI can see</h3>
+        <p>Only clusters currently connected in the app, through KubeSpade MCP tools. The AI shell does not get a live kubeconfig or your <code>~/.kube/config</code>.</p>
+        <ul>
+          <li>List / get / describe / logs without prompts</li>
+          <li>Apply / delete only after Approve</li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </article>
+      <article class="trust-card">
+        <h3>What you install</h3>
+        <p>Bring your own CLI — we detect <code>claude</code>, <code>gemini</code>, <code>codex</code>, or <code>copilot</code> on PATH. Auth stays with that vendor’s login.</p>
+        <ul>
+          <li><a href="download.html">Download Desktop</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="cta" aria-labelledby="cta-title">
+      <h2 id="cta-title">Try it on Desktop</h2>
+      <p>Install your preferred AI CLI, open KubeSpade, and hit the AI button in the sidebar.</p>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="download.html">Download</a>
+        <a class="btn btn-ghost" href="/#screenshots">More screenshots</a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <span>© 2026 KubeSpade</span>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="download.html">Download</a>
+        <a href="ipad.html">iPadOS</a>
+        <a href="ai.html">AI</a>
+        <a href="faq.html">FAQ</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="https://github.com/kubespade/kubespade/issues">GitHub Issues</a>
+      </div>
+    </footer>
+  </div>
+
+  <dialog id="lightbox" class="lightbox" aria-label="Screenshot preview">
+    <form method="dialog" class="lightbox-bar">
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+      <button type="submit" class="lightbox-close" aria-label="Close">Close · Esc</button>
+    </form>
+    <img id="lightbox-img" alt="" />
+  </dialog>
+
+  <script src="landing.js?v=20260813d" defer></script>
+</body>
+</html>

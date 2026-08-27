@@ -37,6 +37,13 @@ MAC_SHOTS = [
     "04-mac-clusters.png",
     "04-mac-clusters-2.png",
 ]
+MAC_AI_SHOTS = [
+    "05-mac-ai-picker.png",
+    "05-mac-ai-chat.png",
+    "05-mac-ai-approve.png",
+    "05-mac-ai-tabs.png",
+    "05-mac-ai-settings.png",
+]
 WIN_SHOTS = [
     "01-win-overview.png",
     "02-win-pods.png",
@@ -61,7 +68,10 @@ UBUNTU_SHOTS = [
     "04-ubuntu-clusters.png",
 ]
 
-ALL_SHOTS = MAC_SHOTS + WIN_SHOTS + IPAD_SHOTS + UBUNTU_SHOTS
+ALL_SHOTS = MAC_SHOTS + MAC_AI_SHOTS + WIN_SHOTS + IPAD_SHOTS + UBUNTU_SHOTS
+
+# Match existing mac marketing width (~1978) so AI shots don't dwarf the gallery.
+MAC_TARGET_WIDTH = 1978
 
 
 def sample_fill_color(im: Image.Image, x: int, y: int) -> tuple[int, int, int]:
@@ -133,6 +143,16 @@ def round_corners(path: Path, radius: int, *, supersample: int = 2) -> None:
     im.save(path, optimize=True)
 
 
+def scale_to_width(path: Path, target_width: int) -> None:
+    im = Image.open(path)
+    w, h = im.size
+    if w <= target_width:
+        return
+    nh = max(1, round(h * (target_width / w)))
+    out = im.resize((target_width, nh), Image.Resampling.LANCZOS)
+    out.save(path, optimize=True)
+
+
 def main() -> None:
     BACKUP.mkdir(exist_ok=True)
 
@@ -151,13 +171,17 @@ def main() -> None:
     redact_win_clusters(ROOT / "04-win-clusters.png")
     redact_ubuntu_clusters(ROOT / "04-ubuntu-clusters.png")
 
-    for name in MAC_SHOTS:
+    for name in MAC_AI_SHOTS:
+        scale_to_width(ROOT / name, MAC_TARGET_WIDTH)
+
+    for name in MAC_SHOTS + MAC_AI_SHOTS:
         round_corners(ROOT / name, CORNER_RADIUS_MAC, supersample=3)
     for name in IPAD_SHOTS:
         round_corners(ROOT / name, CORNER_RADIUS_IPAD, supersample=3)
     # Windows: leave square (native window chrome is rectangular)
 
     print("done mac:", ", ".join(MAC_SHOTS))
+    print("done mac AI:", ", ".join(MAC_AI_SHOTS))
     print("done win (redact only):", ", ".join(WIN_SHOTS))
     print("done ipad:", ", ".join(IPAD_SHOTS))
     print("done ubuntu (redact only, keep window alpha):", ", ".join(UBUNTU_SHOTS))

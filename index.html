@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KubeSpade — Kubernetes Client for macOS, Windows, Linux &amp; iPadOS</title>
-  <meta name="description" content="KubeSpade is a Kubernetes GUI client for macOS, Windows, Linux, and iPadOS. Browse pods, logs, metrics, and YAML; exec, port-forward, and Helm. Works with EKS, GKE, AKS, and kubeconfig — a visual kubectl alternative. Credentials stay on your device." />
-  <meta name="keywords" content="Kubernetes client, Kubernetes GUI, kubectl alternative, k8s desktop client, EKS client, GKE client, AKS client, Kubernetes for iPadOS, kubeconfig GUI" />
+  <meta name="description" content="KubeSpade is a Kubernetes GUI client for macOS, Windows, Linux, and iPadOS. Browse pods, logs, metrics, and YAML; exec, port-forward, Helm, and in-app AI on Desktop. Works with EKS, GKE, AKS, and kubeconfig. Credentials stay on your device." />
+  <meta name="keywords" content="Kubernetes client, Kubernetes GUI, kubectl alternative, k8s desktop client, EKS client, GKE client, AKS client, Kubernetes for iPadOS, kubeconfig GUI, Kubernetes AI, Claude Code, Gemini CLI" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://kubespade.com/" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2" />
@@ -14,7 +14,7 @@
   <link rel="manifest" href="/site.webmanifest" />
 
   <meta property="og:title" content="KubeSpade — Kubernetes Client for DevOps" />
-  <meta property="og:description" content="Visual Kubernetes client for macOS, Windows, Linux, and iPadOS. Pods, logs, YAML, Helm — works with EKS, GKE, AKS, and kubeconfig." />
+  <meta property="og:description" content="Visual Kubernetes client for macOS, Windows, Linux, and iPadOS. Pods, logs, YAML, Helm, and Desktop AI — works with EKS, GKE, AKS, and kubeconfig." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kubespade.com/" />
   <meta property="og:site_name" content="KubeSpade" />
@@ -26,10 +26,10 @@
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="KubeSpade — Kubernetes Client for DevOps" />
-  <meta name="twitter:description" content="Kubernetes GUI for macOS, Windows, Linux, and iPadOS. Pods, logs, YAML, Helm — EKS, GKE, AKS, kubeconfig." />
+  <meta name="twitter:description" content="Kubernetes GUI for macOS, Windows, Linux, and iPadOS. Pods, logs, YAML, Helm, Desktop AI — EKS, GKE, AKS, kubeconfig." />
   <meta name="twitter:image" content="https://kubespade.com/assets/screenshots/01-mac-overview.png" />
 
-  <link rel="stylesheet" href="landing.css?v=20260813e" />
+  <link rel="stylesheet" href="landing.css?v=20260827a" />
 
   <script type="application/ld+json">
   {
@@ -62,14 +62,15 @@
         "applicationCategory": "DeveloperApplication",
         "applicationSubCategory": "Kubernetes client",
         "operatingSystem": "macOS, Windows, Linux, iPadOS",
-        "description": "Full-featured Kubernetes GUI client. Browse pods, logs, metrics, and YAML; exec, port-forward, and manage Helm. Connect via Amazon EKS, Google GKE, Azure AKS, or kubeconfig. Credentials stay on your device.",
-        "keywords": "Kubernetes client, Kubernetes GUI, kubectl alternative, k8s desktop, EKS, GKE, AKS",
+        "description": "Full-featured Kubernetes GUI client. Browse pods, logs, metrics, and YAML; exec, port-forward, manage Helm, and use in-app AI on Desktop. Connect via Amazon EKS, Google GKE, Azure AKS, or kubeconfig. Credentials stay on your device.",
+        "keywords": "Kubernetes client, Kubernetes GUI, kubectl alternative, k8s desktop, EKS, GKE, AKS, AI",
         "featureList": [
           "Cluster overview with CPU, memory, and pod metrics",
           "Browse workloads: pods, deployments, services, RBAC, CRDs",
           "Stream pod logs and exec into containers",
           "Edit and apply YAML",
           "Port-forward and Helm",
+          "In-app AI (Claude, Gemini, Codex, Copilot) with MCP and write approval",
           "Connect Amazon EKS, Google GKE, Azure AKS, or kubeconfig"
         ],
         "screenshot": [
@@ -78,6 +79,7 @@
           "https://kubespade.com/assets/screenshots/02-mac-pods-info.png",
           "https://kubespade.com/assets/screenshots/03-mac-logs.png",
           "https://kubespade.com/assets/screenshots/04-mac-clusters-2.png",
+          "https://kubespade.com/assets/screenshots/05-mac-ai-chat.png",
           "https://kubespade.com/assets/screenshots/01-win-overview.png",
           "https://kubespade.com/assets/screenshots/01-ubuntu-overview.png",
           "https://kubespade.com/assets/screenshots/01-ipad-overview.png"
@@ -105,6 +107,7 @@
       <div class="nav-links">
         <a href="#features">Features</a>
         <a href="#screenshots">Screenshots</a>
+        <a href="ai.html">AI</a>
         <a href="download.html">Download</a>
         <a href="faq.html">FAQ</a>
         <a href="privacy.html">Privacy</a>
@@ -118,7 +121,8 @@
         <h1>Built by DevOps,<br />for people who live in Kubernetes.</h1>
         <p class="lead">
           A full-featured <strong>Kubernetes client</strong> for day-to-day cluster work —
-          pods, logs, metrics, YAML, exec, port-forward, and Helm —
+          pods, logs, metrics, YAML, exec, port-forward, Helm, and
+          <a href="ai.html">in-app AI</a> on Desktop —
           on <strong>macOS</strong>, <strong>Windows</strong>, <strong>Linux</strong>, and <strong>iPadOS</strong>.
         </p>
         <div class="hero-actions">
@@ -188,7 +192,7 @@
           <span class="how-num" aria-hidden="true">3</span>
           <div>
             <h3>Operate</h3>
-            <p>Browse resources, stream logs, edit YAML, exec, port-forward, and manage Helm releases.</p>
+            <p>Browse resources, stream logs, edit YAML, exec, port-forward, manage Helm — and ask the in-app AI about connected clusters.</p>
           </div>
         </li>
       </ol>
@@ -226,10 +230,52 @@
           <p>Connect via EKS, GKE, AKS credentials or import a kubeconfig — multiple clusters, grouped your way.</p>
         </article>
         <article class="feature">
+          <div class="feature-icon" aria-hidden="true">✦</div>
+          <h3>In-app AI <span class="feature-badge">Desktop</span></h3>
+          <p>
+            Claude, Gemini, Codex, or Copilot inside the app — MCP tools for connected clusters,
+            Approve for writes.
+            <a href="ai.html">Learn more</a>
+          </p>
+        </article>
+        <article class="feature">
           <div class="feature-icon" aria-hidden="true">🔒</div>
           <h3>On-device only</h3>
           <p>No KubeSpade backend receives your kubeconfig or tokens. The app talks directly to your cluster APIs.</p>
         </article>
+      </div>
+    </section>
+
+    <section id="ai" class="ai-spotlight" aria-labelledby="ai-spotlight-title">
+      <div class="ai-spotlight-copy">
+        <p class="eyebrow">Desktop AI</p>
+        <h2 id="ai-spotlight-title">Ask your clusters without leaving KubeSpade</h2>
+        <p>
+          Launch the AI CLI you already installed. It only sees clusters connected in the app —
+          via MCP tools, not a live kubeconfig in the shell. Reads are free; writes wait for Approve.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="ai.html">AI on Desktop</a>
+          <a class="btn btn-ghost" href="download.html">Download</a>
+        </div>
+      </div>
+      <div class="ai-spotlight-media">
+        <button
+          type="button"
+          class="shot-zoom shot-zoom-mac"
+          data-lightbox="assets/screenshots/05-mac-ai-chat.png"
+          data-caption="In-app AI — ask about warnings on a connected cluster"
+          aria-label="Enlarge screenshot: Desktop AI"
+        >
+          <img
+            src="assets/screenshots/05-mac-ai-chat.png"
+            alt="KubeSpade Desktop AI terminal answering about cluster warnings"
+            width="1978"
+            height="1360"
+            loading="lazy"
+          />
+          <span class="shot-zoom-hint">Click to enlarge</span>
+        </button>
       </div>
     </section>
 
@@ -408,6 +454,8 @@
       <p class="shots-foot">
         Also on iPadOS —
         <a href="ipad.html">see the iPadOS page</a>
+        · Desktop AI —
+        <a href="ai.html">in-app assistants</a>
       </p>
     </section>
 
@@ -418,7 +466,8 @@
         <strong>kubectl alternative</strong> for engineers who manage clusters every day.
         Use it as a <strong>Kubernetes client</strong> for Amazon EKS, Google GKE, Azure AKS,
         minikube, or any cluster you reach with a kubeconfig — without sending credentials
-        through a third-party cloud console.
+        through a third-party cloud console. On Desktop, optional
+        <a href="ai.html">in-app AI</a> talks to those same connected clusters via MCP.
       </p>
     </section>
 
@@ -467,6 +516,7 @@
       <span>© 2026 KubeSpade</span>
       <div class="footer-links">
         <a href="download.html">Download</a>
+        <a href="ai.html">AI</a>
         <a href="ipad.html">iPadOS</a>
         <a href="faq.html">FAQ</a>
         <a href="privacy.html">Privacy</a>

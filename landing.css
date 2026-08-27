@@ -543,6 +543,59 @@ img {
   line-height: 1.55;
 }
 
+.feature-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  vertical-align: middle;
+  background: var(--gold-dim);
+  color: var(--gold);
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ── AI spotlight (home) ── */
+
+.ai-spotlight {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 36px 48px;
+  align-items: center;
+  margin: 0 0 80px;
+  padding: 36px 28px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(700px 280px at 92% 10%, rgba(110, 200, 255, 0.1), transparent 55%),
+    color-mix(in srgb, var(--surface) 88%, transparent);
+}
+
+.ai-spotlight-copy h2 {
+  margin: 0 0 14px;
+  font-size: clamp(1.45rem, 3vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.ai-spotlight-copy > p:not(.eyebrow) {
+  margin: 0 0 22px;
+  color: var(--text-soft);
+  font-size: 1.02rem;
+  max-width: 42ch;
+}
+
+.ai-spotlight-copy .hero-actions {
+  margin-bottom: 0;
+}
+
+.ai-spotlight-media .shot-zoom {
+  width: 100%;
+}
+
 /* ── Screenshot platform tabs ── */
 
 .shot-platform-tabs {
@@ -959,9 +1012,14 @@ a.tag:hover {
 
 @media (max-width: 960px) {
   .hero,
+  .ai-spotlight,
   .shot-row,
   .shot-row.reverse {
     grid-template-columns: 1fr;
+  }
+
+  .ai-spotlight {
+    padding: 28px 20px;
   }
 
   .shot-row.reverse .shot-copy,

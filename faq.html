@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FAQ — KubeSpade Kubernetes Client</title>
-  <meta name="description" content="Frequently asked questions about KubeSpade: privacy, kubeconfig, EKS/GKE/AKS, platforms, and support." />
+  <meta name="description" content="Frequently asked questions about KubeSpade: privacy, kubeconfig, EKS/GKE/AKS, Desktop AI, platforms, and support." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://kubespade.com/faq.html" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2" />
@@ -14,7 +14,7 @@
   <meta property="og:description" content="Privacy, clusters, platforms, and how KubeSpade connects to Kubernetes." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kubespade.com/faq.html" />
-  <link rel="stylesheet" href="landing.css?v=20260813e" />
+  <link rel="stylesheet" href="landing.css?v=20260827a" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -46,10 +46,18 @@
       },
       {
         "@type": "Question",
+        "name": "Does Desktop include an AI assistant?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes on Desktop. KubeSpade can launch Claude Code, Gemini CLI, Codex CLI, or GitHub Copilot with MCP tools for clusters you already connected. Reads run freely; apply and delete wait for Approve in the UI. The AI shell does not get a live kubeconfig. See the AI page for details."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "Is KubeSpade a kubectl replacement?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "It is a visual Kubernetes GUI client for day-to-day work: browse resources, logs, YAML, exec, port-forward, and Helm. You can still use kubectl alongside it when you need the CLI."
+          "text": "It is a visual Kubernetes GUI client for day-to-day work: browse resources, logs, YAML, exec, port-forward, Helm, and Desktop AI. You can still use kubectl alongside it when you need the CLI."
         }
       },
       {
@@ -73,6 +81,7 @@
       </a>
       <div class="nav-links">
         <a href="/#features">Features</a>
+        <a href="ai.html">AI</a>
         <a href="download.html">Download</a>
         <a class="nav-cta" href="faq.html">FAQ</a>
         <a href="privacy.html">Privacy</a>
@@ -83,7 +92,7 @@
     <header class="page-hero">
       <p class="eyebrow">Support</p>
       <h1>Frequently asked questions</h1>
-      <p class="lead">Short answers about privacy, platforms, and clusters.</p>
+      <p class="lead">Short answers about privacy, platforms, clusters, and Desktop AI.</p>
     </header>
 
     <div class="faq-list">
@@ -100,6 +109,17 @@
       <details class="faq-item">
         <summary>Which clusters can I connect to?</summary>
         <p>Amazon EKS, Google GKE, Azure AKS, minikube, kind, and any cluster you can reach with a standard kubeconfig. On desktop, exec plugins such as aws-vault are supported where configured.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Does Desktop include an AI assistant?</summary>
+        <p>
+          Yes on <strong>Desktop</strong> (macOS, Windows, Linux). KubeSpade launches
+          <strong>Claude Code</strong>, <strong>Gemini CLI</strong>, <strong>Codex</strong>, or
+          <strong>GitHub Copilot</strong> if they’re installed, with MCP tools for clusters you’ve
+          already connected. Reads are free; apply and delete need <strong>Approve</strong> in the UI.
+          The AI shell does not get a live kubeconfig. Details on the <a href="ai.html">AI page</a>.
+        </p>
       </details>
 
       <details class="faq-item">
@@ -137,6 +157,7 @@
       <div class="footer-links">
         <a href="/">Home</a>
         <a href="download.html">Download</a>
+        <a href="ai.html">AI</a>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="https://github.com/kubespade/kubespade/issues">GitHub Issues</a>
