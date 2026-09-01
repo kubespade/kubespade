@@ -31,6 +31,12 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://kubespade.com/alternatives/openlens.html</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://kubespade.com/faq.html</loc>
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>

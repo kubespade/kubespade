@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OpenLens Alternative (2026) — KubeSpade Kubernetes Desktop Client</title>
+  <meta name="description" content="OpenLens is no longer a safe long-term bet. KubeSpade is an independent Kubernetes GUI for macOS, Windows, and Linux — no account, credentials on your device. EKS, GKE, AKS, kubeconfig." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://kubespade.com/alternatives/openlens.html" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2" />
+  <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta property="og:title" content="OpenLens alternative — KubeSpade" />
+  <meta property="og:description" content="Independent Kubernetes desktop client when OpenLens is no longer maintained. No account. Credentials stay on your device." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kubespade.com/alternatives/openlens.html" />
+  <meta property="og:image" content="https://kubespade.com/assets/screenshots/01-mac-overview.png" />
+  <link rel="stylesheet" href="../landing.css?v=20260831a" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is OpenLens still maintained?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "OpenLens was a community fork of Lens IDE. It is effectively unmaintained for most teams in 2026 — builds lag behind Kubernetes, and there is no vendor roadmap. People searching for an OpenLens alternative usually want something that still ships updates."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is KubeSpade an OpenLens fork?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. KubeSpade is an independent Kubernetes GUI, not a Lens or OpenLens fork. It connects with kubeconfig, EKS, GKE, or AKS. There is no KubeSpade account and no KubeSpade backend for your cluster credentials."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What about FreeLens?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "FreeLens is another Lens-based fork with an MIT license. If you want the closest UX to OpenLens, try FreeLens first. KubeSpade is for people who want a smaller independent client without a Lens lineage — and an iPad app."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="topnav" aria-label="Site">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true"></span>
+        KubeSpade
+      </a>
+      <div class="nav-links">
+        <a href="/#features">Features</a>
+        <a href="../ai.html">AI</a>
+        <a class="nav-cta" href="../download.html">Download</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="https://github.com/kubespade/kubespade/issues">Support</a>
+      </div>
+    </nav>
+
+    <header class="page-hero">
+      <p class="eyebrow">OpenLens alternative</p>
+      <h1>What to install when OpenLens is no longer maintained</h1>
+      <p class="lead">
+        OpenLens was the escape hatch when Lens Desktop started requiring an account.
+        For many teams it stopped being a safe default: stale builds, no clear maintainer,
+        and the same Lens-era UX debt. KubeSpade is a separate Kubernetes GUI — not a fork —
+        built for day-to-day cluster work without a vendor login.
+      </p>
+    </header>
+
+    <div class="prose-page">
+      <p>
+        If you landed here from a search for <strong>openlens alternative</strong> or
+        <strong>openlens dead</strong>, you are not alone. OpenLens filled a real gap for
+        years. In 2026 the practical question is not “where do I download OpenLens again?” but
+        “what do I install that still gets updates and does not route my kubeconfig through
+        another account?”
+      </p>
+      <p>
+        KubeSpade is an independent Kubernetes client for <strong>macOS</strong> (Apple Silicon and Intel),
+        <strong>Windows</strong> (x64 and ARM), and <strong>Linux</strong> (.deb and AppImage).
+        Connect with kubeconfig, Amazon EKS, Google GKE, or Azure AKS.
+        Credentials stay on your device. There is no KubeSpade cloud that receives your tokens.
+      </p>
+      <p>
+        Not looking for OpenLens specifically? See the
+        <a href="lens.html">Lens alternative</a> page for the account / Mirantis angle.
+      </p>
+    </div>
+
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>KubeSpade</th>
+            <th>OpenLens</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Codebase</td>
+            <td>Independent app (not a Lens fork)</td>
+            <td>Fork of Lens IDE</td>
+          </tr>
+          <tr>
+            <td>Runs on</td>
+            <td>macOS, Windows, Linux</td>
+            <td>macOS, Windows, Linux (last builds vary)</td>
+          </tr>
+          <tr>
+            <td>Account to use the app</td>
+            <td>None</td>
+            <td>None (no Lens login)</td>
+          </tr>
+          <tr>
+            <td>Actively maintained (2026)</td>
+            <td>Yes — regular releases</td>
+            <td>Effectively no for most users</td>
+          </tr>
+          <tr>
+            <td>Where credentials live</td>
+            <td>On your device only</td>
+            <td>On your device (local fork)</td>
+          </tr>
+          <tr>
+            <td>Connect</td>
+            <td>kubeconfig, EKS, GKE, AKS</td>
+            <td>kubeconfig and cloud integrations (Lens-era)</td>
+          </tr>
+          <tr>
+            <td>Day-to-day UI</td>
+            <td>Workloads, logs, YAML, exec, port-forward, Helm, metrics</td>
+            <td>Lens-style IDE when the build still runs</td>
+          </tr>
+          <tr>
+            <td>Lens extensions</td>
+            <td>No</td>
+            <td>Partial / legacy compatibility</td>
+          </tr>
+          <tr>
+            <td>iPad</td>
+            <td>App Store listing coming</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>Best if you…</td>
+            <td>Want a maintained client without Lens lineage</td>
+            <td>Already have a working OpenLens build and will not upgrade K8s</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose-page">
+      <h2>Other paths people take</h2>
+      <ul>
+        <li><strong>FreeLens</strong> — another Lens fork, MIT-licensed. Closest to “install OpenLens again” if you want the same UI family.</li>
+        <li><strong>Lens Desktop</strong> — still updated by Mirantis; requires a Lens account for the current product.</li>
+        <li><strong>Headlamp</strong> — CNCF web UI; great if a browser-based dashboard is enough.</li>
+        <li><strong>k9s</strong> — terminal UI; no mouse-first workflow.</li>
+      </ul>
+      <p>KubeSpade is not trying to win on “most Lens-compatible.” It is for engineers who want a desktop GUI that ships updates, stays off a vendor account, and will run on iPad too.</p>
+
+      <h2>When OpenLens is still fine</h2>
+      <ul>
+        <li>Your build runs on your OS and Kubernetes version today.</li>
+        <li>You are not planning cluster upgrades soon.</li>
+        <li>You accept that security fixes and new K8s APIs may never arrive.</li>
+      </ul>
+      <p>That is a valid short-term choice. It is not a 2026 migration plan.</p>
+
+      <h2>When people leave OpenLens</h2>
+      <ul>
+        <li>The app fails on a new macOS or Windows release.</li>
+        <li>Kubernetes upgraded and the old client misbehaves.</li>
+        <li>They want something maintained without signing into Lens.</li>
+        <li>They want the same workflows on iPad.</li>
+      </ul>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>Is KubeSpade a drop-in OpenLens replacement?</summary>
+        <p>For browsing clusters, logs, YAML, exec, and Helm — yes, that is the daily job. It is not a drop-in for Lens extensions or an identical Lens layout. Expect a different UI, not a re-skinned fork.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Should I try FreeLens first?</summary>
+        <p>If your main goal is “the same Lens UX without Mirantis,” FreeLens is the honest first stop. Try KubeSpade if you want an independent codebase, no Lens lineage, or iPad support.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do I need kubectl installed?</summary>
+        <p>Not for clusters you connect in the app. The desktop client talks to the Kubernetes API itself. You can still use kubectl alongside it for scripts.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is there a free download?</summary>
+        <p>Yes. Desktop builds are on the <a href="../download.html">Download</a> page (GitHub Releases, with SHA256SUMS). Verify the checksum before you install.</p>
+      </details>
+    </div>
+
+    <section class="cta" aria-labelledby="alt-cta">
+      <h2 id="alt-cta">Try KubeSpade</h2>
+      <p>macOS, Windows, and Linux. No account. Credentials stay on the device.</p>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="../download.html">Download 1.2.0</a>
+        <a class="btn btn-ghost" href="../">What it does</a>
+      </div>
+    </section>
+
+    <p class="dl-note">
+      <a href="../download.html">Download</a>
+      ·
+      <a href="lens.html">Lens alternative</a>
+      ·
+      <a href="../faq.html">FAQ</a>
+      ·
+      <a href="https://github.com/kubespade/kubespade/releases/tag/v1.2.0">GitHub Release</a>
+    </p>
+    <p class="dl-note legal-disclaimer">
+      Lens and OpenLens are trademarks of their respective owners. KubeSpade is not affiliated with, endorsed by, or sponsored by Mirantis, the Lens project, or OpenLens.
+    </p>
+
+    <footer class="site-footer">
+      <span>© 2026 KubeSpade</span>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="../download.html">Download</a>
+        <a href="../ai.html">AI</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="../terms.html">Terms</a>
+        <a href="https://github.com/kubespade/kubespade/issues">GitHub Issues</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
