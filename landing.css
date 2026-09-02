@@ -500,47 +500,43 @@ img {
   font-size: 1.02rem;
 }
 
-/* ── Features grid ── */
+/* ── Features: spec sheet, not SaaS icon cards ── */
 
 .features {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 56px;
+  row-gap: 0;
   margin-bottom: 80px;
 }
 
 .feature {
-  padding: 22px 20px;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  padding: 22px 0 26px;
+  border-top: 1px solid color-mix(in srgb, var(--gold) 28%, var(--border));
+  background: none;
+  border-radius: 0;
 }
 
 .feature-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  margin-bottom: 14px;
-  border-radius: 10px;
-  background: var(--blue-dim);
-  color: var(--blue);
-  font-size: 1.1rem;
+  display: none;
 }
 
 .feature h3 {
   margin: 0 0 8px;
-  font-size: 1rem;
-  font-weight: 650;
-  letter-spacing: -0.01em;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
 }
 
 .feature p {
   margin: 0;
-  color: var(--muted);
-  font-size: 0.92rem;
+  color: var(--text-soft);
+  font-size: 0.95rem;
   line-height: 1.55;
+  max-width: 42ch;
 }
 
 .feature-badge {
