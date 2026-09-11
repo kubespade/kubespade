@@ -1,0 +1,93 @@
+name: Bug report
+description: Something isn’t working as expected
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug.
+
+        **Do not paste secrets** — no kubeconfigs, tokens, passwords, MFA codes, or full cluster endpoints with credentials.
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      description: Where you run KubeSpade
+      options:
+        - iPad
+        - macOS
+        - Windows
+        - Linux
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: os_version
+    attributes:
+      label: OS version
+      description: e.g. iPadOS 18.5, macOS 15.5, Windows 11, Ubuntu 24.04
+      placeholder: iPadOS 18.5
+    validations:
+      required: true
+
+  - type: input
+    id: app_version
+    attributes:
+      label: App version
+      description: From Settings / About (or App Store version)
+      placeholder: 1.0.0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: cluster_type
+    attributes:
+      label: Cluster type
+      options:
+        - EKS (AWS)
+        - AKS (Azure)
+        - GKE (Google)
+        - kubeconfig / self-managed
+        - Other / not sure
+        - Not cluster-related
+    validations:
+      required: true
+
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: What happened?
+      description: Short summary of the bug
+      placeholder: App crashes when opening pod logs…
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Numbered steps so we can try the same thing
+      placeholder: |
+        1. Open cluster X
+        2. Go to Pods
+        3. Tap Logs
+        4. …
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      placeholder: Logs open and stream normally
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Extra details (optional)
+      description: Screenshots, error text (redact secrets), how often it happens
