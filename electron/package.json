@@ -1,0 +1,181 @@
+{
+  "name": "kubespade",
+  "version": "1.5.0",
+  "description": "KubeSpade - Kubernetes desktop client",
+  "author": "Pavel Puker",
+  "homepage": "https://github.com/kubespade/kubespade-desktop",
+  "desktopName": "kubespade.desktop",
+  "main": "bootstrap.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test",
+    "lint": "cd .. && ./frontend/node_modules/.bin/oxlint -c .oxlintrc.json electron",
+    "postinstall": "node scripts/patch-node-pty-win.js && node scripts/patch-portable-win.js && node ./node_modules/electron-builder/cli.js install-app-deps",
+    "dist": "electron-builder --mac",
+    "dist:mac": "electron-builder --mac",
+    "dist:mac:arm64": "electron-builder --mac --arm64",
+    "dist:mac:x64": "electron-builder --mac --x64",
+    "dist:win": "electron-builder --win nsis:x64 portable:x64",
+    "dist:win:arm64": "electron-builder --win nsis:arm64 portable:arm64",
+    "dist:linux": "electron-builder --linux AppImage:x64 deb:x64",
+    "dist:linux:arm64": "electron-builder --linux AppImage:arm64 deb:arm64"
+  },
+  "devDependencies": {
+    "electron": "^43.2.0",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "com.kubespade",
+    "productName": "KubeSpade",
+    "copyright": "© 2026 KubeSpade",
+    "npmRebuild": false,
+    "disableAsarIntegrity": true,
+    "directories": {
+      "output": "../dist-electron"
+    },
+    "files": [
+      "bootstrap.js",
+      "startupLog.js",
+      "env.js",
+      "themeColors.js",
+      "urlGuards.js",
+      "pathResolver.js",
+      "backendProcess.js",
+      "windowManager.js",
+      "ipc.js",
+      "main.js",
+      "preload.js",
+      "ai.js",
+      "aiAgents.js",
+      "approvalServer.js",
+      "appUpdate.js",
+      "updatePopup.js",
+      "update-popup.html",
+      "update-popup-preload.js",
+      "entitlements.mac.plist",
+      "entitlements.mac.inherit.plist",
+      "scripts/sign-mac-app.js",
+      "node_modules/node-pty/**/*"
+    ],
+    "asarUnpack": [
+      "node_modules/node-pty/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "icon": "build/icon.icns",
+      "identity": null,
+      "hardenedRuntime": true,
+      "entitlements": "entitlements.mac.plist",
+      "entitlementsInherit": "entitlements.mac.inherit.plist",
+      "gatekeeperAssess": false,
+      "extendInfo": {
+        "CFBundleIconName": "AppIcon"
+      },
+      "extraResources": [
+        {
+          "from": "../backend/k8s-client-backend",
+          "to": "backend"
+        },
+        {
+          "from": "build/iconcar/Assets.car",
+          "to": "Assets.car"
+        }
+      ],
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "dmg": {
+      "title": "KubeSpade",
+      "icon": "build/dmg-icon.icns",
+      "background": null,
+      "window": {
+        "width": 540,
+        "height": 380
+      },
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        {
+          "target": "nsis"
+        },
+        {
+          "target": "portable"
+        }
+      ],
+      "extraResources": [
+        {
+          "from": "../backend/k8s-client-backend.exe",
+          "to": "backend.exe"
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "KubeSpade",
+      "differentialPackage": false
+    },
+    "portable": {
+      "artifactName": "${productName}-Portable-${version}-${arch}.${ext}",
+      "useZip": true
+    },
+    "linux": {
+      "icon": "build/icons",
+      "category": "Development",
+      "maintainer": "Pavel Puker",
+      "syncDesktopName": true,
+      "desktop": {
+        "entry": {
+          "Name": "KubeSpade",
+          "Comment": "Kubernetes desktop client",
+          "Categories": "Development;Network;",
+          "StartupWMClass": "kubespade"
+        }
+      },
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "extraResources": [
+        {
+          "from": "../backend/k8s-client-backend",
+          "to": "backend"
+        },
+        {
+          "from": "build/icons/256x256.png",
+          "to": "icons/256x256.png"
+        },
+        {
+          "from": "build/icons/512x512.png",
+          "to": "icons/512x512.png"
+        }
+      ]
+    },
+    "appImage": {
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "deb": {
+      "artifactName": "${name}_${version}_${arch}.${ext}"
+    }
+  },
+  "dependencies": {
+    "node-pty": "^1.0.0"
+  }
+}

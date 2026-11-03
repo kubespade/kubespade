@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "typescript", "oxc"],
+  "rules": {
+    "eslint/no-unused-vars": "error",
+    "react/rules-of-hooks": "error",
+    "eslint/no-dupe-keys": "error",
+    "eslint/no-dupe-class-members": "error",
+    "eslint/no-self-assign": "error",
+    "eslint/no-unsafe-negation": "error",
+    "typescript/no-duplicate-enum-values": "error",
+
+    "react/only-export-components": "off",
+    "react/set-state-in-effect": "off",
+    "react/purity": "off",
+    "react/refs": "off",
+    "react/static-components": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "eslint/no-unused-expressions": "off"
+  }
+}

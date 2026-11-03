@@ -1,0 +1,28 @@
+{
+  "fill": {
+    "solid": "extended-srgb:0.96078,0.96863,0.98039,1.00000"
+  },
+  "groups": [
+    {
+      "name": "Artwork",
+      "layers": [
+        {
+          "name": "Art",
+          "image-name": "art.png",
+          "glass": false
+        }
+      ],
+      "shadow": {
+        "kind": "none",
+        "opacity": 0.0
+      },
+      "specular": false
+    }
+  ],
+  "supported-platforms": {
+    "squares": [
+      "macOS",
+      "iOS"
+    ]
+  }
+}

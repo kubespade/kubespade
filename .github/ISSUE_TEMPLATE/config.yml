@@ -4,8 +4,8 @@ contact_links:
     url: https://www.kubespade.com
     about: Product info and download links
   - name: Privacy Policy
-    url: https://www.kubespade.com/privacy.html
+    url: https://www.kubespade.com/privacy
     about: How KubeSpade handles data on your device
   - name: Terms of Use
-    url: https://www.kubespade.com/terms.html
+    url: https://www.kubespade.com/terms
     about: License, purchases, and acceptable use

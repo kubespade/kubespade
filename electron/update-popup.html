@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KubeSpade Update</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #121821;
+      --surface: #1a2330;
+      --border: #2a3544;
+      --text: #e8eef6;
+      --text-soft: #9aa8b8;
+      --muted: #8b9aab;
+      --accent: #e0a01a;
+      --accent-fg: #0a0e14;
+      --accent-bg: rgba(224, 160, 26, 0.14);
+      --accent-border: rgba(224, 160, 26, 0.45);
+      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    html.theme-light {
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --border: #d4dce8;
+      --text: #1a2330;
+      --text-soft: #5c6b7e;
+      --muted: #5c6b7e;
+      --accent: #c88a00;
+      --accent-fg: #ffffff;
+      --accent-bg: rgba(200, 138, 0, 0.12);
+      --accent-border: rgba(200, 138, 0, 0.35);
+    }
+
+    * { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+    *::-webkit-scrollbar { width: 4px; height: 4px; }
+    *::-webkit-scrollbar-track { background: transparent; }
+    *::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    *::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+    html, body {
+      overflow: hidden;
+      font: 13px/1.45 var(--font-sans);
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      padding: 14px 14px 12px;
+      gap: 10px;
+    }
+
+    .head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      display: grid;
+      place-items: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .title {
+      font-size: 14px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+    }
+
+    .subtitle {
+      margin-top: 2px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .message {
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .message strong {
+      color: var(--accent);
+      font-weight: 650;
+    }
+
+    .message a {
+      color: var(--accent);
+      font-weight: 650;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      cursor: pointer;
+    }
+
+    .message a:hover {
+      filter: brightness(1.08);
+    }
+
+    .notes {
+      display: none;
+      flex-direction: column;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      overflow: hidden;
+    }
+
+    .notes.visible { display: flex; }
+
+    .notes-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      min-height: 36px;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      padding: 0 10px;
+      cursor: pointer;
+      text-align: left;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .notes-toggle:hover { background: color-mix(in srgb, var(--bg) 55%, transparent); }
+
+    .notes-chevron {
+      display: inline-block;
+      width: 12px;
+      opacity: 0.75;
+      transition: transform 0.12s ease;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    .notes.open .notes-chevron { transform: rotate(90deg); }
+
+    .notes-label { flex: 1; min-width: 0; }
+    .notes-hint {
+      font-weight: 500;
+      color: var(--muted);
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    .notes-body {
+      display: none;
+      border-top: 1px solid var(--border);
+      padding: 10px 10px 12px 12px;
+      max-height: 220px;
+      overflow: auto;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      line-height: 1.55;
+      color: var(--text);
+      word-break: break-word;
+    }
+
+    .notes.open .notes-body { display: block; }
+
+    .notes-md { display: flex; flex-direction: column; gap: 6px; }
+
+    .notes-md h2 {
+      margin: 2px 0 0;
+      font-size: 13px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+
+    .notes-md h3 {
+      margin: 6px 0 0;
+      font-size: 11px;
+      font-weight: 650;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .notes-md p {
+      margin: 0;
+      color: var(--text-soft);
+      white-space: pre-wrap;
+    }
+
+    .notes-md ul {
+      margin: 0;
+      padding: 0 0 0 1.1em;
+      color: var(--text-soft);
+    }
+
+    .notes-md li {
+      margin: 0 0 3px;
+      padding-left: 2px;
+    }
+
+    .notes-md li::marker { color: var(--muted); }
+
+    .notes-md strong {
+      color: var(--text);
+      font-weight: 650;
+    }
+
+    .notes-md code {
+      font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 11px;
+      color: var(--text);
+      background: color-mix(in srgb, var(--bg) 70%, transparent);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0 4px;
+    }
+
+    .notes-link {
+      display: inline-block;
+      margin-top: 8px;
+      color: var(--accent);
+      font-weight: 650;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      padding-top: 2px;
+    }
+
+    button.action {
+      border-radius: 7px;
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    button.action.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--accent-fg);
+    }
+
+    button.action.ghost {
+      background: transparent;
+      color: var(--muted);
+      border-color: transparent;
+    }
+
+    button.action:hover { filter: brightness(1.05); }
+    button.action.ghost:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <div class="head">
+      <div class="badge" aria-hidden="true">↑</div>
+      <div>
+        <div class="title">Update available</div>
+        <div class="subtitle" id="subtitle">Checking…</div>
+      </div>
+    </div>
+    <p class="message" id="message">A newer KubeSpade build is ready to download.</p>
+    <div class="notes" id="notes">
+      <button type="button" class="notes-toggle" id="notes-toggle" aria-expanded="false">
+        <span class="notes-chevron" aria-hidden="true">▸</span>
+        <span class="notes-label">Release notes</span>
+        <span class="notes-hint" id="notes-hint">Show</span>
+      </button>
+      <div class="notes-body" id="notes-body"></div>
+    </div>
+    <div class="actions">
+      <button type="button" class="action ghost" id="later">Later</button>
+      <button type="button" class="action primary" id="download">Download</button>
+    </div>
+  </div>
+  <script>
+    const card = document.getElementById('card')
+    const subtitle = document.getElementById('subtitle')
+    const message = document.getElementById('message')
+    const downloadBtn = document.getElementById('download')
+    const laterBtn = document.getElementById('later')
+    const notesEl = document.getElementById('notes')
+    const notesToggle = document.getElementById('notes-toggle')
+    const notesBody = document.getElementById('notes-body')
+    const notesHint = document.getElementById('notes-hint')
+
+    let notesExpanded = false
+    let lastNotes = ''
+
+    function withV(s) {
+      const n = String(s || '').trim().replace(/^v/i, '')
+      return n ? `v${n}` : ''
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+    }
+
+    function formatInline(escaped) {
+      return escaped
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    }
+
+    /** Minimal GitHub-flavored release notes → HTML (headings, lists, bold, code). */
+    function renderMarkdown(raw) {
+      const lines = String(raw || '').replace(/\r\n/g, '\n').split('\n')
+      const out = []
+      let listOpen = false
+
+      function closeList() {
+        if (listOpen) {
+          out.push('</ul>')
+          listOpen = false
+        }
+      }
+
+      for (const line of lines) {
+        const trimmed = line.trimEnd()
+        if (!trimmed.trim()) {
+          closeList()
+          continue
+        }
+        const h2 = trimmed.match(/^##\s+(.+)$/)
+        if (h2) {
+          closeList()
+          out.push(`<h2>${formatInline(escapeHtml(h2[1]))}</h2>`)
+          continue
+        }
+        const h3 = trimmed.match(/^###\s+(.+)$/)
+        if (h3) {
+          closeList()
+          out.push(`<h3>${formatInline(escapeHtml(h3[1]))}</h3>`)
+          continue
+        }
+        const bullet = trimmed.match(/^[-*]\s+(.+)$/)
+        if (bullet) {
+          if (!listOpen) {
+            out.push('<ul>')
+            listOpen = true
+          }
+          out.push(`<li>${formatInline(escapeHtml(bullet[1]))}</li>`)
+          continue
+        }
+        closeList()
+        out.push(`<p>${formatInline(escapeHtml(trimmed))}</p>`)
+      }
+      closeList()
+      return `<div class="notes-md">${out.join('')}</div>`
+    }
+
+    function applyTheme(theme) {
+      document.documentElement.classList.toggle('theme-light', theme && !theme.dark)
+    }
+
+    function openDownload() {
+      if (window.updatePopup) void window.updatePopup.download()
+    }
+
+    function syncWindowSize() {
+      // Measure natural card height so the toggle is never clipped.
+      const h = Math.ceil(card.getBoundingClientRect().height)
+      if (window.updatePopup) {
+        void window.updatePopup.layout({
+          hasNotes: Boolean(lastNotes),
+          expanded: notesExpanded,
+          height: h,
+        })
+      }
+    }
+
+    function setNotesExpanded(open) {
+      notesExpanded = open
+      notesEl.classList.toggle('open', open)
+      notesToggle.setAttribute('aria-expanded', open ? 'true' : 'false')
+      notesHint.textContent = open ? 'Hide' : 'Show'
+      requestAnimationFrame(() => {
+        requestAnimationFrame(syncWindowSize)
+      })
+    }
+
+    function renderNotes(raw, releaseUrl) {
+      const text = String(raw || '').trim()
+      lastNotes = text
+      if (!text) {
+        notesEl.classList.remove('visible')
+        notesEl.classList.remove('open')
+        notesExpanded = false
+        notesBody.innerHTML = ''
+        requestAnimationFrame(() => {
+          requestAnimationFrame(syncWindowSize)
+        })
+        return
+      }
+      notesEl.classList.add('visible')
+      let html = renderMarkdown(text)
+      if (releaseUrl) {
+        html += `<a class="notes-link" href="#" id="release-link">View on GitHub</a>`
+      }
+      notesBody.innerHTML = html
+      const link = document.getElementById('release-link')
+      if (link) {
+        link.addEventListener('click', (e) => {
+          e.preventDefault()
+          if (window.updatePopup) void window.updatePopup.openRelease()
+        })
+      }
+      setNotesExpanded(false)
+    }
+
+    function renderInfo(info) {
+      if (!info) return
+      const current = withV(info.current)
+      const latest = withV(info.latest)
+      subtitle.textContent = `You have ${current} · latest is ${latest}`
+      message.innerHTML =
+        `KubeSpade <strong>${latest}</strong> is available. ` +
+        `Download the new build from <a href="#" id="site-link">kubespade.com/download</a>.`
+      const link = document.getElementById('site-link')
+      if (link) {
+        link.addEventListener('click', (e) => {
+          e.preventDefault()
+          openDownload()
+        })
+      }
+      renderNotes(info.releaseNotes, info.releaseUrl)
+    }
+
+    notesToggle.addEventListener('click', () => {
+      if (!lastNotes) return
+      setNotesExpanded(!notesExpanded)
+    })
+
+    if (window.updatePopup) {
+      window.updatePopup.onTheme(applyTheme)
+      window.updatePopup.onInfo(renderInfo)
+      downloadBtn.addEventListener('click', openDownload)
+      laterBtn.addEventListener('click', () => { void window.updatePopup.dismiss() })
+    }
+  </script>
+</body>
+</html>
