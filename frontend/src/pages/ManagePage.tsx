@@ -25,13 +25,15 @@ interface ProfileState {
   mfaToken: string
   clusters: EKSCluster[]
   showClusters: boolean
+  /** Set when list succeeded but returned zero clusters. */
+  emptyClustersMessage: string
 }
 
 export function ManagePage({ profiles, selectedProfile, recentNames, onConnected, onReload, onAdd }: Props) {
   const [states, setStates] = useState<ProfileState[]>(() =>
     profiles.map(p => ({
       profile: p, loading: false, error: '', needsMFA: false,
-      mfaToken: '', clusters: [], showClusters: false,
+      mfaToken: '', clusters: [], showClusters: false, emptyClustersMessage: '',
     }))
   )
   const [renamingName, setRenamingName] = useState<string | null>(null)
@@ -41,7 +43,7 @@ export function ManagePage({ profiles, selectedProfile, recentNames, onConnected
     const existing = states.find(s => s.profile.name === p.name)
     return existing ? { ...existing, profile: p } : {
       profile: p, loading: false, error: '', needsMFA: false,
-      mfaToken: '', clusters: [], showClusters: false,
+      mfaToken: '', clusters: [], showClusters: false, emptyClustersMessage: '',
     }
   })
 
@@ -50,13 +52,16 @@ export function ManagePage({ profiles, selectedProfile, recentNames, onConnected
       const has = prev.find(s => s.profile.name === name)
       if (has) return prev.map(s => s.profile.name === name ? { ...s, ...patch } : s)
       const p = profiles.find(p => p.name === name)!
-      return [...prev, { profile: p, loading: false, error: '', needsMFA: false, mfaToken: '', clusters: [], showClusters: false, ...patch }]
+      return [...prev, {
+        profile: p, loading: false, error: '', needsMFA: false,
+        mfaToken: '', clusters: [], showClusters: false, emptyClustersMessage: '', ...patch,
+      }]
     })
   }
 
   async function handleConnect(name: string) {
     const s = mergedStates.find(s => s.profile.name === name)!
-    update(name, { loading: true, error: '' })
+    update(name, { loading: true, error: '', emptyClustersMessage: '' })
     try {
       const result = await connectProfile(s.profile, s.mfaToken)
       if (result.status === 'connected') {
@@ -72,7 +77,12 @@ export function ManagePage({ profiles, selectedProfile, recentNames, onConnected
         return
       }
       if (result.status === 'pick-cluster') {
-        update(name, { clusters: result.clusters, showClusters: true, needsMFA: false })
+        update(name, {
+          clusters: result.clusters,
+          showClusters: true,
+          needsMFA: false,
+          emptyClustersMessage: result.emptyMessage ?? '',
+        })
         return
       }
       update(name, { error: result.message })
@@ -252,18 +262,22 @@ export function ManagePage({ profiles, selectedProfile, recentNames, onConnected
             ))}
           </div>
           <div className="manage-card-actions">
-            <span
-              className={`session-dot ${s.profile.sessionActive ? 'on' : 'off'}`}
-              title={s.profile.sessionActive ? 'Session active' : 'No session'}
-            />
-            {s.profile.connected && (
-              <span className="connected-badge">connected</span>
+            {s.profile.connected ? (
+              <span className="connected-badge" title={s.profile.sessionActive ? 'Session active' : 'Connected'}>
+                connected
+              </span>
+            ) : (
+              <span
+                className={`session-dot ${s.profile.sessionActive ? 'on' : 'off'}`}
+                title={s.profile.sessionActive ? 'Session active' : 'No session'}
+              />
             )}
             {!s.needsMFA && !s.showClusters && (
               s.profile.connected ? (
                 <>
-                  <button className="btn-open" onClick={() => onConnected(s.profile.name)}>Open</button>
+                  <button type="button" className="btn-open" onClick={() => onConnected(s.profile.name)}>Open</button>
                   <button
+                    type="button"
                     className="btn-disconnect"
                     onClick={() => handleDisconnect(s.profile.name)}
                     disabled={s.loading}
@@ -272,12 +286,13 @@ export function ManagePage({ profiles, selectedProfile, recentNames, onConnected
                   </button>
                 </>
               ) : (
-                <button className="manage-card-connect" onClick={() => handleConnect(s.profile.name)} disabled={s.loading}>
+                <button type="button" className="manage-card-connect" onClick={() => handleConnect(s.profile.name)} disabled={s.loading}>
                   {connectLabel(s)}
                 </button>
               )
             )}
             <button
+              type="button"
               className="icon-btn icon-btn-quiet"
               onClick={() => {
                 setRenamingName(s.profile.name)
@@ -287,7 +302,7 @@ export function ManagePage({ profiles, selectedProfile, recentNames, onConnected
             >
               <Pencil size={13} />
             </button>
-            <button className="icon-btn" onClick={() => handleDelete(s.profile)} title="Delete">✕</button>
+            <button type="button" className="icon-btn icon-btn-quiet" onClick={() => handleDelete(s.profile)} title="Delete">✕</button>
           </div>
         </div>
 
@@ -310,16 +325,22 @@ export function ManagePage({ profiles, selectedProfile, recentNames, onConnected
 
         {s.showClusters && (
           <div className="cluster-select">
-            <p className="select-label">Select cluster:</p>
-            {s.clusters.map(c => (
-              <button key={`${c.name}-${c.location ?? ''}-${c.resourceGroup ?? ''}`} className="cluster-item"
-                onClick={() => handleSelectCluster(s.profile.name, c)}
-                disabled={s.loading}>
-                <span className="cluster-item-name">{c.name}</span>
-                {c.location && <span className="cluster-item-ver">{c.location}</span>}
-                {!c.location && c.version && <span className="cluster-item-ver">K8s {c.version}</span>}
-              </button>
-            ))}
+            {s.clusters.length === 0 ? (
+              <p className="cluster-empty-msg">{s.emptyClustersMessage || 'No clusters found.'}</p>
+            ) : (
+              <>
+                <p className="select-label">Select cluster:</p>
+                {s.clusters.map(c => (
+                  <button key={`${c.name}-${c.location ?? ''}-${c.resourceGroup ?? ''}`} className="cluster-item"
+                    onClick={() => handleSelectCluster(s.profile.name, c)}
+                    disabled={s.loading}>
+                    <span className="cluster-item-name">{c.name}</span>
+                    {c.location && <span className="cluster-item-ver">{c.location}</span>}
+                    {!c.location && c.version && <span className="cluster-item-ver">K8s {c.version}</span>}
+                  </button>
+                ))}
+              </>
+            )}
           </div>
         )}
       </div>

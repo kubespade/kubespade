@@ -25,6 +25,12 @@ contextBridge.exposeInMainWorld('kubespade', {
       } catch { /* fall through */ }
       try { clipboard.writeText(s) } catch { /* ignore */ }
     },
+    hasImage: () => {
+      try {
+        return !!ipcRenderer.sendSync('clipboard:hasImage')
+      } catch { /* ignore */ }
+      try { return !clipboard.readImage().isEmpty() } catch { return false }
+    },
   },
 
   app: {

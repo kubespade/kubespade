@@ -1,0 +1,23 @@
+{
+  "plugins": ["oxc"],
+  "rules": {
+    "eslint/no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "^_",
+        "argsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
+    "eslint/no-dupe-keys": "error",
+    "eslint/no-dupe-class-members": "error",
+    "eslint/no-self-assign": "error",
+    "eslint/no-unsafe-negation": "error",
+    "eslint/no-unused-expressions": "off"
+  },
+  "ignorePatterns": [
+    "node_modules/**",
+    "dist/**",
+    "dist-electron/**"
+  ]
+}

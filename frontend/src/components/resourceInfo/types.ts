@@ -1,5 +1,5 @@
 export type InfoTarget =
-  | { type: 'k8s'; kind: string; name: string; namespace?: string }
+  | { type: 'k8s'; kind: string; name: string; namespace?: string; focusEnvContainer?: string }
   | { type: 'crd'; group: string; version: string; plural: string; kind: string; name: string; namespace?: string }
 
 export interface ResourceInfoPanelProps {

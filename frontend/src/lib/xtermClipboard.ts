@@ -4,8 +4,8 @@ function isMac(): boolean {
   return typeof navigator !== 'undefined' && /Mac/i.test(navigator.platform || '')
 }
 
-/** Linux/Windows Electron has no Edit menu, so Ctrl+V never becomes a paste event. */
-function interceptOsKeys(): boolean {
+/** Linux/Windows Electron has no Edit menu, so Ctrl+C never becomes a copy event. */
+function interceptCopyKeys(): boolean {
   return !isMac()
 }
 
@@ -15,6 +15,13 @@ function readClipboard(): string {
     if (text) return text
   } catch { /* ignore */ }
   return ''
+}
+
+function clipboardHasImage(): boolean {
+  try {
+    return !!window.kubespade?.clipboard?.hasImage?.()
+  } catch { /* ignore */ }
+  return false
 }
 
 function writeClipboard(text: string): boolean {
@@ -105,10 +112,18 @@ function isCopyKey(ev: KeyboardEvent, hasSelection: boolean): boolean {
   return isMod(ev)
 }
 
+/**
+ * Text → xterm paste. Image-only clipboard → raw Ctrl+V (`\x16`) so Claude Code /
+ * similar Ink TUIs attach the screenshot themselves (Cmd+V alone only pastes text).
+ */
 function pasteIntoTerm(term: Terminal) {
   const text = readClipboard()
   if (text) {
     term.paste(text)
+    return
+  }
+  if (clipboardHasImage()) {
+    try { term.input('\x16') } catch { /* ignore */ }
     return
   }
   void navigator.clipboard?.readText?.().then((t) => {
@@ -158,20 +173,21 @@ function eventInTerminal(term: Terminal, ev: Event): boolean {
 /**
  * Copy/paste for xterm in the desktop app. Returns a disposer.
  *
- * Win/Linux: intercept Ctrl+C (with selection) / Ctrl+V — no app Edit menu.
- * Also run native textarea copy (xterm context-menu technique) so Windows
- * actually receives CF_UNICODETEXT. Clipboard writes go through main-process IPC.
+ * Paste (all platforms): Cmd+V (Mac) / Ctrl+V (Win/Linux). Text pastes as text;
+ * image-only clipboard sends Ctrl+V (`\x16`) so AI CLIs attach the screenshot.
+ *
+ * Copy: Win/Linux intercept Ctrl+C (no Edit menu). Mac uses the native `copy`
+ * event. Clipboard writes go through main-process IPC.
  */
 export function bindXtermClipboard(term: Terminal): () => void {
   const osc = bindOsc52Clipboard(term)
-  const interceptKeys = interceptOsKeys()
+  const interceptCopy = interceptCopyKeys()
 
   const tryHandleKey = (ev: KeyboardEvent): boolean => {
     // true = leave to terminal; false = we handled (caller should preventDefault)
-    if (!interceptKeys) return true
     if (!eventInTerminal(term, ev)) return true
     const selected = term.getSelection()
-    if (isCopyKey(ev, !!selected)) {
+    if (interceptCopy && isCopyKey(ev, !!selected)) {
       if (selected) copySelection(term)
       return false
     }
@@ -197,7 +213,7 @@ export function bindXtermClipboard(term: Terminal): () => void {
     ev.stopPropagation()
   }
 
-  // Window capture: Windows IME / focus quirks sometimes skip the host listener.
+  // Window capture: Windows IME / Mac focus quirks sometimes skip the host listener.
   const onWinKey = (ev: KeyboardEvent) => {
     if (tryHandleKey(ev)) return
     ev.preventDefault()
@@ -217,16 +233,12 @@ export function bindXtermClipboard(term: Terminal): () => void {
 
   host?.addEventListener('keydown', onDomKey, true)
   host?.addEventListener('copy', onCopy, true)
-  if (interceptKeys) {
-    window.addEventListener('keydown', onWinKey, true)
-  }
+  window.addEventListener('keydown', onWinKey, true)
 
   return () => {
     host?.removeEventListener('keydown', onDomKey, true)
     host?.removeEventListener('copy', onCopy, true)
-    if (interceptKeys) {
-      window.removeEventListener('keydown', onWinKey, true)
-    }
+    window.removeEventListener('keydown', onWinKey, true)
     osc?.dispose()
   }
 }

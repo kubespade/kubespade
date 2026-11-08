@@ -33,6 +33,8 @@ interface Props<T> {
   toolbarLeft?: React.ReactNode
   /** Extra controls before the column-settings button (e.g. create/apply). */
   toolbarRight?: React.ReactNode
+  /** Extra rows inside the column-settings popup (toggles that aren’t columns). */
+  settingsExtra?: React.ReactNode
 }
 
 function resolveCellClass<T>(col: ColDef<T>, row: T): string {
@@ -79,7 +81,7 @@ function loadHiddenCols(settingsKey: string, defaultHidden: Set<string>): Set<st
 
 export function SortableTable<T,>({
   columns, rows, rowKey, defaultSortKey, defaultSortDir = 'asc', emptyMessage = 'No items found', actions, onRowClick,
-  settingsKey, defaultHidden = new Set(), lockedColumns = new Set(), toolbarLeft, toolbarRight,
+  settingsKey, defaultHidden = new Set(), lockedColumns = new Set(), toolbarLeft, toolbarRight, settingsExtra,
 }: Props<T>) {
   const [sortKey, setSortKey] = useState(defaultSortKey ?? columns[0]?.key ?? '')
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>(defaultSortDir)
@@ -255,6 +257,7 @@ export function SortableTable<T,>({
                         <span>{col.label}</span>
                       </label>
                     ))}
+                    {settingsExtra}
                   </div>
                 )}
               </div>

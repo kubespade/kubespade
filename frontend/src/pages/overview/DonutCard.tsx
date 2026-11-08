@@ -30,43 +30,40 @@ export function DonutCard({ title, usage, requests, limits, allocatable, color, 
   return (
     <div className="ov-donut-card">
       <div className="ov-donut-title">{title}</div>
-      <svg className="ov-donut-svg" viewBox="0 0 90 90">
-        {/* Outer track */}
-        <circle cx="45" cy="45" r={rOuter} fill="none" stroke="var(--surface2)" strokeWidth={sw} />
-        {/* Requests arc */}
-        {reqPct > 0 && (
-          <circle cx="45" cy="45" r={rOuter} fill="none"
-            stroke={color} strokeWidth={sw} opacity="0.35"
-            strokeDasharray={`${reqPct * circOuter} ${circOuter}`}
-            strokeLinecap="round" transform="rotate(-90 45 45)" />
-        )}
-        {/* Inner track */}
-        <circle cx="45" cy="45" r={rInner} fill="none" stroke="var(--surface2)" strokeWidth={sw} />
-        {/* Usage arc */}
-        {usePct > 0 && (
-          <circle cx="45" cy="45" r={rInner} fill="none"
-            stroke={color} strokeWidth={sw}
-            strokeDasharray={`${usePct * circInner} ${circInner}`}
-            strokeLinecap="round" transform="rotate(-90 45 45)" />
-        )}
-        {/* Center */}
-        <text x="45" y="42" textAnchor="middle" fill="var(--text)" fontSize="11" fontWeight="700">
-          {fmt(usage)}
-        </text>
-        <text x="45" y="53" textAnchor="middle" fill="var(--muted)" fontSize="8">
-          {unit}
-        </text>
-      </svg>
-      <div className="ov-donut-legend">
-        <LegendRow color={color} label="Usage"       value={`${fmt(usage)} ${unit}`} />
-        {requests > 0 && (
-          <LegendRow color={color} label="Requests" value={`${fmt(requests)} ${unit}`} faint />
-        )}
-        {limits > 0 && (
-          <LegendRow color="var(--muted)" label="Limits" value={`${fmt(limits)} ${unit}`} />
-        )}
-        <LegendRow color="var(--border)" label="Allocatable" value={`${fmt(allocatable)} ${unit}`} />
-        <div className="ov-donut-pct">{(usePct * 100).toFixed(1)}%</div>
+      <div className="ov-donut-body">
+        <svg className="ov-donut-svg" viewBox="0 0 90 90" aria-hidden>
+          <circle cx="45" cy="45" r={rOuter} fill="none" stroke="var(--surface2)" strokeWidth={sw} />
+          {reqPct > 0 && (
+            <circle cx="45" cy="45" r={rOuter} fill="none"
+              stroke={color} strokeWidth={sw} opacity="0.35"
+              strokeDasharray={`${reqPct * circOuter} ${circOuter}`}
+              strokeLinecap="round" transform="rotate(-90 45 45)" />
+          )}
+          <circle cx="45" cy="45" r={rInner} fill="none" stroke="var(--surface2)" strokeWidth={sw} />
+          {usePct > 0 && (
+            <circle cx="45" cy="45" r={rInner} fill="none"
+              stroke={color} strokeWidth={sw}
+              strokeDasharray={`${usePct * circInner} ${circInner}`}
+              strokeLinecap="round" transform="rotate(-90 45 45)" />
+          )}
+          <text x="45" y="42" textAnchor="middle" fill="var(--text)" fontSize="11" fontWeight="700">
+            {fmt(usage)}
+          </text>
+          <text x="45" y="53" textAnchor="middle" fill="var(--muted)" fontSize="8">
+            {unit}
+          </text>
+        </svg>
+        <div className="ov-donut-legend">
+          <LegendRow color={color} label="Usage" value={`${fmt(usage)} ${unit}`} />
+          {requests > 0 && (
+            <LegendRow color={color} label="Requests" value={`${fmt(requests)} ${unit}`} faint />
+          )}
+          {limits > 0 && (
+            <LegendRow color="var(--muted)" label="Limits" value={`${fmt(limits)} ${unit}`} />
+          )}
+          <LegendRow color="var(--border)" label="Allocatable" value={`${fmt(allocatable)} ${unit}`} />
+          <div className="ov-donut-pct">{(usePct * 100).toFixed(1)}%</div>
+        </div>
       </div>
     </div>
   )

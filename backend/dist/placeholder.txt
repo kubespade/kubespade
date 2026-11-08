@@ -1,1 +1,1 @@
-placeholder for go:embed
+placeholder for go:embed — frontend build lands here

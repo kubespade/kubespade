@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { ChevronDown, Eye, EyeOff, Terminal } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { ChevronDown, ChevronRight, Eye, EyeOff, Terminal } from 'lucide-react'
 import { api } from '../../api/client'
 import { arr, decodeSecretValue, formatPvcMount, pvcVolumeMap, raw, rec } from '../../lib/resourceInfoProps'
 
@@ -228,21 +228,74 @@ export function EnvRow({ line }: { line: EnvLine }) {
   )
 }
 
-export function EnvFold({ lines, loading }: { lines: EnvLine[]; loading: boolean }) {
-  const [open, setOpen] = useState(false)
-  const count = loading && lines.length === 0 ? '…' : String(lines.length)
+/** Card offset inside the scroll content, unaffected by the panel's entrance scale transform. */
+function cardOffsetInPanel(el: HTMLElement, body: HTMLElement): number {
+  const bodyRect = body.getBoundingClientRect()
+  const scale = body.offsetHeight > 0 ? bodyRect.height / body.offsetHeight : 1
+  const visual = el.getBoundingClientRect().top - bodyRect.top
+  return body.scrollTop + visual / (scale || 1)
+}
+
+function scrollCardIntoPanel(el: HTMLElement, durationMs = 380): () => void {
+  const body = el.closest('.ip-body') as HTMLElement | null
+  if (!body) {
+    el.scrollIntoView({ block: 'start', behavior: 'smooth' })
+    return () => {}
+  }
+  const maxTop = () => Math.max(0, body.scrollHeight - body.clientHeight)
+  const target = () => Math.min(maxTop(), Math.max(0, cardOffsetInPanel(el, body)))
+  // Target is re-read every frame: rows above can still grow/shrink while the panel settles.
+  const start = body.scrollTop
+  const t0 = performance.now()
+  const settleMs = 300
+  const easeInOut = (t: number) => (t < 0.5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2)
+  let raf = 0
+  let cancelled = false
+  const frame = (now: number) => {
+    if (cancelled) return
+    const elapsed = now - t0
+    const p = Math.min(1, elapsed / durationMs)
+    const to = target()
+    body.scrollTop = start + (to - start) * easeInOut(p)
+    if (elapsed < durationMs + settleMs) raf = requestAnimationFrame(frame)
+  }
+  raf = requestAnimationFrame(frame)
+  const stop = () => {
+    cancelled = true
+    cancelAnimationFrame(raf)
+  }
+  body.addEventListener('wheel', stop, { once: true, passive: true })
+  body.addEventListener('touchstart', stop, { once: true, passive: true })
+  return () => {
+    stop()
+    body.removeEventListener('wheel', stop)
+    body.removeEventListener('touchstart', stop)
+  }
+}
+
+export function EnvFold({ lines, loading, defaultOpen = false }: {
+  lines: EnvLine[]
+  loading: boolean
+  defaultOpen?: boolean
+}) {
+  const [open, setOpen] = useState(defaultOpen)
+  const count = loading && lines.length === 0 ? undefined : lines.length
+
+  useEffect(() => {
+    if (defaultOpen) setOpen(true)
+  }, [defaultOpen])
 
   return (
-    <div className="ip-env-fold">
-      <button type="button" className="ip-env-toggle" onClick={() => setOpen(v => !v)} aria-expanded={open}>
-        <span className="ip-container-key">Environment</span>
-        <span className="ip-env-toggle-meta">
-          {count}
-          <ChevronDown size={12} className={open ? 'ip-env-chevron open' : 'ip-env-chevron'} />
-        </span>
+    <div className="ip-env-section">
+      <button type="button" className="ip-env-section-hdr" onClick={() => setOpen(v => !v)} aria-expanded={open}>
+        {open ? <ChevronDown size={10} /> : <ChevronRight size={10} />}
+        <span className="ip-env-section-title">Environment</span>
+        {count !== undefined
+          ? <span className="ip-env-section-count">{count}</span>
+          : <span className="ip-env-section-count">…</span>}
       </button>
       {open && (
-        <div className="ip-env-list">
+        <div className="ip-env-section-body">
           {loading && lines.length === 0 && <div className="ip-env-empty">Loading…</div>}
           {lines.map((line, i) => <EnvRow key={`${line.name}-${i}`} line={line} />)}
         </div>
@@ -251,16 +304,18 @@ export function EnvFold({ lines, loading }: { lines: EnvLine[]; loading: boolean
   )
 }
 
-export function ContainerCard({ c, statuses, init, pvcByVolume, sources, onExec }: {
+export function ContainerCard({ c, statuses, init, pvcByVolume, sources, onExec, focusEnv }: {
   c: unknown; statuses: unknown[]; init: boolean
   pvcByVolume: Map<string, string>
   sources: EnvSourceMaps
   onExec?: (name: string) => void
+  focusEnv?: boolean
 }) {
   const cont = rec(c)
   const name  = raw(cont.name)
   const cs    = statuses.find(x => raw(rec(x).name) === name)
   const csr   = rec(cs)
+  const cardRef = useRef<HTMLDivElement>(null)
 
   const { text: stateText, cls: stateCls } = cs ? containerStateInfo(cs) : { text: '—', cls: '' }
   const ready    = csr.ready === true
@@ -283,8 +338,23 @@ export function ContainerCard({ c, statuses, init, pvcByVolume, sources, onExec 
   const cpuReq = raw(req.cpu);  const cpuLim = raw(lim.cpu)
   const memReq = raw(req.memory); const memLim = raw(lim.memory)
 
+  useEffect(() => {
+    if (!focusEnv || !sources.loaded) return
+    let cancelAnim: (() => void) | undefined
+    let cancelled = false
+    const delay = window.setTimeout(() => {
+      if (cancelled || !cardRef.current) return
+      cancelAnim = scrollCardIntoPanel(cardRef.current)
+    }, 0)
+    return () => {
+      cancelled = true
+      clearTimeout(delay)
+      cancelAnim?.()
+    }
+  }, [focusEnv, sources.loaded])
+
   return (
-    <div className="ip-container-card">
+    <div className="ip-container-card" ref={cardRef}>
       <div className="ip-container-header">
         {init && <span className="ip-container-tag">init</span>}
         <span className="ip-container-name">{name}</span>
@@ -312,18 +382,19 @@ export function ContainerCard({ c, statuses, init, pvcByVolume, sources, onExec 
             </div>
           </div>
         )}
-        {hasEnv && <EnvFold lines={envLines} loading={!sources.loaded} />}
+        {hasEnv && <EnvFold lines={envLines} loading={!sources.loaded} defaultOpen={!!focusEnv} />}
       </div>
     </div>
   )
 }
 
-export function ContainersSection({ spec, status, profile, namespace, onExec }: {
+export function ContainersSection({ spec, status, profile, namespace, onExec, focusEnvContainer }: {
   spec: Record<string, unknown>
   status: Record<string, unknown>
   profile: string
   namespace?: string
   onExec?: (name: string) => void
+  focusEnvContainer?: string
 }) {
   const containers     = arr(spec.containers)
   const initContainers = arr(spec.initContainers)
@@ -337,11 +408,24 @@ export function ContainersSection({ spec, status, profile, namespace, onExec }: 
   if (containers.length === 0 && initContainers.length === 0 && ephemeral.length === 0)
     return <div className="ip-empty">No containers</div>
 
+  const card = (c: unknown, statuses: unknown[], init: boolean, key: string) => (
+    <ContainerCard
+      key={key}
+      c={c}
+      statuses={statuses}
+      init={init}
+      pvcByVolume={pvcByVolume}
+      sources={sources}
+      onExec={onExec}
+      focusEnv={!!focusEnvContainer && raw(rec(c).name) === focusEnvContainer}
+    />
+  )
+
   return (
     <div className="ip-containers">
-      {initContainers.map((c, i) => <ContainerCard key={`init-${i}`} c={c} statuses={initCsStatuses} init={true}  pvcByVolume={pvcByVolume} sources={sources} onExec={onExec} />)}
-      {containers.map((c, i)     => <ContainerCard key={`c-${i}`}    c={c} statuses={csStatuses}     init={false} pvcByVolume={pvcByVolume} sources={sources} onExec={onExec} />)}
-      {ephemeral.map((c, i)      => <ContainerCard key={`eph-${i}`}  c={c} statuses={ephStatuses}    init={false} pvcByVolume={pvcByVolume} sources={sources} onExec={onExec} />)}
+      {initContainers.map((c, i) => card(c, initCsStatuses, true, `init-${i}`))}
+      {containers.map((c, i) => card(c, csStatuses, false, `c-${i}`))}
+      {ephemeral.map((c, i) => card(c, ephStatuses, false, `eph-${i}`))}
     </div>
   )
 }

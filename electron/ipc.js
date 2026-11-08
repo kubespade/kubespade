@@ -25,6 +25,14 @@ function registerAppIpc(app, ipcMain) {
       e.returnValue = ''
     }
   })
+  // Claude Code / Ink TUIs attach screenshots on Ctrl+V by reading the OS clipboard.
+  ipcMain.on('clipboard:hasImage', (e) => {
+    try {
+      e.returnValue = !clipboard.readImage().isEmpty()
+    } catch {
+      e.returnValue = false
+    }
+  })
 
   ipcMain.handle('app:checkUpdate', async () => {
     try {

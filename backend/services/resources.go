@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"strings"
+	"time"
 
 	appsv1 "k8s.io/api/apps/v1"
 	autoscalingv2 "k8s.io/api/autoscaling/v2"
@@ -225,6 +226,55 @@ func isPodReady(p corev1.Pod) bool {
 		}
 	}
 	return false
+}
+
+// lastRestartReason is why a container last exited (LastTerminationState), newest FinishedAt wins.
+func lastRestartReason(p corev1.Pod) string {
+	var best time.Time
+	reason := ""
+	consider := func(cs corev1.ContainerStatus) {
+		t := cs.LastTerminationState.Terminated
+		if t == nil {
+			return
+		}
+		finished := t.FinishedAt.Time
+		if !best.IsZero() && (finished.IsZero() || !finished.After(best)) {
+			return
+		}
+		if !finished.IsZero() {
+			best = finished
+		}
+		reason = t.Reason
+		if reason == "" {
+			reason = fmt.Sprintf("ExitCode:%d", t.ExitCode)
+		}
+	}
+	for _, cs := range p.Status.ContainerStatuses {
+		consider(cs)
+	}
+	for _, cs := range p.Status.InitContainerStatuses {
+		consider(cs)
+	}
+	return reason
+}
+
+// podResourceTotals sums container requests/limits (main containers only).
+func podResourceTotals(p corev1.Pod) (cpuReqMilli, cpuLimMilli, memReqBytes, memLimBytes int64) {
+	for _, c := range p.Spec.Containers {
+		if q, ok := c.Resources.Requests[corev1.ResourceCPU]; ok {
+			cpuReqMilli += q.MilliValue()
+		}
+		if q, ok := c.Resources.Limits[corev1.ResourceCPU]; ok {
+			cpuLimMilli += q.MilliValue()
+		}
+		if q, ok := c.Resources.Requests[corev1.ResourceMemory]; ok {
+			memReqBytes += q.Value()
+		}
+		if q, ok := c.Resources.Limits[corev1.ResourceMemory]; ok {
+			memLimBytes += q.Value()
+		}
+	}
+	return
 }
 
 func minInt32(a, b int32) int32 {

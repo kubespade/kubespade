@@ -20,6 +20,9 @@ export function ConnectOverlay({ profile, initial, onClose, onConnected }: Props
     initial.status === 'pick-cluster' ? initial.clusters : [],
   )
   const [showClusters, setShowClusters] = useState(initial.status === 'pick-cluster')
+  const [emptyClustersMessage, setEmptyClustersMessage] = useState(
+    initial.status === 'pick-cluster' ? (initial.emptyMessage ?? '') : '',
+  )
 
   async function runConnect(token = mfaToken) {
     setLoading(true)
@@ -40,6 +43,7 @@ export function ConnectOverlay({ profile, initial, onClose, onConnected }: Props
       }
       if (result.status === 'pick-cluster') {
         setClusters(result.clusters)
+        setEmptyClustersMessage(result.emptyMessage ?? '')
         setShowClusters(true)
         setNeedsMFA(false)
         return
@@ -105,19 +109,25 @@ export function ConnectOverlay({ profile, initial, onClose, onConnected }: Props
 
         {showClusters && (
           <div className="cluster-select">
-            <p className="select-label">Select cluster:</p>
-            {clusters.map(c => (
-              <button
-                key={`${c.name}-${c.location ?? ''}-${c.resourceGroup ?? ''}`}
-                className="cluster-item"
-                onClick={() => pickCluster(c)}
-                disabled={loading}
-              >
-                <span className="cluster-item-name">{c.name}</span>
-                {c.location && <span className="cluster-item-ver">{c.location}</span>}
-                {!c.location && c.version && <span className="cluster-item-ver">K8s {c.version}</span>}
-              </button>
-            ))}
+            {clusters.length === 0 ? (
+              <p className="cluster-empty-msg">{emptyClustersMessage || 'No clusters found.'}</p>
+            ) : (
+              <>
+                <p className="select-label">Select cluster:</p>
+                {clusters.map(c => (
+                  <button
+                    key={`${c.name}-${c.location ?? ''}-${c.resourceGroup ?? ''}`}
+                    className="cluster-item"
+                    onClick={() => pickCluster(c)}
+                    disabled={loading}
+                  >
+                    <span className="cluster-item-name">{c.name}</span>
+                    {c.location && <span className="cluster-item-ver">{c.location}</span>}
+                    {!c.location && c.version && <span className="cluster-item-ver">K8s {c.version}</span>}
+                  </button>
+                ))}
+              </>
+            )}
           </div>
         )}
 

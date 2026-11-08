@@ -66,6 +66,8 @@ declare global {
       clipboard?: {
         readText(): string
         writeText(text: string): void
+        /** True when the OS clipboard holds a bitmap (e.g. screenshot). */
+        hasImage(): boolean
       }
       ai?: {
         detect(): Promise<{

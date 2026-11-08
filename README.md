@@ -18,7 +18,7 @@ Website: [https://www.kubespade.com](https://www.kubespade.com)
 
 ### Tags and source
 
-Release tags through **v1.5.0** publish Desktop installers on GitHub Releases. **Source in this repo is aligned with tags starting from the next Desktop release after v1.5.0.** Prefer the [Download](https://www.kubespade.com/download) page or the latest Release; verify with `SHA256SUMS.txt`.
+Desktop installers ship on [GitHub Releases](https://github.com/kubespade/kubespade/releases) with `SHA256SUMS.txt`. **Source in this repo matches Desktop v1.5.1+** (v1.5.0 was a source drop without a matching tag tree). Prefer the [Download](https://www.kubespade.com/download) page or the latest Release; verify checksums.
 
 ---
 

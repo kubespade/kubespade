@@ -1,9 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { Plus, ScrollText, Terminal } from 'lucide-react'
+import { Braces, Plus, ScrollText, Terminal } from 'lucide-react'
 import type { PortForwardSession, ResourceList } from '../types'
 import { api } from '../api/client'
 import type { PodMetricsSummary } from '../api/client'
+import { friendlyWatchError, isPermissionDeniedError } from '../lib/apiError'
+import { PodUsageCell } from '../components/PodUsageCell'
 import { withAccessToken } from '../api/token'
 import { SortableTable } from '../components/SortableTable'
 import type { ColDef as SortableColDef } from '../components/SortableTable'
@@ -45,6 +47,9 @@ import {
 import { NamespaceCombo } from '../components/NamespaceCombo'
 import { NameFilterInput, matchesNameQuery } from '../components/NameFilterInput'
 import { takeCommandPaletteJump, subscribeCommandPaletteJump } from '../lib/commandPaletteJump'
+import { prefsGet, prefsSet } from '../lib/persistentStore'
+
+const POD_RESTART_REASON_PREF = 'pods-show-restart-reason'
 import {
   getResourceActionButtonsProps,
   getResourceInfoPanelActionProps,
@@ -60,10 +65,11 @@ import {
 // ! prefix = init container; color: g=green y=yellow r=red s=gray
 type DotInfo = { name: string; color: string; restarts: number; isInit: boolean }
 
-function ContainerDots({ value, onLogs, onExec }: {
+function ContainerDots({ value, onLogs, onExec, onEnv }: {
   value: string
   onLogs?: (container: string, active: boolean) => void
   onExec?: (container: string) => void
+  onEnv?: (container: string) => void
 }) {
   const [tip, setTip] = useState<{ dot: DotInfo; x: number; y: number } | null>(null)
   const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -117,13 +123,13 @@ function ContainerDots({ value, onLogs, onExec }: {
           <span className="cdot-label-name">
             {tip.dot.isInit && <em>init</em>}{tip.dot.name}{tip.dot.restarts > 0 ? ` ×${tip.dot.restarts}` : ''}
           </span>
-          {(onLogs || onExec) && (
+          {(onLogs || onExec || onEnv) && (
             <span className="cdot-label-actions">
               {onLogs && (
                 <button
                   className="cdot-action-btn"
                   onClick={e => { e.stopPropagation(); onLogs(tip.dot.name, isLogFollowableColor(tip.dot.color)) }}
-                  title="Logs"
+                  data-tooltip="Logs"
                 >
                   <ScrollText size={14} />
                 </button>
@@ -132,9 +138,18 @@ function ContainerDots({ value, onLogs, onExec }: {
                 <button
                   className="cdot-action-btn"
                   onClick={e => { e.stopPropagation(); onExec(tip.dot.name) }}
-                  title="Terminal"
+                  data-tooltip="Terminal"
                 >
                   <Terminal size={14} />
+                </button>
+              )}
+              {onEnv && (
+                <button
+                  className="cdot-action-btn"
+                  onClick={e => { e.stopPropagation(); onEnv(tip.dot.name) }}
+                  data-tooltip="Environment"
+                >
+                  <Braces size={14} />
                 </button>
               )}
             </span>
@@ -254,6 +269,9 @@ export function ResourceTable({ profile, resource, namespaces, selectedNs, onNsC
   }
 
   const [podMetrics, setPodMetrics] = useState<Record<string, PodMetricsSummary>>({})
+  const [showRestartReason, setShowRestartReason] = useState(
+    () => prefsGet(POD_RESTART_REASON_PREF) === '1',
+  )
   const [nameQuery, setNameQuery] = useState('')
   const onNsChangeRef = useRef(onNsChange)
   onNsChangeRef.current = onNsChange
@@ -442,14 +460,23 @@ export function ResourceTable({ profile, resource, namespaces, selectedNs, onNsC
             return formatAge(now, ts)
           }
           if (resource === 'pods' && (key === 'cpu' || key === 'memory')) {
-            const m = podMetrics[`${row.namespace ?? ''}/${row.name}`]
-            if (!m) return '—'
-            if (key === 'cpu') return (m.cpuMilli / 1000).toFixed(3)
-            const MB = 1024 * 1024
-            const GB = 1024 * MB
-            return m.memBytes >= 1000 * MB
-              ? `${(m.memBytes / GB).toFixed(2)}Gi`
-              : `${(m.memBytes / MB).toFixed(1)}Mi`
+            return (
+              <PodUsageCell
+                kind={key}
+                metrics={podMetrics[`${row.namespace ?? ''}/${row.name}`]}
+                fields={row.fields ?? {}}
+              />
+            )
+          }
+          if (resource === 'pods' && key === 'restarts') {
+            const reason = showRestartReason ? row.fields?.restartReason : ''
+            if (!reason || val === '0') return val || '0'
+            return (
+              <span className="res-restarts" title={`Last restart: ${reason}`}>
+                <span className="res-restarts-n">{val}</span>
+                <span className="res-restarts-reason">{reason}</span>
+              </span>
+            )
           }
           if (resource === 'pods' && key === 'containers') {
             return (
@@ -457,6 +484,13 @@ export function ResourceTable({ profile, resource, namespaces, selectedNs, onNsC
                 value={val}
                 onLogs={container => openLogs(logsTargetForPod(row.name, row.namespace ?? undefined, val, container))}
                 onExec={container => openExec({ podName: row.name, namespace: row.namespace ?? undefined, container })}
+                onEnv={container => setInfoTarget({
+                  type: 'k8s',
+                  kind: 'pods',
+                  name: row.name,
+                  namespace: row.namespace ?? undefined,
+                  focusEnvContainer: container,
+                })}
               />
             )
           }
@@ -481,12 +515,6 @@ export function ResourceTable({ profile, resource, namespaces, selectedNs, onNsC
         col.cellStyle = row => {
           const ts = Number(fieldValue(row, key))
           return !ts ? { color: 'var(--text3)' } : undefined
-        }
-      }
-      if (resource === 'pods' && (key === 'cpu' || key === 'memory')) {
-        col.cellStyle = row => {
-          const m = podMetrics[`${row.namespace ?? ''}/${row.name}`]
-          return !m ? { color: 'var(--text3)' } : undefined
         }
       }
       if (resource === 'horizontalpodautoscalers' && key === 'metrics') {
@@ -515,7 +543,7 @@ export function ResourceTable({ profile, resource, namespaces, selectedNs, onNsC
         render: row => formatAge(now, row.age),
       },
     ]
-  }, [resource, now, podMetrics])
+  }, [resource, now, podMetrics, showRestartReason])
 
   // ── EventSource ───────────────────────────────────────────────────────────────
   const isClusterScoped = CLUSTER_SCOPED_KINDS.has(resource)
@@ -730,7 +758,8 @@ export function ResourceTable({ profile, resource, namespaces, selectedNs, onNsC
       )}
       {connNs !== null && (
         <ErrorReconnectBanner
-          error={error}
+          error={error ? friendlyWatchError(error, RESOURCE_LABELS[resource] ?? resource) : error}
+          label={isPermissionDeniedError(error) ? 'Retry' : 'Reconnect'}
           onReconnect={() => {
             clearAutoReconnect()
             setError('')
@@ -937,16 +966,41 @@ export function ResourceTable({ profile, resource, namespaces, selectedNs, onNsC
           lockedColumns={new Set(['name'])}
           toolbarLeft={toolbarLeft}
           toolbarRight={toolbarRight}
+          settingsExtra={resource === 'pods' ? (
+            <>
+              <div className="col-settings-divider" />
+              <label className="col-settings-row">
+                <input
+                  type="checkbox"
+                  checked={showRestartReason}
+                  onChange={e => {
+                    const on = e.target.checked
+                    setShowRestartReason(on)
+                    prefsSet(POD_RESTART_REASON_PREF, on ? '1' : '0')
+                  }}
+                />
+                <span>Restart reason</span>
+              </label>
+            </>
+          ) : undefined}
           emptyMessage={
-            <EmptyState
-              compact
-              title={`No ${RESOURCE_LABELS[resource] ?? resource} found`}
-              hint={
-                selectedNs && selectedNs.length > 1
-                  ? 'Nothing matches the selected namespaces. Try All namespaces or another filter.'
-                  : 'This view has no items right now. Create one with + if your account allows it.'
-              }
-            />
+            isPermissionDeniedError(error) ? (
+              <EmptyState
+                compact
+                title={`Can’t list ${RESOURCE_LABELS[resource] ?? resource}`}
+                hint="Insufficient permissions for this kind. The empty table is not “nothing here” — your credentials can’t read these resources."
+              />
+            ) : (
+              <EmptyState
+                compact
+                title={`No ${RESOURCE_LABELS[resource] ?? resource} found`}
+                hint={
+                  selectedNs && selectedNs.length > 1
+                    ? 'Nothing matches the selected namespaces. Try All namespaces or another filter.'
+                    : 'This view has no items right now. Create one with + if your account allows it.'
+                }
+              />
+            )
           }
           onRowClick={row => setInfoTarget({ type: 'k8s', kind: resource, name: row.name, namespace: row.namespace ?? undefined })}
           actions={row => (

@@ -243,14 +243,21 @@ export function ResourceInfoPanel({
                 if (!podSpec) return null
                 const n = arr(podSpec.containers).length + arr(podSpec.initContainers).length + arr(podSpec.ephemeralContainers).length
                 if (n === 0) return null
+                const focusEnv = target.kind === 'pods' ? target.focusEnvContainer : undefined
                 return (
-                  <Section title="Containers" count={n}>
+                  <Section
+                    key={focusEnv ? `containers-env-${focusEnv}` : 'containers'}
+                    title="Containers"
+                    count={n}
+                    defaultOpen
+                  >
                     <ContainersSection
                       spec={podSpec}
                       status={target.kind === 'pods' ? rec(detail.status) : {}}
                       profile={profile}
                       namespace={target.namespace}
                       onExec={target.kind === 'pods' ? onExec : undefined}
+                      focusEnvContainer={focusEnv}
                     />
                   </Section>
                 )

@@ -24,6 +24,7 @@ import { NameFilterInput, matchesNameQuery } from '../components/NameFilterInput
 import { EmptyState } from '../components/EmptyState'
 import { ErrorReconnectBanner } from '../components/ErrorReconnectBanner'
 import { useAutoReconnect } from '../hooks/useAutoReconnect'
+import { friendlyWatchError, isPermissionDeniedError } from '../lib/apiError'
 
 // ── CRD Instances Table ───────────────────────────────────────────────────────
 
@@ -285,7 +286,8 @@ export function CRDInstancesTable({ profile, resourceId, namespaces, selectedNs,
       )}
       {connNs !== null && (
         <ErrorReconnectBanner
-          error={error}
+          error={error ? friendlyWatchError(error, parts[5] ?? plural) : error}
+          label={isPermissionDeniedError(error) ? 'Retry' : 'Reconnect'}
           onReconnect={() => {
             clearAutoReconnect()
             setError('')
@@ -294,6 +296,15 @@ export function CRDInstancesTable({ profile, resourceId, namespaces, selectedNs,
         />
       )}
       {connNs !== null && loading && !data && <div className="cv-loading">Loading…</div>}
+      {connNs !== null && !loading && !data && isPermissionDeniedError(error) && (
+        <div className="res-placeholder">
+          <EmptyState
+            compact
+            title={`Can’t list ${parts[5] ?? plural}`}
+            hint="Insufficient permissions for this CRD. The empty view is not “nothing here” — your credentials can’t read these instances."
+          />
+        </div>
+      )}
 
       {editTarget && (
         <YamlPanel
@@ -337,15 +348,23 @@ export function CRDInstancesTable({ profile, resourceId, namespaces, selectedNs,
           rowKey={row => `${row.namespace ?? ''}/${row.name}`}
           lockedColumns={new Set(['name'])}
           emptyMessage={
-            <EmptyState
-              compact
-              title="No resources found"
-              hint={
-                selectedNs && selectedNs.length > 1
-                  ? 'Nothing matches the selected namespaces. Try All namespaces or another filter.'
-                  : 'No instances of this CRD in the current view.'
-              }
-            />
+            isPermissionDeniedError(error) ? (
+              <EmptyState
+                compact
+                title={`Can’t list ${parts[5] ?? plural}`}
+                hint="Insufficient permissions for this CRD. The empty table is not “nothing here” — your credentials can’t read these instances."
+              />
+            ) : (
+              <EmptyState
+                compact
+                title="No resources found"
+                hint={
+                  selectedNs && selectedNs.length > 1
+                    ? 'Nothing matches the selected namespaces. Try All namespaces or another filter.'
+                    : 'No instances of this CRD in the current view.'
+                }
+              />
+            )
           }
           onRowClick={row => setInfoTarget({
             type: 'crd', group, version, plural,

@@ -69,19 +69,39 @@ func listPods(ctx context.Context, client *kubernetes.Clientset, namespace strin
 			}
 		}
 
+		cpuReq, cpuLim, memReq, memLim := podResourceTotals(p)
+		fields := map[string]string{
+			"status":     computePodStatus(p),
+			"ready":      fmt.Sprintf("%d/%d", ready, total),
+			"restarts":   fmt.Sprintf("%d", restarts),
+			"node":       p.Spec.NodeName,
+			"containers": strings.Join(dots, ","),
+			"ip":         p.Status.PodIP,
+			"ports":      strings.Join(podPorts, ","),
+		}
+		if restarts > 0 {
+			if reason := lastRestartReason(p); reason != "" {
+				fields["restartReason"] = reason
+			}
+		}
+		if cpuReq > 0 {
+			fields["cpuReqMilli"] = fmt.Sprintf("%d", cpuReq)
+		}
+		if cpuLim > 0 {
+			fields["cpuLimMilli"] = fmt.Sprintf("%d", cpuLim)
+		}
+		if memReq > 0 {
+			fields["memReqBytes"] = fmt.Sprintf("%d", memReq)
+		}
+		if memLim > 0 {
+			fields["memLimBytes"] = fmt.Sprintf("%d", memLim)
+		}
+
 		items = append(items, ResourceRow{
 			Name:      p.Name,
 			Namespace: p.Namespace,
 			Age:       p.CreationTimestamp.Unix(),
-			Fields: map[string]string{
-				"status":     computePodStatus(p),
-				"ready":      fmt.Sprintf("%d/%d", ready, total),
-				"restarts":   fmt.Sprintf("%d", restarts),
-				"node":       p.Spec.NodeName,
-				"containers": strings.Join(dots, ","),
-				"ip":         p.Status.PodIP,
-				"ports":      strings.Join(podPorts, ","),
-			},
+			Fields:    fields,
 		})
 	}
 	return &ResourceList{Kind: "pods", Items: items}, nil

@@ -1,6 +1,6 @@
 {
   "name": "kubespade",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "KubeSpade - Kubernetes desktop client",
   "author": "Pavel Puker",
   "homepage": "https://github.com/kubespade/kubespade-desktop",

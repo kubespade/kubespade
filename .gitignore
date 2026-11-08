@@ -2,13 +2,9 @@
 .DS_Store
 Thumbs.db
 
-# Editors / AI / IDE
+# Editors
 .idea/
 .vscode/
-.cursor/
-.claude/
-CLAUDE.md
-AGENTS.md
 *.swp
 *.swo
 
@@ -28,19 +24,16 @@ backend/k8s-client-backend
 backend/k8s-client-backend-arm64
 backend/k8s-client-backend-amd64
 backend/k8s-client-backend.exe
-backend/debug/
 /k8s-client
 
-# Electron / GitHub release artifacts (built locally — not source)
+# Electron / GitHub release artifacts
 dist-electron/
 github-release/
 
-# Code-signing material (never commit)
+# Windows code-signing material
 certs/
 *.pfx
 *.p12
-*.pem
-*.password
 
 # Env / local secrets
 .env
@@ -52,29 +45,7 @@ certs/
 coverage/
 *.out
 
-# Working docs / plans / release drafts (private workflow — not product source)
-ROADMAP.md
-UNRELEASED.md
-ACTION_PLAN.md
-RELEASE_NOTES_*.md
-refactoring-reports/
-
-# Icon / asset tooling (packaging icons live under electron/build/)
-/tools/
-/make-icon.sh
-/scripts/
-*_old.png
-/github-org-icon.png
-/icon-mac-ios.png
-/icon-win.png
-/sidebar-icon.png
-electron/build/_dmg_preview.png
-
-# Misc local junk
+# Local junk
 **/__pycache__/
 *.pyc
 frontend/tsconfig.tsbuildinfo
-*.tsbuildinfo
-/k8s-client-ui@*
-/tsc
-/Dockerfile

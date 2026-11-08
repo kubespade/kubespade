@@ -2,6 +2,7 @@ package services
 
 import (
 	"testing"
+	"time"
 
 	appsv1 "k8s.io/api/apps/v1"
 	autoscalingv2 "k8s.io/api/autoscaling/v2"
@@ -208,6 +209,53 @@ func TestComputePodStatus(t *testing.T) {
 				t.Errorf("computePodStatus = %q, want %q", got, tt.want)
 			}
 		})
+	}
+}
+
+func TestLastRestartReason(t *testing.T) {
+	older := metav1.NewTime(time.Unix(100, 0))
+	newer := metav1.NewTime(time.Unix(200, 0))
+	pod := corev1.Pod{Status: corev1.PodStatus{
+		ContainerStatuses: []corev1.ContainerStatus{
+			{LastTerminationState: corev1.ContainerState{
+				Terminated: &corev1.ContainerStateTerminated{Reason: "Error", FinishedAt: older},
+			}},
+			{LastTerminationState: corev1.ContainerState{
+				Terminated: &corev1.ContainerStateTerminated{Reason: "OOMKilled", FinishedAt: newer},
+			}},
+		},
+	}}
+	if got := lastRestartReason(pod); got != "OOMKilled" {
+		t.Fatalf("lastRestartReason = %q, want OOMKilled", got)
+	}
+	if got := lastRestartReason(corev1.Pod{}); got != "" {
+		t.Fatalf("empty pod reason = %q", got)
+	}
+}
+
+func TestPodResourceTotals(t *testing.T) {
+	pod := corev1.Pod{Spec: corev1.PodSpec{Containers: []corev1.Container{
+		{Resources: corev1.ResourceRequirements{
+			Requests: corev1.ResourceList{
+				corev1.ResourceCPU:    resource.MustParse("100m"),
+				corev1.ResourceMemory: resource.MustParse("128Mi"),
+			},
+			Limits: corev1.ResourceList{
+				corev1.ResourceCPU:    resource.MustParse("500m"),
+				corev1.ResourceMemory: resource.MustParse("256Mi"),
+			},
+		}},
+		{Resources: corev1.ResourceRequirements{
+			Requests: corev1.ResourceList{corev1.ResourceCPU: resource.MustParse("50m")},
+			Limits:   corev1.ResourceList{corev1.ResourceMemory: resource.MustParse("64Mi")},
+		}},
+	}}}
+	cpuReq, cpuLim, memReq, memLim := podResourceTotals(pod)
+	if cpuReq != 150 || cpuLim != 500 {
+		t.Fatalf("cpu req/lim = %d/%d, want 150/500", cpuReq, cpuLim)
+	}
+	if memReq != 128*1024*1024 || memLim != (256+64)*1024*1024 {
+		t.Fatalf("mem req/lim = %d/%d", memReq, memLim)
 	}
 }
 
